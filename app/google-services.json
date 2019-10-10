@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "317568236888",
+    "firebase_url": "https://quickbite-1c608.firebaseio.com",
+    "project_id": "quickbite-1c608",
+    "storage_bucket": "quickbite-1c608.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317568236888:android:bab4dda5dad8f49ae9b92d",
+        "android_client_info": {
+          "package_name": "com.griffsoft.tsadadelivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317568236888-d4n26d08dh88rm5hqejkmmslm1dsp32c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.griffsoft.tsadadelivery",
+            "certificate_hash": "2c4383e73d68b8c7c48c71684eaa5340c2bb7982"
+          }
+        },
+        {
+          "client_id": "317568236888-rokn28jtm418qktt99rcaktqsvre5rvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHqJwOqz_g-VUJfrlvPlNaIQexVVsqpaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317568236888-rokn28jtm418qktt99rcaktqsvre5rvn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "317568236888-35ic9trr77uoou858kkkhsa3h9l4iius.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.griffsoft.QuickBite"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
