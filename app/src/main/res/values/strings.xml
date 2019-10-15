@@ -8,6 +8,16 @@
     <string name="continue_without_account">Continue without an account</string>
     <string name="setting_up_account">Setting up your account…</string>
 
+    <!--Add New Address Map-->
+    <string name="cagayan_de_oro">Cagayan de Oro</string>
+    <string name="rename">Rename</string>
+    <string name="floor_door_unit">Floor / Door / Unit # (optional)</string>
+    <string name="building_landmark">Building / Landmark (optional)</string>
+    <string name="instructions">Instructions (optional)</string>
+    <string name="save_address">Save Address</string>
+    <string name="rename_address_hint">\"Home\", \"Office\", etc.</string>
+    <string name="pin_move_hint_line_1">please move the pin to your\nexact delivery location</string>
+
     <!--Order-->
     <string name="order">Order: %1$s</string>
     <string name="placed">Placed: %1$s</string>
@@ -56,6 +66,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

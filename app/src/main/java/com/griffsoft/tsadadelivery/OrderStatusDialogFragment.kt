@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.RadioGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_order_status_dialog.*
+import kotlinx.android.synthetic.main.fragment_dialog_order_status.*
 
 private const val ARG_CURRENT_STATUS = "currentStatus"
 
@@ -37,7 +37,7 @@ class OrderStatusDialogFragment : DialogFragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_order_status_dialog, container, false)
+        val view = inflater.inflate(R.layout.fragment_dialog_order_status, container, false)
         this.dialog!!.setTitle(R.string.change_order_status)
 
         view.findViewById<Button>(R.id.saveButton).setOnClickListener(this)

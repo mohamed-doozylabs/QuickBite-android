@@ -1,8 +1,7 @@
-package com.griffsoft.tsadadelivery
+package com.griffsoft.tsadadelivery.get_started
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -13,7 +12,12 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_login.*
+import com.griffsoft.tsadadelivery.R
+import com.griffsoft.tsadadelivery.TDActivity
+import com.griffsoft.tsadadelivery.User
+import com.griffsoft.tsadadelivery.UserUtil
+import kotlinx.android.synthetic.main.activity_get_started.*
+import timber.log.Timber
 
 const val RC_SIGN_IN = 0
 const val RC_DID_RETURN_TO_LOGIN = 1
@@ -26,7 +30,7 @@ class LoginActivity : TDActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_get_started)
         supportActionBar!!.hide()
 
         auth = FirebaseAuth.getInstance()
@@ -59,11 +63,11 @@ class LoginActivity : TDActivity() {
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Log.w("TAG", "Google sign in failed", e)
+                Timber.w(e, "Google sign in failed")
                 loadingViewLayout.visibility = View.GONE
             }
         } else if (requestCode == RC_DID_RETURN_TO_LOGIN) {
-            Log.v(TAG, "LOGGING OUT")
+            Timber.v("LOGGING OUT")
             auth.currentUser?.let {
                 auth.signOut()
             }
@@ -72,12 +76,11 @@ class LoginActivity : TDActivity() {
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithCredential:success")
+                    Timber.d("signInWithCredential:success")
                     val user = auth.currentUser!!
 
                     val userDocRef = FirebaseFirestore.getInstance().collection("users").document(user.uid)
@@ -104,19 +107,33 @@ class LoginActivity : TDActivity() {
                             loadingViewLayout.visibility = View.GONE
 
                             if (udUser.addresses.isEmpty()) {
-                                val addNewAddressIntent = Intent(this, AddNewAddressSearchViewActivity::class.java)
-                                startActivityForResult(addNewAddressIntent, RC_DID_RETURN_TO_LOGIN)
+                                segueToAddNewAddressSearch()
                             } else {
-
+                                // TODO: Open main screen
                             }
 
                         }
                     }
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Timber.w(task.exception, "signInWithCredential:failure")
                     Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private fun segueToAddNewAddressSearch() {
+        val addNewAddressIntent = Intent(this, AddNewAddressSearchActivity::class.java)
+        startActivityForResult(addNewAddressIntent,
+            RC_DID_RETURN_TO_LOGIN
+        )
+    }
+
+    fun continueWithoutAccountTapped(v: View) {
+        UserUtil.updateCurrentUser(
+            this,
+            User(isGuest = true)
+        )
+        segueToAddNewAddressSearch()
     }
 }

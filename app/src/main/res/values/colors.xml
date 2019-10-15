@@ -3,6 +3,5 @@
     <color name="colorPrimary">#DD5E56</color>
     <color name="colorPrimaryDark">#DD5E56</color>
     <color name="colorAccent">#FF6E6E</color>
-
-<!--    <color name="google_sign_in_background">#5383EC</color>-->
+    <color name="colorAccentLight">#DAFF6E6E</color>
 </resources>

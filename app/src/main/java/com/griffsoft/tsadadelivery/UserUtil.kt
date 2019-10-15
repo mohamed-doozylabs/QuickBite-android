@@ -1,13 +1,14 @@
 package com.griffsoft.tsadadelivery
 
-import Address
-import Order
 import android.content.Context
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
+import com.griffsoft.tsadadelivery.objects.Address
+import com.griffsoft.tsadadelivery.objects.Order
+import timber.log.Timber
 
+@Suppress("EnumEntryName")
 enum class SyncProperty {
     customerName,
     customerPhone,
@@ -145,7 +146,7 @@ object UserUtil {
 
         dbUsers.document(fbUser.uid).update(property.name, newValue)
             .addOnFailureListener {
-                Log.e("UserUtil", "Error syncing user property!")
+                Timber.e("Error syncing user property!")
             }
     }
 }

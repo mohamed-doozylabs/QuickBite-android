@@ -1,12 +1,11 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package com.griffsoft.tsadadelivery
 
-import Order
-import OrderItem
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +17,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.griffsoft.tsadadelivery.objects.Order
+import com.griffsoft.tsadadelivery.objects.OrderItem
 import kotlinx.android.synthetic.main.activity_order.*
 import kotlinx.android.synthetic.main.order_item_list_item.view.*
+import timber.log.Timber
 
 
 class OrderActivity : AppCompatActivity(), OrderStatusDialogFragment.OrderStatusDialogDelegate {
@@ -39,27 +41,20 @@ class OrderActivity : AppCompatActivity(), OrderStatusDialogFragment.OrderStatus
         val orderId = intent.getStringExtra(ORDER_ID)
         orderRef = FirebaseFirestore.getInstance().collection("orders").document(orderId)
 
-//        orderRef!!.get().addOnSuccessListener { documentSnapshot ->
-//            order = documentSnapshot.toObject(Order::class.java)
-//            populateOrderInfo()
-//            loadingViewLayout.visibility = View.GONE
-//        }
-
         orderRef!!.addSnapshotListener { snapshot, e ->
             if (e != null) {
-                Log.w("TAG", "Listen failed.", e)
+                Timber.w(e, "Listen failed.")
                 return@addSnapshotListener
             }
 
             if (snapshot != null && snapshot.exists()) {
-                Log.d("TAG", "Current data: ${snapshot.data}")
                 order = snapshot.toObject(Order::class.java)
                 populateOrderInfo()
                 if (loadingViewLayout.visibility == View.VISIBLE) {
                     loadingViewLayout.visibility = View.GONE
                 }
             } else {
-                Log.d("TAG", "Current data: null")
+                Timber.d("Current data: null")
             }
         }
     }

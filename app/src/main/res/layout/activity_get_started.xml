@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".LoginActivity">
+    tools:context=".get_started.LoginActivity">
 
     <Button
         android:id="@+id/facebookSignInButton"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/login_rounded_button"
         android:backgroundTint="#425893"
+        android:fontFamily="sans-serif-medium"
         android:gravity="left|center_vertical"
         android:paddingStart="53dp"
         android:text="@string/continue_with_facebook"
@@ -30,8 +31,9 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/login_rounded_button"
         android:backgroundTint="#5383EC"
+        android:fontFamily="sans-serif-medium"
         android:gravity="left|center_vertical"
         android:onClick="googleSignIn"
         android:paddingStart="53dp"
@@ -47,10 +49,11 @@
 
     <Button
         android:id="@+id/continueWithoutAccountButton"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:onClick="continueWithoutAccountTapped"
         android:text="@string/continue_without_account"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/colorPrimary"

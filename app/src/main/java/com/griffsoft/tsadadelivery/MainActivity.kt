@@ -1,6 +1,5 @@
 package com.griffsoft.tsadadelivery
 
-import Order
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +14,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.griffsoft.tsadadelivery.objects.Order
 import kotlinx.android.synthetic.main.order_list_item.view.*
 
 class MainActivity : AppCompatActivity(), OrderRecyclerViewDelegate {

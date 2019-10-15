@@ -1,5 +1,6 @@
+package com.griffsoft.tsadadelivery.objects
+
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.GeoPoint
 
 data class Order(
     val customerContactNumber: String = "",
@@ -31,15 +32,3 @@ data class OrderItem(
     val specialInstructions: String = ""
 )
 
-data class Address(
-    val id: String = "",
-    val buildingLandmark: String = "",
-    val floorDoorUnitNo: String = "",
-    val fullString: String = "",
-    val instructions: String = "",
-    val geoPoint: GeoPoint = GeoPoint(0.0, 0.0),
-    var isDefault: Boolean = false,
-    val street: String = "",
-    val userNickname: String = "",
-    var isSelected: Boolean = false
-)
