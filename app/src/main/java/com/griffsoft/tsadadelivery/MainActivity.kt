@@ -82,8 +82,8 @@ class OrderAdapter(options: FirestoreRecyclerOptions<Order>, context: Context): 
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION && delegate != null) {
-                    delegate!!.orderWasSelected(snapshots.getSnapshot(position), position)
+                if (position != RecyclerView.NO_POSITION) {
+                    delegate?.orderWasSelected(snapshots.getSnapshot(position), position)
                 }
             }
         }

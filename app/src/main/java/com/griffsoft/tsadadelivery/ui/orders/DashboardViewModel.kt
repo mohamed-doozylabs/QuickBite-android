@@ -1,4 +1,4 @@
-package com.griffsoft.tsadadelivery.ui.dashboard
+package com.griffsoft.tsadadelivery.ui.orders
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

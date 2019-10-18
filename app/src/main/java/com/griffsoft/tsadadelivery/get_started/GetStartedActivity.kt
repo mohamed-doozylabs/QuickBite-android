@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -16,6 +15,7 @@ import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.TDActivity
 import com.griffsoft.tsadadelivery.User
 import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.extras.TDUtil
 import kotlinx.android.synthetic.main.activity_get_started.*
 import timber.log.Timber
 
@@ -35,14 +35,7 @@ class LoginActivity : TDActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        // Configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.google_sign_in_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
+        googleSignInClient = GoogleSignIn.getClient(this, TDUtil.gso)
     }
 
     fun googleSignIn(v: View) {
@@ -111,7 +104,6 @@ class LoginActivity : TDActivity() {
                             } else {
                                 // TODO: Open main screen
                             }
-
                         }
                     }
                 } else {
@@ -124,9 +116,7 @@ class LoginActivity : TDActivity() {
 
     private fun segueToAddNewAddressSearch() {
         val addNewAddressIntent = Intent(this, AddNewAddressSearchActivity::class.java)
-        startActivityForResult(addNewAddressIntent,
-            RC_DID_RETURN_TO_LOGIN
-        )
+        startActivityForResult(addNewAddressIntent, RC_DID_RETURN_TO_LOGIN)
     }
 
     fun continueWithoutAccountTapped(v: View) {

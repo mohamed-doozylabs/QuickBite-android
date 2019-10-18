@@ -23,7 +23,7 @@ object UserUtil {
     private val dbUsers = FirebaseFirestore.getInstance().collection("users")
 
     fun updateCurrentUser(context: Context, user: User) {
-        val sharedPref = context.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
+        val sharedPref = context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
         with (sharedPref.edit()) {
             val userData = gson.toJson(user)
             putString(context.getString(R.string.SHARED_PREFS_KEY_CURRENT_USER), userData)
@@ -32,7 +32,7 @@ object UserUtil {
     }
 
     fun getCurrentUser(context: Context): User? {
-        val sharedPref = context.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
+        val sharedPref = context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
         val currentUserData = sharedPref.getString(context.getString(R.string.SHARED_PREFS_KEY_CURRENT_USER), "")
         return if (currentUserData != "") {
             gson.fromJson(currentUserData, User::class.java)
@@ -42,15 +42,41 @@ object UserUtil {
     }
 
     fun clearCurrentUser(context: Context) {
-        val sharedPref = context.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
+        val sharedPref = context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
         with (sharedPref.edit()) {
             remove(context.getString(R.string.SHARED_PREFS_KEY_CURRENT_USER))
             apply()
         }
     }
 
+    // Used when someone using a guest account logs in with their google/fb account,
+    // but they already have
+    fun mergeCurrentUserWithFirebaseUserAndSync(context: Context,
+                                                firebaseUser: User,
+                                                firebaseUserId: String,
+                                                callback: () -> Unit) {
+        val mergedUser = getCurrentUser(context)!!
+
+        mergedUser.name = firebaseUser.name
+
+        firebaseUser.addresses.forEach {
+            it.isDefault = false
+            it.isSelected = false
+        }
+        mergedUser.addresses.addAll(firebaseUser.addresses)
+
+        mergedUser.isGuest = false
+
+        updateCurrentUser(context, mergedUser)
+        dbUsers.document(firebaseUserId).set(mergedUser).addOnCompleteListener {
+            callback()
+        }
+    }
+
     fun setName(context: Context, name: String) {
         val user = getCurrentUser(context)!!
+        if (user.name == name) { return }
+
         user.name = name
         updateCurrentUser(context, user)
         syncUserProperty(context, SyncProperty.customerName)
@@ -58,6 +84,8 @@ object UserUtil {
 
     fun setPhone(context: Context, phone: String) {
         val user = getCurrentUser(context)!!
+        if (user.phone == phone) { return }
+
         user.phone = phone
         updateCurrentUser(context, user)
         syncUserProperty(context, SyncProperty.customerPhone)

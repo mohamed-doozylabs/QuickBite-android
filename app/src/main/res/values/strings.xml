@@ -4,7 +4,9 @@
 
     <!--Login Screen-->
     <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="sign_in_with_facebook">Sign In with Facebook</string>
     <string name="continue_with_google">Continue with Google</string>
+    <string name="sign_in_with_google">Sign In with Google</string>
     <string name="continue_without_account">Continue without an account</string>
     <string name="setting_up_account">Setting up your account…</string>
 
@@ -62,11 +64,22 @@
     <!--SharedPrefs Keys-->
     <string name="SHARED_PREFS_KEY">com.griffsoft.tsadadelivery.SHARED_PREFS</string>
     <string name="SHARED_PREFS_KEY_CURRENT_USER">com.griffsoft.tsadadelivery.CURRENT_USER</string>
-    <string name="title_activity_tdtab_bar">TDTabBarActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_activity_maps">Map</string>
+
+    <!--Account Fragment-->
+    <string name="log_out">Log Out</string>
+
+    <string name="sign_in_salespitch">Sign in with your Google or Facebook account to take advantage of promos like free delivery!</string>
+
+    <!--Account Details-->
+    <string name="account_details">Account Details</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="save_changes">Save Changes</string>
 
 
+    <string name="title_delivery">Delivery</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_account">Account</string>
+
+    <string name="changes_saved">Changes Saved</string>
 </resources>

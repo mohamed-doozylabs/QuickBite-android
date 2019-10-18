@@ -174,7 +174,7 @@ class OrderItemAdapter(private val orderItems: List<OrderItem>, private val cont
         holder.instructionsTv.text = r.getString(R.string.special_instructions, menuItem.specialInstructions)
     }
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val quantityTv: TextView = view.quantity
         val itemNameTv: TextView = view.itemName
         val totalPriceTv: TextView = view.totalPrice

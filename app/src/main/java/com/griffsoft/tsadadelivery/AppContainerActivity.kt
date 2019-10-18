@@ -15,13 +15,11 @@ class AppContainerActivity : AppCompatActivity() {
             Timber.plant(Timber.DebugTree())
         }
 
-        val activityIntent: Intent
-
-        // go straight to main if a token is stored
-        if (false) {
-            activityIntent = Intent(this, MainActivity::class.java)
+        val currentUser = UserUtil.getCurrentUser(this)
+        val activityIntent = if (currentUser != null && currentUser.addresses.isNotEmpty()) {
+            Intent(this, TDTabBarActivity::class.java)
         } else {
-            activityIntent = Intent(this, LoginActivity::class.java)
+            Intent(this, LoginActivity::class.java)
         }
 
         startActivity(activityIntent)

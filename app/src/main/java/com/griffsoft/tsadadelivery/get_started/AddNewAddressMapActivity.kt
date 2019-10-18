@@ -18,16 +18,13 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import com.google.firebase.firestore.GeoPoint
-import com.griffsoft.tsadadelivery.R
-import com.griffsoft.tsadadelivery.TDActivity
-import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.*
 import com.griffsoft.tsadadelivery.extras.FetchAddressIntentService
 import com.griffsoft.tsadadelivery.objects.Address
-import com.griffsoft.tsadadelivery.px
-import kotlinx.android.synthetic.main.activity_maps.*
+import kotlinx.android.synthetic.main.activity_add_new_address_map.*
 import kotlinx.android.synthetic.main.dialog_rename_address.view.*
 
-class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnCameraIdleListener, GoogleMap.OnCameraMoveListener {
+class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnCameraIdleListener, GoogleMap.OnCameraMoveStartedListener {
     companion object {
         const val PLACE_ID = "unique_place"
     }
@@ -42,7 +39,7 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
+        setContentView(R.layout.activity_add_new_address_map)
 
         originalConstraintSet.clone(rootConstraintLayout)
 
@@ -89,7 +86,7 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(selectedPlace.latLng, 17.5f))
 
         gMap.setOnCameraIdleListener(this)
-        gMap.setOnCameraMoveListener(this)
+        gMap.setOnCameraMoveStartedListener(this)
 
         showPleaseMoveHint(true)
     }
@@ -103,7 +100,7 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
         startReverseGeocodingService(gMap.cameraPosition.target)
     }
 
-    override fun onCameraMove() {
+    override fun onCameraMoveStarted(p0: Int) {
         mapWasMoved = true
         userStreetNickname = null
         showPleaseMoveHint(false)
@@ -139,7 +136,7 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
     }
 
 
-    fun saveAddress() {
+    fun saveAddress(v: View) {
         val makeDefault = UserUtil.getCurrentUser(this)!!.addresses.isEmpty()
 
         val street = if (mapWasMoved)
@@ -164,11 +161,23 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
         UserUtil.addAddress(this, newAddress)
 
 
+        if (true) {
+            val homeScreenIntent = Intent(this, TDTabBarActivity::class.java)
+            homeScreenIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(homeScreenIntent)
+        } else {
+            //TODO: Handle case when this is presented in a separate stack (use multiple stack flag?)
+        }
+
     }
 
     internal inner class AddressResultReceiver(handler: Handler) : ResultReceiver(handler) {
 
         override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+            if (resultCode != FetchAddressIntentService.Constants.NO_INTERNET_RESULT) {
+                // TODO: Show internet error dialog
+            }
+
             addressOutput = resultData?.getString(FetchAddressIntentService.Constants.RESULT_DATA_KEY) ?: ""
             displayAddressOutput()
         }

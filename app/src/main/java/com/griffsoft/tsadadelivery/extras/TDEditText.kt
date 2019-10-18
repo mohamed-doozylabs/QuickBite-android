@@ -25,10 +25,14 @@ class TDEditText: TextInputEditText {
     override fun onEditorAction(actionCode: Int) {
         if (actionCode == EditorInfo.IME_ACTION_DONE) {
             clearFocus()
-            val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(this.windowToken, 0)
         }
 
         super.onEditorAction(actionCode)
+    }
+
+    override fun clearFocus() {
+        val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(this.windowToken, 0)
+        super.clearFocus()
     }
 }
