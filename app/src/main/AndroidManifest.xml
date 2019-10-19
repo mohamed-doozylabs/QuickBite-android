@@ -28,8 +28,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".account.AccountDetailsActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".account.AddressesActivity" />
+
+        <activity
+            android:name=".account.AccountDetailsActivity"
+            android:windowSoftInputMode="adjustResize" />
+
         <service
             android:name=".extras.FetchAddressIntentService"
             android:exported="false" />

@@ -138,6 +138,16 @@ object UserUtil {
         updateCurrentUser(context, user)
     }
 
+    fun removeAddress(context: Context, addressId: String) {
+        val user = getCurrentUser(context)!!
+
+        // Can't use removeIf because API level is too low
+        val indexOfAddressToRemove = user.addresses.indexOfFirst { it.id == addressId }
+        user.addresses.removeAt(indexOfAddressToRemove)
+        updateCurrentUser(context, user)
+        syncUserProperty(context, SyncProperty.addresses)
+    }
+
     fun setPushNotificationsEnabled(context: Context, enable: Boolean) {
         val user = getCurrentUser(context)!!
 

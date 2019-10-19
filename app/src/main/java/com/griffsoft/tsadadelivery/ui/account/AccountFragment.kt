@@ -22,6 +22,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.griffsoft.tsadadelivery.*
 import com.griffsoft.tsadadelivery.account.AccountDetailsActivity
+import com.griffsoft.tsadadelivery.account.AddressesActivity
 import com.griffsoft.tsadadelivery.extras.TDUtil
 import com.griffsoft.tsadadelivery.get_started.RC_SIGN_IN
 import kotlinx.android.synthetic.main.account_menu_list_item.view.*
@@ -73,6 +74,7 @@ class AccountFragment : Fragment(), View.OnClickListener, AccountMenuAdapter.OnI
     override fun accountMenuItemWasSelected(position: Int) {
         when (position) {
             0 -> startActivityForResult(Intent(activity, AccountDetailsActivity::class.java), RC_USER_NAME_DID_CHANGE)
+            1 -> startActivity(Intent(activity, AddressesActivity::class.java))
         }
     }
 
@@ -194,13 +196,15 @@ class AccountFragment : Fragment(), View.OnClickListener, AccountMenuAdapter.OnI
                 } else {
                     // If sign in fails, display a message to the user.
                     Timber.w(task.exception, "signInWithCredential:failure")
-//                    Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_LONG).show()
                 }
             }
     }
 }
 
-class AccountMenuAdapter(val items: ArrayList<String>, val context: Context, var itemClickListener: OnItemClickListener) : RecyclerView.Adapter<AccountMenuAdapter.AccountMenuItemViewHolder>() {
+class AccountMenuAdapter(private val items: ArrayList<String>,
+                         val context: Context,
+                         val itemClickListener: OnItemClickListener) :
+    RecyclerView.Adapter<AccountMenuAdapter.AccountMenuItemViewHolder>() {
 
     override fun getItemCount(): Int {
         return items.size

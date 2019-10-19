@@ -11,7 +11,7 @@ abstract class TDActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar!!.elevation = 0f
+        supportActionBar?.elevation = 0f
         title = ""
         originalConstraintSet = ConstraintSet()
     }

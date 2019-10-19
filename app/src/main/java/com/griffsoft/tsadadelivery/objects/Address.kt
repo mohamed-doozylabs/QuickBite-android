@@ -14,4 +14,7 @@ data class Address(
     val street: String = "",
     val userNickname: String = "",
     var isSelected: Boolean = false
-)
+) {
+    val displayName: String
+        get() = if (userNickname.isNotEmpty()) userNickname else street
+}

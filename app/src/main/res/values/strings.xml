@@ -76,6 +76,9 @@
     <string name="phone_number">Phone Number</string>
     <string name="save_changes">Save Changes</string>
 
+    <!--Addresses-->
+    <string name="addresses">Addresses</string>
+    <string name="currently_selected">currently selected</string>
 
     <string name="title_delivery">Delivery</string>
     <string name="title_orders">Orders</string>

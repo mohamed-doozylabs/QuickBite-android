@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import com.google.firebase.firestore.GeoPoint
 import com.griffsoft.tsadadelivery.*
+import com.griffsoft.tsadadelivery.account.AddressesActivity
 import com.griffsoft.tsadadelivery.extras.FetchAddressIntentService
 import com.griffsoft.tsadadelivery.objects.Address
 import kotlinx.android.synthetic.main.activity_add_new_address_map.*
@@ -137,7 +138,7 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
 
 
     fun saveAddress(v: View) {
-        val makeDefault = UserUtil.getCurrentUser(this)!!.addresses.isEmpty()
+        val userHasNoAddresses = UserUtil.getCurrentUser(this)!!.addresses.isEmpty()
 
         val street = if (mapWasMoved)
             addressOutput!!.substringBefore(", Cag")
@@ -156,17 +157,19 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
             instructions = instructionsEditText.text.toString(),
             geoPoint = geoPoint,
             isSelected = true,
-            isDefault = makeDefault)
+            isDefault = userHasNoAddresses)
 
         UserUtil.addAddress(this, newAddress)
 
-
-        if (true) {
+        // If the user already has at least 1 other address, then we are not in the login flow.
+        if (userHasNoAddresses) {
             val homeScreenIntent = Intent(this, TDTabBarActivity::class.java)
             homeScreenIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(homeScreenIntent)
         } else {
-            //TODO: Handle case when this is presented in a separate stack (use multiple stack flag?)
+            val addressesIntent = Intent(this, AddressesActivity::class.java)
+            addressesIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(addressesIntent)
         }
 
     }
