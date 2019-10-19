@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.griffsoft.tsadadelivery.*
 import com.griffsoft.tsadadelivery.account.AccountDetailsActivity
 import com.griffsoft.tsadadelivery.account.AddressesActivity
+import com.griffsoft.tsadadelivery.account.NotificationsActivity
 import com.griffsoft.tsadadelivery.extras.TDUtil
 import com.griffsoft.tsadadelivery.get_started.RC_SIGN_IN
 import kotlinx.android.synthetic.main.account_menu_list_item.view.*
@@ -75,6 +76,7 @@ class AccountFragment : Fragment(), View.OnClickListener, AccountMenuAdapter.OnI
         when (position) {
             0 -> startActivityForResult(Intent(activity, AccountDetailsActivity::class.java), RC_USER_NAME_DID_CHANGE)
             1 -> startActivity(Intent(activity, AddressesActivity::class.java))
+            2 -> startActivity(Intent(activity, NotificationsActivity::class.java))
         }
     }
 

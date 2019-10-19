@@ -80,6 +80,11 @@
     <string name="addresses">Addresses</string>
     <string name="currently_selected">currently selected</string>
 
+    <!--Notifications-->
+    <string name="notifications">Notifications</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="sms_notifications">SMS Notifications</string>
+
     <string name="title_delivery">Delivery</string>
     <string name="title_orders">Orders</string>
     <string name="title_account">Account</string>
