@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_delivery"
-        android:name="com.griffsoft.tsadadelivery.ui.delivery.HomeFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.delivery.DeliveryFragment"
         android:label="@string/title_delivery"
         tools:layout="@layout/fragment_delivery" />
 
@@ -18,8 +18,32 @@
         tools:layout="@layout/fragment_orders" />
 
     <fragment
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigationAccount"
         android:name="com.griffsoft.tsadadelivery.ui.account.AccountFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_navigationAccount_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment" />
+        <action
+            android:id="@+id/action_navigationAccount_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_navigationAccount_to_addressesFragment"
+            app:destination="@id/addressesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountDetailsFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.account.AccountDetailsFragment"
+        android:label="AccountDetailsFragment"
+        tools:layout="@layout/fragment_account_details"/>
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.account.NotificationsFragment"
+        android:label="NotificationsFragment"
+        tools:layout="@layout/fragment_notifications"/>
+    <fragment
+        android:id="@+id/addressesFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.account.AddressesFragment"
+        android:label="AddressesFragment" />
 </navigation>

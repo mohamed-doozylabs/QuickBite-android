@@ -7,10 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionBarStyle">@style/WhiteActionBar</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
     </style>
 
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
     <style name="WhiteActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
@@ -41,6 +43,11 @@
 
     <style name="TDSubHeading" parent="TDHeading">
         <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="TDBackButton">
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_width">28dp</item>
     </style>
 
 </resources>

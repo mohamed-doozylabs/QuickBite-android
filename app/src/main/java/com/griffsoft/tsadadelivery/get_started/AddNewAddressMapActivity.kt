@@ -19,7 +19,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import com.google.firebase.firestore.GeoPoint
 import com.griffsoft.tsadadelivery.*
-import com.griffsoft.tsadadelivery.account.AddressesActivity
 import com.griffsoft.tsadadelivery.extras.FetchAddressIntentService
 import com.griffsoft.tsadadelivery.objects.Address
 import kotlinx.android.synthetic.main.activity_add_new_address_map.*
@@ -167,9 +166,12 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
             homeScreenIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(homeScreenIntent)
         } else {
-            val addressesIntent = Intent(this, AddressesActivity::class.java)
-            addressesIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(addressesIntent)
+//            val addressesIntent = Intent(this, TDTabBarActivity::class.java)
+//            addressesIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//            startActivity(addressesIntent)
+
+            setResult(RC_FINISH)
+            finish()
         }
 
     }

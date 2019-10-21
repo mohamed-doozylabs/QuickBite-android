@@ -19,6 +19,8 @@ import com.griffsoft.tsadadelivery.TDActivity
 import timber.log.Timber
 import java.util.*
 
+const val RC_FINISH = 999
+
 class AddNewAddressSearchActivity : TDActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,6 +81,14 @@ class AddNewAddressSearchActivity : TDActivity() {
     private fun segueToAddNewAddressMapActivity(place: Place) {
         val addNewAddressIntent = Intent(this, AddNewAddressMapActivity::class.java)
         addNewAddressIntent.putExtra(AddNewAddressMapActivity.PLACE_ID, place)
-        startActivity(addNewAddressIntent)
+        startActivityForResult(addNewAddressIntent, RC_FINISH)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_FINISH) {
+            finish()
+        }
     }
 }

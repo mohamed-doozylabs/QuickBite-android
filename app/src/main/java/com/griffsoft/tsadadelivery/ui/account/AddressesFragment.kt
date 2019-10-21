@@ -1,4 +1,5 @@
-package com.griffsoft.tsadadelivery.account
+package com.griffsoft.tsadadelivery.ui.account
+
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,50 +10,75 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.griffsoft.tsadadelivery.R
-import com.griffsoft.tsadadelivery.TDActivity
+import com.griffsoft.tsadadelivery.TDFragment
 import com.griffsoft.tsadadelivery.UserUtil
 import com.griffsoft.tsadadelivery.get_started.AddNewAddressSearchActivity
 import com.griffsoft.tsadadelivery.objects.Address
 import kotlinx.android.synthetic.main.address_list_item.view.*
-import kotlinx.android.synthetic.main.content_addresses.*
-import kotlinx.android.synthetic.main.fragment_addresses.*
 
-class AddressesActivity : TDActivity(), OnAddressDeletedListener {
+/**
+ * A simple [Fragment] subclass.
+ */
+class AddressesFragment : TDFragment(), OnAddressDeletedListener {
+    private lateinit var coordinatorLayout: CoordinatorLayout
+
 
     private lateinit var addressesAdapter: AddressesListAdapter
     private var selectedAddressPosition: Int = -1
     private lateinit var addresses: MutableList<Address>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_addresses)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val root = inflater.inflate(R.layout.fragment_addresses, container, false)
+        setupBackButton(root)
+        coordinatorLayout = root.findViewById(R.id.coordinatorLayout)
+        val addressesListView: ListView = root.findViewById(R.id.addressesListView)
 
-        val settingsMode = intent.getBooleanExtra("settingsMode", true)
+        val settingsMode = true
 
-        fab.setOnClickListener { view ->
-            startActivity(Intent(this, AddNewAddressSearchActivity::class.java))
+        root.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            startActivity(Intent(context!!, AddNewAddressSearchActivity::class.java))
         }
 
-        addresses = UserUtil.getCurrentUser(this)!!.addresses
+        addresses = UserUtil.getCurrentUser(context!!)!!.addresses
 
         selectedAddressPosition = addresses.indexOfFirst { it.isSelected }
 
-        addressesAdapter = AddressesListAdapter(this, addresses, this, settingsMode)
+        addressesAdapter = AddressesListAdapter(context!!, addresses, this, settingsMode)
         addressesListView.adapter = addressesAdapter
         addressesListView.setOnItemClickListener { _, _, i, _ ->
             selectAddress(i)
+        }
+
+        return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val newAddresses = UserUtil.getCurrentUser(context!!)!!.addresses
+        if (addresses != newAddresses) {
+            // clear() and then add all so that the addresses object doesn't change
+            addresses.clear()
+            addresses.addAll(newAddresses)
+            selectedAddressPosition = addresses.indexOfFirst { it.isSelected }
+            addressesAdapter.notifyDataSetChanged()
         }
     }
 
     private fun selectAddress(position: Int) {
         val address = addresses[position]
         if (!address.isSelected) {
-            UserUtil.setSelectedAddress(this, address.id)
+            UserUtil.setSelectedAddress(context!!, address.id)
         }
         selectedAddressPosition = position
         addressesAdapter.notifyDataSetChanged()
@@ -65,15 +91,15 @@ class AddressesActivity : TDActivity(), OnAddressDeletedListener {
         } else {
             selectedAddressPosition -= 1
         }
-        UserUtil.removeAddress(this, addresses[position].id)
+        UserUtil.removeAddress(context!!, addresses[position].id)
         addresses.removeAt(position)
         addressesAdapter.notifyDataSetChanged()
 
-        Snackbar.make(coordinatorLayout, "Address deleted", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(coordinatorLayout, "Address removed", Snackbar.LENGTH_SHORT).show()
     }
 
     inner class AddressesListAdapter(context: Context,
-                                     private val addresses: MutableList<Address>,
+                                     var addresses: MutableList<Address>,
                                      private val onDeleteListener: OnAddressDeletedListener,
                                      private val settingsMode: Boolean) :
         ArrayAdapter<Address>(context, R.layout.address_list_item, addresses) {
@@ -155,4 +181,3 @@ class AddressesActivity : TDActivity(), OnAddressDeletedListener {
 interface OnAddressDeletedListener {
     fun deleteAddressTapped(position: Int)
 }
-

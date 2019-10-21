@@ -4,13 +4,13 @@ import android.os.Bundle
 import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.TDActivity
 import com.griffsoft.tsadadelivery.UserUtil
-import kotlinx.android.synthetic.main.activity_notifications.*
+import kotlinx.android.synthetic.main.fragment_notifications.*
 
 class NotificationsActivity : TDActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notifications)
+        setContentView(R.layout.fragment_notifications)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

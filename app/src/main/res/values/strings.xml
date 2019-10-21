@@ -85,9 +85,17 @@
     <string name="push_notifications">Push Notifications</string>
     <string name="sms_notifications">SMS Notifications</string>
 
+
+    <!--Delivery-->
+    <string name="delivering_to">delivering to</string>
+
     <string name="title_delivery">Delivery</string>
     <string name="title_orders">Orders</string>
     <string name="title_account">Account</string>
 
     <string name="changes_saved">Changes Saved</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

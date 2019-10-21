@@ -1,19 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="ContentDescription">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+    <View
+        android:id="@+id/deliveryHeaderBackground"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/homeCityIcon"
+        android:layout_width="30dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:tint="@color/iconColor"
+        app:layout_constraintBottom_toBottomOf="@+id/deliveryHeaderBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/deliveryHeaderBackground"
+        app:srcCompat="@drawable/ic_home_city_outline" />
+
+    <TextView
+        android:id="@+id/deliveringTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/delivering_to"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/addressLabel"
+        app:layout_constraintStart_toEndOf="@+id/homeCityIcon"
+        app:layout_constraintTop_toTopOf="@+id/homeCityIcon"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/addressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:lines="1"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="18sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@+id/homeCityIcon"
+        app:layout_constraintEnd_toStartOf="@+id/addressChevron"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/deliveringTo"
+        tools:text="Tomas Saco Street" />
+
+    <ImageView
+        android:id="@+id/addressChevron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="1dp"
+        android:tint="@color/iconColor"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryHeaderBackground"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addressLabel"
+        app:layout_constraintTop_toTopOf="@+id/addressLabel"
+        app:srcCompat="@drawable/ic_chevron_right" />
 </androidx.constraintlayout.widget.ConstraintLayout>

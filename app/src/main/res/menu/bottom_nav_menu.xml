@@ -12,7 +12,7 @@
         android:title="@string/title_orders" />
 
     <item
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigationAccount"
         android:icon="@drawable/ic_account_circle_outline"
         android:title="@string/title_account" />
 

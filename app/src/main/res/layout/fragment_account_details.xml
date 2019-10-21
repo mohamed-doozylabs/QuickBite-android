@@ -9,16 +9,26 @@
     android:focusableInTouchMode="true"
     tools:context=".account.AccountDetailsActivity">
 
+    <ImageView
+        android:id="@+id/backButton"
+        style="@style/TDBackButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:text="@string/account_details"
         android:textAppearance="@style/TDSubHeading"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/backButton"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameTextInputLayout"
@@ -68,7 +78,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:enabled="false"
-        android:onClick="saveChangesTapped"
         android:text="@string/save_changes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

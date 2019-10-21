@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -21,9 +20,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.griffsoft.tsadadelivery.*
-import com.griffsoft.tsadadelivery.account.AccountDetailsActivity
-import com.griffsoft.tsadadelivery.account.AddressesActivity
-import com.griffsoft.tsadadelivery.account.NotificationsActivity
 import com.griffsoft.tsadadelivery.extras.TDUtil
 import com.griffsoft.tsadadelivery.get_started.RC_SIGN_IN
 import kotlinx.android.synthetic.main.account_menu_list_item.view.*
@@ -31,7 +27,7 @@ import timber.log.Timber
 
 const val RC_USER_NAME_DID_CHANGE = 2
 
-class AccountFragment : Fragment(), View.OnClickListener, AccountMenuAdapter.OnItemClickListener {
+class AccountFragment : TDFragment(), View.OnClickListener, AccountMenuAdapter.OnItemClickListener {
 
     private lateinit var accountMenuAdapter: AccountMenuAdapter
     private lateinit var menuItems: ArrayList<String>
@@ -72,11 +68,16 @@ class AccountFragment : Fragment(), View.OnClickListener, AccountMenuAdapter.OnI
         return root
     }
 
+    override fun onResume() {
+        updateNameMenuItem(UserUtil.getCurrentUser(context!!)!!.name)
+        super.onResume()
+    }
+
     override fun accountMenuItemWasSelected(position: Int) {
         when (position) {
-            0 -> startActivityForResult(Intent(activity, AccountDetailsActivity::class.java), RC_USER_NAME_DID_CHANGE)
-            1 -> startActivity(Intent(activity, AddressesActivity::class.java))
-            2 -> startActivity(Intent(activity, NotificationsActivity::class.java))
+            0 -> performSegue(R.id.action_navigationAccount_to_accountDetailsFragment)
+            1 -> performSegue(R.id.action_navigationAccount_to_addressesFragment)
+            2 -> performSegue(R.id.action_navigationAccount_to_notificationsFragment)
         }
     }
 
@@ -142,8 +143,6 @@ class AccountFragment : Fragment(), View.OnClickListener, AccountMenuAdapter.OnI
                 Timber.w(e, "Google sign in failed")
                 tdTabBarActivity.showLoadingCoverView(false)
             }
-        } else if (resultCode == RC_USER_NAME_DID_CHANGE) {
-            updateNameMenuItem(data!!.getStringExtra("newName"))
         }
     }
 

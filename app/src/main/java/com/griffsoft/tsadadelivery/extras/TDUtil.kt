@@ -17,52 +17,6 @@ object TDUtil {
         .requestIdToken("317568236888-rokn28jtm418qktt99rcaktqsvre5rvn.apps.googleusercontent.com")
         .requestEmail()
         .build()
-//
-//    fun firebaseAuthWithGoogle(acct: GoogleSignInAccount, activity: Activity) {
-//        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-//        auth.signInWithCredential(credential)
-//            .addOnCompleteListener(activity) { task ->
-//                if (task.isSuccessful) {
-//                    Timber.d("signInWithCredential:success")
-//                    val user = auth.currentUser!!
-//
-//                    val userDocRef = FirebaseFirestore.getInstance().collection("users").document(user.uid)
-//
-//
-//                    userDocRef.get().addOnCompleteListener {
-//                        lateinit var udUser: User
-//
-//                        if (it.isSuccessful) {
-//                            val document = it.result!!
-//
-//                            if (document.exists()) {
-//                                // User exists
-//                                udUser = document.toObject(User::class.java)!!
-//                            } else {
-//                                // User does not exist, so we should create one
-//                                val userName = user.displayName ?: ""
-//                                userDocRef.set(hashMapOf("name" to userName))
-//                                udUser = User(userName)
-//                            }
-//
-//                            UserUtil.updateCurrentUser(this, udUser)
-//
-//                            loadingViewLayout.visibility = View.GONE
-//
-//                            if (udUser.addresses.isEmpty()) {
-//                                segueToAddNewAddressSearch()
-//                            } else {
-//                                // TODO: Open main screen
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Timber.w(task.exception, "signInWithCredential:failure")
-//                    Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//    }
 
     fun showSuccessDialog(context: Context, message: String, showFor: Long = 1000, callback: () -> Unit) {
         val successDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_success, null)
@@ -78,6 +32,7 @@ object TDUtil {
         ad.show()
 
         Timer("successDialogTimer", false).schedule(showFor) {
+            ad.dismiss()
             callback()
         }
     }

@@ -1,32 +1,41 @@
-package com.griffsoft.tsadadelivery.account
+package com.griffsoft.tsadadelivery.ui.account
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.widget.addTextChangedListener
 import com.griffsoft.tsadadelivery.R
-import com.griffsoft.tsadadelivery.TDActivity
+import com.griffsoft.tsadadelivery.TDFragment
 import com.griffsoft.tsadadelivery.User
 import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.extras.TDEditText
 import com.griffsoft.tsadadelivery.extras.TDUtil
-import com.griffsoft.tsadadelivery.ui.account.RC_USER_NAME_DID_CHANGE
 import com.redmadrobot.inputmask.MaskedTextChangedListener
-import kotlinx.android.synthetic.main.fragment_account_details.*
 
-
-class AccountDetailsActivity : TDActivity() {
+class AccountDetailsFragment : TDFragment() {
+    private lateinit var nameTextField: TDEditText
+    private lateinit var phoneTextField: TDEditText
+    private lateinit var saveChangesButton: Button
 
     private lateinit var currentUser: User
     private var phoneEntryIsValid: Boolean = false
     private var phoneExtractedValue: String = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_account_details)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val root = inflater.inflate(R.layout.fragment_account_details, container, false)
+        setupBackButton(root)
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        nameTextField = root.findViewById(R.id.nameTextField)
+        phoneTextField = root.findViewById(R.id.phoneTextField)
+        saveChangesButton = root.findViewById(R.id.saveChangesButton)
+        saveChangesButton.setOnClickListener { saveChangesTapped() }
 
-        currentUser = UserUtil.getCurrentUser(this)!!
+        currentUser = UserUtil.getCurrentUser(context!!)!!
 
         nameTextField.setText(currentUser.name)
 
@@ -56,7 +65,9 @@ class AccountDetailsActivity : TDActivity() {
                     }
                 }
             })
-    }
+
+        return root
+        }
 
     private fun refreshSaveButton() {
         var nameTextFieldIsValid = false
@@ -77,21 +88,19 @@ class AccountDetailsActivity : TDActivity() {
         saveChangesButton.isEnabled = enableSaveButton
     }
 
-    fun saveChangesTapped(v: View) {
+    private fun saveChangesTapped() {
         nameTextField.clearFocus()
         phoneTextField.clearFocus()
 
-        UserUtil.setName(this, nameTextField.text.toString())
+        UserUtil.setName(context!!, nameTextField.text.toString())
 
         if (phoneEntryIsValid) {
-            UserUtil.setPhone(this, phoneExtractedValue)
+            UserUtil.setPhone(context!!, phoneExtractedValue)
         }
 
-        TDUtil.showSuccessDialog(this, "Changes Saved") {
-            val returnIntent = Intent()
-            returnIntent.putExtra("newName", nameTextField.text.toString())
-            setResult(RC_USER_NAME_DID_CHANGE, returnIntent)
-            finish()
+        TDUtil.showSuccessDialog(context!!, "Changes Saved") {
+            activity?.onBackPressed()
         }
     }
+
 }
