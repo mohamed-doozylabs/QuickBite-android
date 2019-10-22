@@ -2,36 +2,25 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_delivery">
+    android:id="@+id/nav_graph_account"
+    app:startDestination="@id/account">
 
     <fragment
-        android:id="@+id/navigation_delivery"
-        android:name="com.griffsoft.tsadadelivery.ui.delivery.DeliveryFragment"
-        android:label="@string/title_delivery"
-        tools:layout="@layout/fragment_delivery" />
-
-    <fragment
-        android:id="@+id/navigation_orders"
-        android:name="com.griffsoft.tsadadelivery.ui.orders.DashboardFragment"
-        android:label="@string/title_orders"
-        tools:layout="@layout/fragment_orders" />
-
-    <fragment
-        android:id="@+id/navigationAccount"
+        android:id="@+id/account"
         android:name="com.griffsoft.tsadadelivery.ui.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" >
         <action
-            android:id="@+id/action_navigationAccount_to_accountDetailsFragment"
-            app:destination="@id/accountDetailsFragment" />
-        <action
-            android:id="@+id/action_navigationAccount_to_notificationsFragment"
+            android:id="@+id/action_account_to_notificationsFragment"
             app:destination="@id/notificationsFragment" />
         <action
-            android:id="@+id/action_navigationAccount_to_addressesFragment"
+            android:id="@+id/action_account_to_addressesFragment"
             app:destination="@id/addressesFragment" />
+        <action
+            android:id="@+id/action_account_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/accountDetailsFragment"
         android:name="com.griffsoft.tsadadelivery.ui.account.AccountDetailsFragment"
@@ -45,5 +34,7 @@
     <fragment
         android:id="@+id/addressesFragment"
         android:name="com.griffsoft.tsadadelivery.ui.account.AddressesFragment"
-        android:label="AddressesFragment" />
+        android:label="AddressesFragment"
+        tools:layout="@layout/fragment_addresses"/>
+
 </navigation>

@@ -75,9 +75,9 @@ class AccountFragment : TDFragment(), View.OnClickListener, AccountMenuAdapter.O
 
     override fun accountMenuItemWasSelected(position: Int) {
         when (position) {
-            0 -> performSegue(R.id.action_navigationAccount_to_accountDetailsFragment)
-            1 -> performSegue(R.id.action_navigationAccount_to_addressesFragment)
-            2 -> performSegue(R.id.action_navigationAccount_to_notificationsFragment)
+            0 -> performSegue(R.id.action_account_to_accountDetailsFragment) // findNavController().navigate(resId(R.id.action_navigationAccount_to_accountDetailsFragment)
+            1 -> performSegue(R.id.action_account_to_addressesFragment)
+            2 -> performSegue(R.id.action_account_to_notificationsFragment)
         }
     }
 

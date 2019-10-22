@@ -3,8 +3,10 @@ package com.griffsoft.tsadadelivery
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.findNavController
+import androidx.navigation.plusAssign
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.griffsoft.tsadadelivery.extras.KeepStateNavigator
 import kotlinx.android.synthetic.main.activity_tdtab_bar.*
 
 class TDTabBarActivity : TDActivity() {
@@ -34,6 +36,17 @@ class TDTabBarActivity : TDActivity() {
 //            )
 //        )
 //        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        // get fragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)!!
+
+        // setup custom navigator
+        val navigator = KeepStateNavigator(this, navHostFragment.childFragmentManager, R.id.nav_host_fragment)
+        navController.navigatorProvider += navigator
+
+        // set navigation graph
+        navController.setGraph(R.navigation.nav_graph)
+
         navView.setupWithNavController(navController)
     }
 

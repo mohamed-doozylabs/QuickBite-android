@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/navigation_delivery"
+    tools:ignore="UnusedNavigation">
+
+    <keep_state_fragment
+        android:id="@+id/navigation_delivery"
+        android:name="com.griffsoft.tsadadelivery.ui.delivery.DeliveryFragment"
+        android:label="@string/title_delivery"
+        tools:layout="@layout/fragment_delivery" />
+
+    <keep_state_fragment
+        android:id="@+id/navigation_orders"
+        android:name="com.griffsoft.tsadadelivery.ui.orders.DashboardFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_orders" />
+
+    <keep_state_fragment
+        android:id="@+id/navigation_account"
+        android:name="com.griffsoft.tsadadelivery.ui.account.AccountContainerFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" >
+    </keep_state_fragment>
+
+</navigation>
