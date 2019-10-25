@@ -4,6 +4,7 @@ package com.griffsoft.tsadadelivery.ui.account
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -44,7 +46,10 @@ class AddressesFragment : TDFragment(), OnAddressDeletedListener {
         coordinatorLayout = root.findViewById(R.id.coordinatorLayout)
         val addressesListView: ListView = root.findViewById(R.id.addressesListView)
 
-        val settingsMode = true
+//        val safeArgs: AddressesFragmentArgs by navArgs()
+//        val settingsMode = safeArgs.settingsMode
+        val settingsMode = arguments?.getBoolean("settingsMode") ?: false
+
 
         root.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             startActivity(Intent(context!!, AddNewAddressSearchActivity::class.java))
@@ -133,7 +138,13 @@ class AddressesFragment : TDFragment(), OnAddressDeletedListener {
             } else {
                 holder.currentlySelectedLabel.visibility = View.INVISIBLE
                 holder.deleteOrCheck.setImageResource(R.drawable.ic_check)
-                holder.deleteOrCheck.visibility = if (position == selectedAddressPosition) View.VISIBLE else View.INVISIBLE
+                if (position == selectedAddressPosition) {
+                    holder.deleteOrCheck.visibility = View.VISIBLE
+                    holder.addressName.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                } else {
+                    holder.deleteOrCheck.visibility = View.INVISIBLE
+                    holder.addressName.setTextColor(Color.BLACK)
+                }
             }
 
             holder.addressName.text = address.displayName

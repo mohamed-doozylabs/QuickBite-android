@@ -28,7 +28,6 @@ class FetchAddressIntentService: IntentService("FetchAddressIntentService") {
         const val LOCATION_DATA_EXTRA = "${PACKAGE_NAME}.LOCATION_DATA_EXTRA"
     }
 
-
     override fun onHandleIntent(intent: Intent?) {
         // Get the location passed to this service through an extra.
         val location = intent!!.getParcelableExtra(

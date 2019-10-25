@@ -37,3 +37,7 @@ object TDUtil {
         }
     }
 }
+
+interface OnItemClickListener {
+    fun itemWasSelected(position: Int)
+}

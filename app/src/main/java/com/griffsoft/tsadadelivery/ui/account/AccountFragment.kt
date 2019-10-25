@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.griffsoft.tsadadelivery.*
+import com.griffsoft.tsadadelivery.extras.OnItemClickListener
 import com.griffsoft.tsadadelivery.extras.TDUtil
 import com.griffsoft.tsadadelivery.get_started.RC_SIGN_IN
 import kotlinx.android.synthetic.main.account_menu_list_item.view.*
@@ -27,7 +29,7 @@ import timber.log.Timber
 
 const val RC_USER_NAME_DID_CHANGE = 2
 
-class AccountFragment : TDFragment(), View.OnClickListener, AccountMenuAdapter.OnItemClickListener {
+class AccountFragment : TDFragment(), View.OnClickListener, OnItemClickListener {
 
     private lateinit var accountMenuAdapter: AccountMenuAdapter
     private lateinit var menuItems: ArrayList<String>
@@ -73,10 +75,10 @@ class AccountFragment : TDFragment(), View.OnClickListener, AccountMenuAdapter.O
         super.onResume()
     }
 
-    override fun accountMenuItemWasSelected(position: Int) {
+    override fun itemWasSelected(position: Int) {
         when (position) {
-            0 -> performSegue(R.id.action_account_to_accountDetailsFragment) // findNavController().navigate(resId(R.id.action_navigationAccount_to_accountDetailsFragment)
-            1 -> performSegue(R.id.action_account_to_addressesFragment)
+            0 -> performSegue(R.id.action_account_to_accountDetailsFragment)
+            1 -> performSegue(R.id.action_account_to_addressesFragment, bundleOf("settingsMode" to true))
             2 -> performSegue(R.id.action_account_to_notificationsFragment)
         }
     }
@@ -204,7 +206,8 @@ class AccountFragment : TDFragment(), View.OnClickListener, AccountMenuAdapter.O
 
 class AccountMenuAdapter(private val items: ArrayList<String>,
                          val context: Context,
-                         val itemClickListener: OnItemClickListener) :
+                         val itemClickListener: OnItemClickListener
+) :
     RecyclerView.Adapter<AccountMenuAdapter.AccountMenuItemViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -235,14 +238,10 @@ class AccountMenuAdapter(private val items: ArrayList<String>,
         init {
             view.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
-                    itemClickListener.accountMenuItemWasSelected(adapterPosition)
+                    itemClickListener.itemWasSelected(adapterPosition)
                 }
             }
         }
-    }
-
-    interface OnItemClickListener {
-        fun accountMenuItemWasSelected(position: Int)
     }
 }
 

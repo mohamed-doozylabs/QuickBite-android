@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.google.gms.google-services'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
@@ -60,5 +62,8 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel-android:2.2.1'
     implementation 'com.github.kittinunf.fuel:fuel-json:2.2.1'
     implementation 'com.redmadrobot:input-mask-android:5.0.0'
-    implementation "com.airbnb.android:lottie:3.1.0"
+    implementation 'com.airbnb.android:lottie:3.1.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.rubensousa:gravitysnaphelper:2.2.0'
 }

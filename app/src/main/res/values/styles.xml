@@ -45,6 +45,12 @@
         <item name="android:textSize">28sp</item>
     </style>
 
+    <style name="TDDeliveryRestaurantSection" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="TDBackButton">
         <item name="android:layout_height">28dp</item>
         <item name="android:layout_width">28dp</item>

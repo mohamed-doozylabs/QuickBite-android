@@ -61,7 +61,7 @@ class OrderAdapter(options: FirestoreRecyclerOptions<Order>, context: Context): 
     private val r = context.resources
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.order_list_item,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.order_list_item, parent, false)
         return OrderHolder(itemView)
     }
 
