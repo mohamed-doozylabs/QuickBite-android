@@ -9,4 +9,5 @@
     <color name="buttonDisabled">#e0e0e0</color>
     <color name="iconColor">#CCCCCC</color>
     <color name="search_bar_background">#EFEEF6</color>
+    <color name="tertiary_text">#9A9A9A</color>
 </resources>

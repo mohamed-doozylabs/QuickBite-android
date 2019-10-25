@@ -8,7 +8,7 @@
 
     <keep_state_fragment
         android:id="@+id/navigation_delivery"
-        android:name="com.griffsoft.tsadadelivery.ui.delivery.DeliveryFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.delivery.DeliveryContainerFragment"
         android:label="@string/title_delivery"
         tools:layout="@layout/fragment_delivery" />
 

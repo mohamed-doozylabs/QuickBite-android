@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_delivery"
+    app:startDestination="@id/deliveryHome">
+
+    <fragment
+        android:id="@+id/deliveryHome"
+        android:name="com.griffsoft.tsadadelivery.ui.delivery.DeliveryFragment"
+        android:label="DeliveryFragment"
+        tools:layout="@layout/fragment_delivery">
+        <action
+            android:id="@+id/action_deliveryHome_to_restaurantFragment"
+            app:destination="@id/restaurantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.delivery.RestaurantFragment"
+        android:label="RestaurantFragment" />
+</navigation>

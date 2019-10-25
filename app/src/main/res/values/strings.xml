@@ -92,13 +92,18 @@
     <string name="top_picks_in_cagayan">Top Picks in Cagayan</string>
     <string name="all_restaurants">All Restaurants</string>
     <string name="search">Search</string>
-    <string name="finding_restaurants_near_you">Finding restaurants near you...</string>
+    <string name="finding_restaurants_near_you">Finding restaurants near you…</string>
+
+    <!--Restaurant-->
+    <string name="delivery">Delivery</string>
+    <string name="minutes">minutes</string>
+    <string name="featured_items">Featured Items</string>
+    <string name="full_menu">Full Menu</string>
+
 
     <string name="title_delivery">Delivery</string>
     <string name="title_orders">Orders</string>
     <string name="title_account">Account</string>
 
     <string name="changes_saved">Changes Saved</string>
-
-
 </resources>

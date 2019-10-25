@@ -3,46 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="200dp">
-
+    android:layout_height="wrap_content">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/featuredItemImage"
-        android:layout_width="350dp"
-        android:layout_height="0dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/egg_free_french_toast"
-        app:layout_constraintBottom_toTopOf="@+id/restaurantName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius="4dp" />
 
     <TextView
-        android:id="@+id/restaurantName"
+        android:id="@+id/featuredItemName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
         android:ellipsize="end"
-        android:fontFamily="sans-serif-medium"
-        android:maxLines="1"
+        android:maxLines="2"
         android:textColor="@android:color/primary_text_light"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/deliveryTimeAndFee"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/featuredItemImage"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/featuredItemImage"
         app:layout_constraintTop_toBottomOf="@+id/featuredItemImage"
-        tools:text="Really Long RestaurantNameRestaurantName" />
+        tools:text="5pc. BBQ Chicken Wings" />
 
     <TextView
-        android:id="@+id/deliveryTimeAndFee"
-        android:layout_width="wrap_content"
+        android:id="@+id/itemPrice"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/restaurantName"
-        app:layout_constraintTop_toBottomOf="@+id/restaurantName"
-        tools:text="30 mins · Free delivery" />
+        android:maxLines="1"
+        android:textColor="@color/tertiary_text"
+        app:layout_constraintEnd_toEndOf="@+id/featuredItemName"
+        app:layout_constraintStart_toStartOf="@+id/featuredItemName"
+        app:layout_constraintTop_toBottomOf="@+id/featuredItemName"
+        tools:text="₱110" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

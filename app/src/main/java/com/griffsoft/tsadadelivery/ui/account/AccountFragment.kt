@@ -75,7 +75,7 @@ class AccountFragment : TDFragment(), View.OnClickListener, OnItemClickListener 
         super.onResume()
     }
 
-    override fun itemWasSelected(position: Int) {
+    override fun itemWasSelected(position: Int, viewHolder: RecyclerView.ViewHolder?) {
         when (position) {
             0 -> performSegue(R.id.action_account_to_accountDetailsFragment)
             1 -> performSegue(R.id.action_account_to_addressesFragment, bundleOf("settingsMode" to true))

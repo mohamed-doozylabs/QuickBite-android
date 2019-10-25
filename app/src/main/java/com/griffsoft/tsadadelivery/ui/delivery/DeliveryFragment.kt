@@ -11,14 +11,15 @@ import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.griffsoft.tsadadelivery.R
+import com.griffsoft.tsadadelivery.TDFragment
 import com.griffsoft.tsadadelivery.UserUtil
 import com.griffsoft.tsadadelivery.extras.DistanceTime
 import com.griffsoft.tsadadelivery.extras.DistanceTimeUtil
@@ -30,17 +31,15 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.all_restaurants_list_item.view.*
 import kotlinx.android.synthetic.main.fragment_delivery.*
 import kotlinx.android.synthetic.main.highlighted_restaurant_list_item.view.*
-import kotlinx.android.synthetic.main.highlighted_restaurant_list_item.view.restaurantImage
+import kotlinx.android.synthetic.main.highlighted_restaurant_list_item.view.featuredItemImage
 import kotlinx.android.synthetic.main.highlighted_restaurant_list_item.view.restaurantName
 import kotlin.math.round
 
-class DeliveryFragment : Fragment(), View.OnClickListener, OnItemClickListener, ViewTreeObserver.OnScrollChangedListener {
+class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener, ViewTreeObserver.OnScrollChangedListener {
 
 //    private lateinit var deliveryViewModel: DeliveryViewModel
     private lateinit var highlightedRestaurantsAdapter: HighlightedRestaurantsAdapter
-    private lateinit var highlightedRestaurantsRecyclerView: RecyclerView
     private lateinit var allRestaurantsAdapter: AllRestaurantsAdapter
-    private lateinit var allRestaurantsRecyclerView: RecyclerView
 
     private lateinit var addressLabel: TextView
     private lateinit var headerLayout: ConstraintLayout
@@ -54,6 +53,21 @@ class DeliveryFragment : Fragment(), View.OnClickListener, OnItemClickListener, 
 
     private var sortByTime: Boolean = true
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        selectedAddress = UserUtil.getCurrentUser(context!!)!!.selectedAddress
+
+        allRestaurantsAdapter = AllRestaurantsAdapter(context!!, allRestaurants, this)
+
+        highlightedRestaurantsAdapter = HighlightedRestaurantsAdapter(context!!, highlightedRestaurants, this)
+
+        val db = FirebaseFirestore.getInstance().collection("restaurants")
+
+        db.get().addOnSuccessListener {
+            setupRestaurants(it)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,39 +79,27 @@ class DeliveryFragment : Fragment(), View.OnClickListener, OnItemClickListener, 
 //        deliveryViewModel.text.observe(this, Observer {
 //            textView.text = it
 //        })
-
-        selectedAddress = UserUtil.getCurrentUser(context!!)!!.selectedAddress
-
         headerLayout = root.findViewById(R.id.deliveryHeaderLayout)
         headerLayout.setOnClickListener(this)
         scrollView = root.findViewById(R.id.scrollView)
         scrollView.viewTreeObserver.addOnScrollChangedListener(this)
 
-
         loadingView = root.findViewById(R.id.loadingViewLayout)
-        loadingView.visibility = View.VISIBLE
+        if (allRestaurants.isEmpty()) { // If this is the first time loading this fragment...
+            loadingView.visibility = View.VISIBLE
+        }
 
         addressLabel = root.findViewById(R.id.addressLabel)
         addressLabel.text = selectedAddress.displayName
 
-        allRestaurantsRecyclerView = root.findViewById(R.id.allRestaurantsRecyclerView)
+        val allRestaurantsRecyclerView: RecyclerView = root.findViewById(R.id.allRestaurantsRecyclerView)
         allRestaurantsRecyclerView.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
         allRestaurantsRecyclerView.layoutManager = LinearLayoutManager(context!!)
-        allRestaurantsAdapter = AllRestaurantsAdapter(context!!, allRestaurants, this)
         allRestaurantsRecyclerView.adapter = allRestaurantsAdapter
 
-        highlightedRestaurantsRecyclerView = root.findViewById(R.id.highlightedRestaurantsRecyclerView)
+        val highlightedRestaurantsRecyclerView: RecyclerView = root.findViewById(R.id.highlightedRestaurantsRecyclerView)
         highlightedRestaurantsRecyclerView.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
-        highlightedRestaurantsAdapter = HighlightedRestaurantsAdapter(context!!, highlightedRestaurants, this)
         highlightedRestaurantsRecyclerView.adapter = highlightedRestaurantsAdapter
-
-
-        val db = FirebaseFirestore.getInstance().collection("restaurants")
-
-        db.get().addOnSuccessListener {
-            setupRestaurants(it)
-        }
-
 
         return root
     }
@@ -192,8 +194,13 @@ class DeliveryFragment : Fragment(), View.OnClickListener, OnItemClickListener, 
         }
     }
 
-    override fun itemWasSelected(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun itemWasSelected(position: Int, viewHolder: RecyclerView.ViewHolder?) {
+        val restaurant = if (viewHolder is HighlightedRestaurantsAdapter.HighlightedRestaurantItemViewHolder) {
+            highlightedRestaurants[position]
+        } else {
+            allRestaurants[position]
+        }
+        performSegue(R.id.action_deliveryHome_to_restaurantFragment, bundleOf("restaurant" to restaurant))
     }
 
     private fun switchAddress() {
@@ -225,14 +232,14 @@ class DeliveryFragment : Fragment(), View.OnClickListener, OnItemClickListener, 
         }
 
         inner class HighlightedRestaurantItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val restaurantImage: ImageView = view.restaurantImage
+            val restaurantImage: ImageView = view.featuredItemImage
             val restaurantName: TextView = view.restaurantName
             val deliveryTimeAndFee: TextView = view.deliveryTimeAndFee
 
             init {
                 view.setOnClickListener {
                     if (adapterPosition != RecyclerView.NO_POSITION) {
-                        itemClickListener.itemWasSelected(adapterPosition)
+                        itemClickListener.itemWasSelected(adapterPosition, this)
                     }
                 }
             }
@@ -264,7 +271,7 @@ class DeliveryFragment : Fragment(), View.OnClickListener, OnItemClickListener, 
         }
 
         inner class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            internal var restaurantImage: ImageView = view.restaurantImage
+            internal var restaurantImage: ImageView = view.featuredItemImage
             internal var restaurantName: TextView = view.restaurantName
             internal var deliveryEstimate: TextView = view.deliveryEstimate
             internal var restaurantCategories: TextView = view.restaurantCategories
@@ -274,7 +281,7 @@ class DeliveryFragment : Fragment(), View.OnClickListener, OnItemClickListener, 
             init {
                 view.setOnClickListener {
                     if (adapterPosition != RecyclerView.NO_POSITION) {
-                        itemClickListener.itemWasSelected(adapterPosition)
+                        itemClickListener.itemWasSelected(adapterPosition, this)
                     }
                 }
             }

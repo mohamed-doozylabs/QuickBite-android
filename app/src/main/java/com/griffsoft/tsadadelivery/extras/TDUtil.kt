@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.griffsoft.tsadadelivery.R
 import kotlinx.android.synthetic.main.dialog_success.view.*
@@ -39,5 +40,5 @@ object TDUtil {
 }
 
 interface OnItemClickListener {
-    fun itemWasSelected(position: Int)
+    fun itemWasSelected(position: Int, viewHolder: RecyclerView.ViewHolder? = null)
 }

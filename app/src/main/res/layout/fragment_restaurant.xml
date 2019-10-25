@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.delivery.RestaurantFragment">
+
+    <ImageView
+        android:id="@+id/backButton"
+        style="@style/TDBackButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/restaurantName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TDSubHeading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Long Restaurant Name asdfasdfasdfa asdf " />
+
+            <TextView
+                android:id="@+id/restaurantCategories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                app:layout_constraintEnd_toEndOf="@+id/restaurantName"
+                app:layout_constraintStart_toStartOf="@+id/restaurantName"
+                app:layout_constraintTop_toBottomOf="@+id/restaurantName"
+                tools:text="Chicken, BBQ, asdfasdfasdf" />
+
+            <ImageView
+                android:id="@+id/locationMarker"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:src="@drawable/ic_map_marker"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/restaurantAddress"
+                app:layout_constraintStart_toStartOf="@+id/restaurantCategories"
+                app:layout_constraintTop_toTopOf="@+id/restaurantAddress" />
+
+            <TextView
+                android:id="@+id/restaurantAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/restaurantCategories"
+                app:layout_constraintStart_toEndOf="@+id/locationMarker"
+                app:layout_constraintTop_toBottomOf="@+id/restaurantCategories"
+                tools:text="1.2 km · Pabay Corner, Mayor R. Chavez street 1.2 km · Pabay Corner, Mayor R. Chavez street" />
+
+            <TextView
+                android:id="@+id/deliveryFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/timeEstimate"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurantAddress"
+                tools:text="₱50" />
+
+            <TextView
+                android:id="@+id/timeEstimate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/deliveryFee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/deliveryFee"
+                tools:text="7" />
+
+            <TextView
+                android:id="@+id/deliveryHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delivery"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/deliveryFee"
+                app:layout_constraintStart_toStartOf="@+id/deliveryFee"
+                app:layout_constraintTop_toBottomOf="@+id/deliveryFee" />
+
+            <TextView
+                android:id="@+id/minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutes"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/timeEstimate"
+                app:layout_constraintStart_toStartOf="@+id/timeEstimate"
+                app:layout_constraintTop_toBottomOf="@+id/timeEstimate" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/featuredItemsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deliveryHome"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/featuredItems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/featured_items"
+                    android:textColor="@android:color/primary_text_light"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.github.rubensousa.gravitysnaphelper.GravitySnapRecyclerView
+                    android:id="@+id/featuredItemsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/featuredItems"
+                    app:snapGravity="start"
+                    app:snapToPadding="true"
+                    tools:layout_height="100dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/fullMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/full_menu"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/featuredItemsLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fullMenuRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fullMenu" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

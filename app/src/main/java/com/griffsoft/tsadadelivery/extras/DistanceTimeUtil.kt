@@ -1,6 +1,7 @@
 package com.griffsoft.tsadadelivery.extras
 
 import android.content.Context
+import android.os.Parcelable
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.json.responseJson
 import com.github.kittinunf.result.Result
@@ -10,6 +11,7 @@ import com.google.gson.reflect.TypeToken
 import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.objects.Address
 import com.griffsoft.tsadadelivery.objects.Restaurant
+import kotlinx.android.parcel.Parcelize
 import timber.log.Timber
 
 
@@ -71,7 +73,7 @@ object DistanceTimeUtil {
                 distanceTimesForCurrentAddress[it.id]?.status != "OK") }
 
         if (missingRestaurants.isEmpty()) {
-            callback(distanceTimesForCurrentAddress, null)
+            return callback(distanceTimesForCurrentAddress, null)
         }
 
         requestDistanceTimes(context, ArrayList(missingRestaurants), forAddress, callback)
@@ -146,13 +148,14 @@ object APIRequestBuilder {
     }
 }
 
+@Parcelize
 data class DistanceTime(
     var status: String,
     var distance: String,
     var distanceValue: Int,
     var time: String,
     var timeValue: Int
-)
+) :Parcelable
 
 data class DistanceTimeMatrix(
     var destinationAddresses: List<String>,
