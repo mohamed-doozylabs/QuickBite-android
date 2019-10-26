@@ -17,5 +17,6 @@
     <fragment
         android:id="@+id/restaurantFragment"
         android:name="com.griffsoft.tsadadelivery.ui.delivery.RestaurantFragment"
-        android:label="RestaurantFragment" />
+        android:label="RestaurantFragment"
+        tools:layout="@layout/fragment_restaurant"/>
 </navigation>

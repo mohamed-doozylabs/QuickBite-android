@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/menu_item_bottom_height"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.delivery.MenuItemActivity"
+    tools:showIn="@layout/activity_menu_item">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/menuItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TDSubHeading"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5pc. BBQ Chicken Wings" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/menuItemName"
+            app:layout_constraintStart_toStartOf="@+id/menuItemName"
+            app:layout_constraintTop_toBottomOf="@+id/menuItemName"
+            tools:text="it seems that applying a constraintset clears previously applied constraintsets and knowing that one could first extract the old constraintset using clone and then add the new constraint and apply it. In other words, you can add one thing to an existing constraintlayout but you can't add one constraint to the existing constraintset."
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/menuOptionsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            android:orientation="vertical" />
+
+        <ImageView
+            android:id="@+id/specialInstructionsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="#B3B3B3"
+            app:layout_constraintBottom_toBottomOf="@id/textInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/menuItemName"
+            app:layout_constraintTop_toTopOf="@+id/textInputLayout"
+            app:layout_constraintVertical_bias="0.7"
+            app:srcCompat="@drawable/ic_pencil" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/menuItemName"
+            app:layout_constraintStart_toEndOf="@id/specialInstructionsIcon"
+            app:layout_constraintTop_toBottomOf="@id/menuOptionsLayout">
+
+            <com.griffsoft.tsadadelivery.extras.TDEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/add_special_instructions"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textStyle="italic" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/quantity_widget_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout">
+
+            <Button
+                android:id="@+id/decreaseQuantityButton"
+                style="@style/TDButtonBorderless"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@null"
+                android:enabled="false"
+                android:onClick="decreaseQuantityTapped"
+                android:text="@string/minus"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/quantity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="@string/quantity_start_value"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/decreaseQuantityButton"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="10" />
+
+            <Button
+                android:id="@+id/increaseQuantityButton"
+                style="@style/TDButtonBorderless"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@null"
+                android:onClick="increaseQuantityTapped"
+                android:text="@string/plus"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/quantity"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="@dimen/text_margin"-->
+    <!--        android:text="@string/large_text" />-->
+
+</androidx.core.widget.NestedScrollView>

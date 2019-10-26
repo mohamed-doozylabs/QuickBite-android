@@ -70,4 +70,5 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.rubensousa:gravitysnaphelper:2.2.0'
+    implementation 'com.android.support:design:28.0.0'
 }

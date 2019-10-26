@@ -2,6 +2,7 @@ package com.griffsoft.tsadadelivery.ui.delivery
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -63,19 +64,25 @@ class RestaurantFragment : TDFragment(), OnItemClickListener {
         root.findViewById<RecyclerView>(R.id.featuredItemsRecyclerView).apply {
             layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
             adapter = featuredItemsAdapter
+            setHasFixedSize(true)
         }
 
         root.findViewById<RecyclerView>(R.id.fullMenuRecyclerView).apply {
             addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
             layoutManager = LinearLayoutManager(context!!)
             adapter = fullMenuAdapter
+            setHasFixedSize(true)
         }
 
         return root
     }
 
     override fun itemWasSelected(position: Int, viewHolder: RecyclerView.ViewHolder?) {
-
+        if (viewHolder is FeaturedItemsAdapter.FeaturedItemsViewHolder) {
+            val menuItemIntent = Intent(activity!!, MenuItemActivity::class.java)
+            menuItemIntent.putExtra("menuItem", featuredItems[position])
+            startActivity(menuItemIntent)
+        }
     }
 
     inner class FeaturedItemsAdapter(val context: Context,
@@ -109,7 +116,7 @@ class RestaurantFragment : TDFragment(), OnItemClickListener {
             init {
                 view.setOnClickListener {
                     if (adapterPosition != RecyclerView.NO_POSITION) {
-                        itemClickListener.itemWasSelected(adapterPosition)
+                        itemClickListener.itemWasSelected(adapterPosition, this)
                     }
                 }
             }
@@ -146,7 +153,7 @@ class RestaurantFragment : TDFragment(), OnItemClickListener {
             init {
                 view.setOnClickListener {
                     if (adapterPosition != RecyclerView.NO_POSITION) {
-                        itemClickListener.itemWasSelected(adapterPosition)
+                        itemClickListener.itemWasSelected(adapterPosition, this)
                     }
                 }
             }

@@ -18,7 +18,8 @@ class TDEditText: TextInputEditText {
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_ENTER) {
             clearFocus()
         }
-        return super.onKeyPreIme(keyCode, event)
+//        return super.onKeyPreIme(keyCode, event)
+        return false
     }
 
     // Handle when "Done" key on soft keyboard is pressed
@@ -31,8 +32,8 @@ class TDEditText: TextInputEditText {
     }
 
     override fun clearFocus() {
+        super.clearFocus()
         val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(this.windowToken, 0)
-        super.clearFocus()
     }
 }
