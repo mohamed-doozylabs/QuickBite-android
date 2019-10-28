@@ -46,10 +46,7 @@ class AddressesFragment : TDFragment(), OnAddressDeletedListener {
         coordinatorLayout = root.findViewById(R.id.coordinatorLayout)
         val addressesListView: ListView = root.findViewById(R.id.addressesListView)
 
-//        val safeArgs: AddressesFragmentArgs by navArgs()
-//        val settingsMode = safeArgs.settingsMode
         val settingsMode = arguments?.getBoolean("settingsMode") ?: false
-
 
         root.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             startActivity(Intent(context!!, AddNewAddressSearchActivity::class.java))

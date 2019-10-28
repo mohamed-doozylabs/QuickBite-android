@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.account.AddressesFragment"
-    tools:showIn="@layout/fragment_addresses">
+    android:background="#FFFFFF"
+    tools:context=".ui.delivery.MenuCategoryFragment">
 
     <ImageView
         android:id="@+id/backButton"
@@ -23,21 +22,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/addresses"
         android:textAppearance="@style/TDSubHeading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+        app:layout_constraintTop_toBottomOf="@+id/backButton"
+        tools:text="Chicken" />
 
-    <ListView
-        android:id="@+id/addressesListView"
-        android:choiceMode="singleChoice"
-        android:listSelector="@android:color/transparent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menuItemsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
-        android:paddingBottom="72dp"
+        android:paddingBottom="@dimen/cart_banner_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

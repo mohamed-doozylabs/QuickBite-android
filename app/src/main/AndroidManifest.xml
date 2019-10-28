@@ -15,12 +15,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
+        <activity android:name=".cart.ContactInfoContainerActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".cart.CartContainerActivity" />
         <activity
             android:name=".ui.delivery.MenuItemActivity"
             android:label="@string/title_activity_menu_item"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.account.FragmentContainerActivity" />
-        <activity android:name=".account.NotificationsActivity" />
+        <activity android:name=".ui.account.AddressesContainerActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,11 +35,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".account.AddressesActivity" />
-        <activity
-            android:name=".account.AccountDetailsActivity"
-            android:windowSoftInputMode="adjustResize" />
-
         <service
             android:name=".extras.FetchAddressIntentService"
             android:exported="false" />
@@ -49,7 +46,8 @@
         <activity
             android:name=".get_started.AddNewAddressSearchActivity"
             android:parentActivityName=".get_started.LoginActivity" />
-        <activity android:name=".TDActivity" />
+        <activity android:name=".TDActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".AppContainerActivity"
             android:theme="@style/SplashTheme">

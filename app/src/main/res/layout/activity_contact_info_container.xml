@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.account.AddressesContainerActivity">
+    tools:context=".cart.ContactInfoContainerActivity">
 
     <fragment
-        android:id="@+id/addressesFragment"
-        android:name="com.griffsoft.tsadadelivery.ui.account.AddressesFragment"
+        android:id="@+id/fragment"
+        android:name="com.griffsoft.tsadadelivery.cart.FinalizeOrderFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

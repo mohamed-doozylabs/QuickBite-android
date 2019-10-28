@@ -7,20 +7,20 @@
 
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/featuredItemImage"
+        android:id="@+id/highlightedRestaurantImage"
         android:layout_width="350dp"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/egg_free_french_toast"
-        app:layout_constraintBottom_toTopOf="@+id/restaurantName"
+        app:layout_constraintBottom_toTopOf="@+id/highlightedRestaurantName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius="4dp" />
 
     <TextView
-        android:id="@+id/restaurantName"
+        android:id="@+id/highlightedRestaurantName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
@@ -30,10 +30,10 @@
         android:textColor="@android:color/primary_text_light"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/deliveryTimeAndFee"
-        app:layout_constraintEnd_toEndOf="@+id/featuredItemImage"
+        app:layout_constraintEnd_toEndOf="@+id/highlightedRestaurantImage"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/featuredItemImage"
+        app:layout_constraintTop_toBottomOf="@+id/highlightedRestaurantImage"
         tools:text="Really Long RestaurantNameRestaurantName" />
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/restaurantName"
-        app:layout_constraintTop_toBottomOf="@+id/restaurantName"
+        app:layout_constraintStart_toStartOf="@+id/highlightedRestaurantName"
+        app:layout_constraintTop_toBottomOf="@+id/highlightedRestaurantName"
         tools:text="30 mins · Free delivery" />
 </androidx.constraintlayout.widget.ConstraintLayout>

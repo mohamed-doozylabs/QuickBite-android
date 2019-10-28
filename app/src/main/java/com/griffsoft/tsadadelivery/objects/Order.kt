@@ -1,23 +1,24 @@
 package com.griffsoft.tsadadelivery.objects
 
 import com.google.firebase.Timestamp
+import java.util.*
 
 data class Order(
-    val customerContactNumber: String = "",
+    val id: String = UUID.randomUUID().toString(),
     val customerName: String = "",
-    val datePlaced: Timestamp = Timestamp.now(),
-    val lastUpdated: Timestamp = Timestamp.now(),
+    val customerContactNumber: String = "",
     val deliveryAddress: Address = Address(),
-    val deliveryTimeEstimate: Int = 0,
-    val id: String = "",
-    val currentStage: Int = 0,
-    val items: List<OrderItem> = listOf(),
-    val paymentMethod: String = "",
+    val restaurantName: String = "",
     val restaurantAddress: String = "",
     val restaurantContactNumber: String = "",
     val restaurantImageUrl: String = "",
-    val restaurantName: String = "",
-    val total: Double = 0.0
+    val datePlaced: Timestamp = Timestamp.now(),
+    val lastUpdated: Timestamp = Timestamp.now(),
+    val items: List<OrderItem> = listOf(),
+    val total: Double = 0.0,
+    val deliveryTimeEstimate: Int = 0,
+    val paymentMethod: String = "",
+    val currentStage: Int = 0
 ) {
     fun totalQuantity(): Int {
        return items.map { it.selectedQuantity }.sum()

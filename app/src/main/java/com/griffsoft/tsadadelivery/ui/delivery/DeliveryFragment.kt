@@ -11,6 +11,7 @@ import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -26,13 +27,11 @@ import com.griffsoft.tsadadelivery.extras.DistanceTimeUtil
 import com.griffsoft.tsadadelivery.extras.OnItemClickListener
 import com.griffsoft.tsadadelivery.objects.Address
 import com.griffsoft.tsadadelivery.objects.Restaurant
-import com.griffsoft.tsadadelivery.ui.account.FragmentContainerActivity
+import com.griffsoft.tsadadelivery.ui.account.AddressesContainerActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.all_restaurants_list_item.view.*
 import kotlinx.android.synthetic.main.fragment_delivery.*
 import kotlinx.android.synthetic.main.highlighted_restaurant_list_item.view.*
-import kotlinx.android.synthetic.main.highlighted_restaurant_list_item.view.featuredItemImage
-import kotlinx.android.synthetic.main.highlighted_restaurant_list_item.view.restaurantName
 import kotlin.math.round
 
 class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener, ViewTreeObserver.OnScrollChangedListener {
@@ -92,14 +91,16 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         addressLabel = root.findViewById(R.id.addressLabel)
         addressLabel.text = selectedAddress.displayName
 
-        val allRestaurantsRecyclerView: RecyclerView = root.findViewById(R.id.allRestaurantsRecyclerView)
-        allRestaurantsRecyclerView.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
-        allRestaurantsRecyclerView.layoutManager = LinearLayoutManager(context!!)
-        allRestaurantsRecyclerView.adapter = allRestaurantsAdapter
+        root.findViewById<RecyclerView>(R.id.allRestaurantsRecyclerView).apply {
+            addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            layoutManager = LinearLayoutManager(context!!)
+            adapter = allRestaurantsAdapter
+        }
 
-        val highlightedRestaurantsRecyclerView: RecyclerView = root.findViewById(R.id.highlightedRestaurantsRecyclerView)
-        highlightedRestaurantsRecyclerView.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
-        highlightedRestaurantsRecyclerView.adapter = highlightedRestaurantsAdapter
+        root.findViewById<RecyclerView>(R.id.highlightedRestaurantsRecyclerView).apply {
+            layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
+            adapter = highlightedRestaurantsAdapter
+        }
 
         return root
     }
@@ -204,7 +205,7 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
     }
 
     private fun switchAddress() {
-        startActivity(Intent(activity, FragmentContainerActivity::class.java))
+        startActivity(Intent(activity, AddressesContainerActivity::class.java))
     }
 
     inner class HighlightedRestaurantsAdapter(val context: Context,
@@ -226,14 +227,17 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         override fun onBindViewHolder(holder: HighlightedRestaurantItemViewHolder, position: Int) {
             val restaurant = restaurants[position]
 
-            Picasso.get().load(restaurant.imageUrl).into(holder.restaurantImage)
+            Picasso.get()
+                .load(restaurant.imageUrl)
+                .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder)!!)
+                .into(holder.restaurantImage)
             holder.restaurantName.text = restaurant.name
             holder.deliveryTimeAndFee.text = if (sortByTime) "${restaurant.distanceTime!!.time} · Free delivery" else "${restaurant.distanceTime!!.distance} · Free delivery"
         }
 
         inner class HighlightedRestaurantItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val restaurantImage: ImageView = view.featuredItemImage
-            val restaurantName: TextView = view.restaurantName
+            val restaurantImage: ImageView = view.highlightedRestaurantImage
+            val restaurantName: TextView = view.highlightedRestaurantName
             val deliveryTimeAndFee: TextView = view.deliveryTimeAndFee
 
             init {
@@ -262,7 +266,10 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
             val restaurant = restaurants[position]
 
-            Picasso.get().load(restaurant.imageUrl).into(holder.restaurantImage)
+            Picasso.get()
+                .load(restaurant.imageUrl)
+                .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder)!!)
+                .into(holder.restaurantImage)
             holder.restaurantName.text = restaurant.name
             holder.restaurantCategories.text = restaurant.categories
             holder.deliveryEstimate.text = if (sortByTime) restaurant.distanceTime!!.time else restaurant.distanceTime!!.distance
@@ -271,7 +278,7 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         }
 
         inner class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            internal var restaurantImage: ImageView = view.featuredItemImage
+            internal var restaurantImage: ImageView = view.restaurantImage
             internal var restaurantName: TextView = view.restaurantName
             internal var deliveryEstimate: TextView = view.deliveryEstimate
             internal var restaurantCategories: TextView = view.restaurantCategories

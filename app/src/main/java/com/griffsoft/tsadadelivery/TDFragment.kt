@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import com.griffsoft.tsadadelivery.extras.TDEditText
 
 abstract class TDFragment : Fragment() {
 
@@ -18,9 +19,12 @@ abstract class TDFragment : Fragment() {
 //
 //    }
 
-    fun setupBackButton(rootView: View) {
+    fun setupBackButton(rootView: View, editTexts: ArrayList<TDEditText>? = null) {
         rootView.findViewById<ImageView?>(R.id.backButton)?.let {
-            it.setOnClickListener { activity?.onBackPressed() }
+            it.setOnClickListener {
+                editTexts?.forEach { editText -> editText.clearFocus() }
+                activity?.onBackPressed()
+            }
         }
     }
 

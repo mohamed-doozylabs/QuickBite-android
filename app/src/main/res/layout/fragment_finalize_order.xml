@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".ui.account.AccountDetailsFragment">
+    tools:context=".cart.FinalizeOrderFragment">
 
     <ImageView
         android:id="@+id/backButton"
@@ -18,34 +18,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow_back" />
 
-
     <TextView
-        android:id="@+id/accountDetails"
-        android:layout_width="wrap_content"
+        android:id="@+id/finalize"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/account_details"
+        android:layout_marginEnd="16dp"
         android:textAppearance="@style/TDSubHeading"
-        app:layout_constraintStart_toStartOf="@+id/backButton"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton"
+        tools:text="Finalize your order from Chicka Loca!" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/accountDetails"
-        app:layout_constraintTop_toBottomOf="@+id/accountDetails">
+        app:layout_constraintEnd_toEndOf="@+id/finalize"
+        app:layout_constraintStart_toStartOf="@+id/finalize"
+        app:layout_constraintTop_toBottomOf="@+id/finalize">
 
         <com.griffsoft.tsadadelivery.extras.TDEditText
             android:id="@+id/nameTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name"
-            android:imeOptions="actionDone"
+            android:hint="@string/your_name"
+            android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -54,10 +54,9 @@
         android:id="@+id/phoneTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/nameTextInputLayout"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/finalize"
+        app:layout_constraintStart_toStartOf="@+id/finalize"
         app:layout_constraintTop_toBottomOf="@+id/nameTextInputLayout">
 
         <com.griffsoft.tsadadelivery.extras.TDEditText
@@ -65,23 +64,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:digits="0123456789+-() []"
-            android:hint="@string/phone_number"
-            android:inputType="number"
-            android:imeOptions="actionDone"/>
+            android:hint="@string/your_phone_number"
+            android:imeOptions="actionDone"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/saveChangesButton"
+        android:id="@+id/continueButton"
         style="@style/TDButton"
         android:layout_width="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:enabled="false"
-        android:text="@string/save_changes"
+        android:text="@string/continue_button_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

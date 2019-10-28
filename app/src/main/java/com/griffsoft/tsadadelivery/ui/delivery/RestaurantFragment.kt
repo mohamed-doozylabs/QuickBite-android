@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -55,7 +57,7 @@ class RestaurantFragment : TDFragment(), OnItemClickListener {
             root.findViewById<ConstraintLayout>(R.id.featuredItemsLayout).visibility = View.GONE
         }
 
-        root.findViewById<TextView>(R.id.restaurantName).text = restaurant.name
+        root.findViewById<TextView>(R.id.highlightedRestaurantName).text = restaurant.name
         root.findViewById<TextView>(R.id.restaurantCategories).text = restaurant.categories
         root.findViewById<TextView>(R.id.restaurantAddress).text = "${restaurant.distanceTime!!.distance} · ${restaurant.address.substringBefore(", Cag")}"
         root.findViewById<TextView>(R.id.deliveryFee).text = "₱50"
@@ -81,7 +83,11 @@ class RestaurantFragment : TDFragment(), OnItemClickListener {
         if (viewHolder is FeaturedItemsAdapter.FeaturedItemsViewHolder) {
             val menuItemIntent = Intent(activity!!, MenuItemActivity::class.java)
             menuItemIntent.putExtra("menuItem", featuredItems[position])
+            menuItemIntent.putExtra("restaurant", restaurant)
             startActivity(menuItemIntent)
+        } else {
+            performSegue(R.id.action_restaurantFragment_to_menuCategoryFragment,
+                bundleOf("category" to menuCategories[position], "restaurant" to restaurant))
         }
     }
 
@@ -102,7 +108,10 @@ class RestaurantFragment : TDFragment(), OnItemClickListener {
         override fun onBindViewHolder(holder: FeaturedItemsViewHolder, position: Int) {
             val featuredItem = featuredItems[position]
 
-            Picasso.get().load(featuredItem.itemImageUrl).into(holder.featuredItemImage)
+            Picasso.get()
+                .load(featuredItem.itemImageUrl)
+                .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder)!!)
+                .into(holder.featuredItemImage)
             holder.featuredItemName.text = featuredItem.itemName
             holder.itemPrice.text = featuredItem.price.asPriceString
 

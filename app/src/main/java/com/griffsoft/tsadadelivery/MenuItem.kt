@@ -18,7 +18,19 @@ data class MenuItem(
     var selectedQuantity: Int = 0,
     var finalPrice: Double = 0.0,
     var specialInstructions: String = ""
-) : Parcelable
+) : Parcelable {
+
+    override fun equals(other: Any?): Boolean {
+        return if (other is MenuItem) {
+            this.itemName == other.itemName &&
+                    this.description == other.description &&
+                    this.selectedOptions == other.selectedOptions &&
+                    this.specialInstructions == other.specialInstructions
+        } else {
+            false
+        }
+    }
+}
 
 @Parcelize
 data class MenuItemOptionCategory(

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".cart.CartFragment">
+
+    <ImageView
+        android:id="@+id/backButton"
+        style="@style/TDBackButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:tint="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_cancel_gray" />
+
+    <TextView
+        android:id="@+id/cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cart"
+        android:textAppearance="@style/TDHeading"
+        app:layout_constraintStart_toStartOf="@+id/backButton"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+    <Button
+        android:id="@+id/removeAllButton"
+        style="@style/TDButtonBorderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/remove_all"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cart"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/restaurantAndTotalQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cart"
+        app:layout_constraintTop_toBottomOf="@+id/cart"
+        tools:text="Long Name Restaurant Long Name Long NameLong NameLong Name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartItemsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurantAndTotalQuantity" />
+
+    <View
+        android:id="@+id/fadeView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/bottom_fade_drawable"
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/cartTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cart_total"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/cartTotalValue"
+            app:layout_constraintEnd_toEndOf="@+id/deliveryFee" />
+
+        <TextView
+            android:id="@+id/cartTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/deliveryFeeValue"
+            app:layout_constraintEnd_toEndOf="@+id/deliveryFeeValue"
+            tools:text="₱8,888" />
+
+        <TextView
+            android:id="@+id/deliveryFee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delivery_fee"
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/deliveryFeeValue"
+            app:layout_constraintEnd_toEndOf="@+id/total" />
+
+        <TextView
+            android:id="@+id/deliveryFeeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/continueButton"
+            app:layout_constraintEnd_toEndOf="@+id/totalValue"
+            tools:text="₱8,888" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:elevation="@dimen/additional_button_item_elevation"
+            android:fontFamily="sans-serif"
+            android:text="@string/total"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/totalValue"
+            app:layout_constraintEnd_toStartOf="@+id/totalValue" />
+
+        <TextView
+            android:id="@+id/totalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:elevation="@dimen/additional_button_item_elevation"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/continueButton"
+            app:layout_constraintEnd_toEndOf="@+id/continueButton"
+            app:layout_constraintTop_toTopOf="@+id/continueButton"
+            tools:text="₱8,888" />
+
+        <Button
+            android:id="@+id/continueButton"
+            style="@style/TDButton"
+            android:layout_width="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="30dp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="16dp"
+            android:text="@string/continue_button_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

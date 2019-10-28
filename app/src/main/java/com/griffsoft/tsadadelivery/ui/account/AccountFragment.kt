@@ -71,7 +71,10 @@ class AccountFragment : TDFragment(), View.OnClickListener, OnItemClickListener 
     }
 
     override fun onResume() {
-        updateNameMenuItem(UserUtil.getCurrentUser(context!!)!!.name)
+        val updatedUserName = UserUtil.getCurrentUser(context!!)!!.name
+        if (updatedUserName.isNotEmpty()) {
+            updateNameMenuItem(updatedUserName)
+        }
         super.onResume()
     }
 
@@ -112,7 +115,7 @@ class AccountFragment : TDFragment(), View.OnClickListener, OnItemClickListener 
             .setTitle("Log Out?")
             .setNegativeButton("cancel", null)
             .setPositiveButton("log out") {_, _ ->
-                //TODO: Empty cart
+                Cart.empty(context!!)
 
                 UserUtil.clearCurrentUser(context!!)
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_cart"
+    app:startDestination="@id/cartFragment">
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.griffsoft.tsadadelivery.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_finalizeOrderFragment"
+            app:destination="@id/finalizeOrderFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_reviewAndPlaceOrderFragment"
+            app:destination="@id/reviewAndPlaceOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finalizeOrderFragment"
+        android:name="com.griffsoft.tsadadelivery.cart.FinalizeOrderFragment"
+        android:label="FinalizeOrderFragment"
+        tools:layout="@layout/fragment_finalize_order">
+        <action
+            android:id="@+id/action_finalizeOrderFragment_to_reviewAndPlaceOrderFragment"
+            app:destination="@id/reviewAndPlaceOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewAndPlaceOrderFragment"
+        android:name="com.griffsoft.tsadadelivery.cart.ReviewAndPlaceOrderFragment"
+        android:label="ReviewAndPlaceOrderFragment"
+        tools:layout="@layout/fragment_review_and_place_order"/>
+</navigation>

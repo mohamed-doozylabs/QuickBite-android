@@ -28,7 +28,6 @@ class AccountDetailsFragment : TDFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_account_details, container, false)
-        setupBackButton(root)
 
         nameTextField = root.findViewById(R.id.nameTextField)
         phoneTextField = root.findViewById(R.id.phoneTextField)
@@ -66,8 +65,9 @@ class AccountDetailsFragment : TDFragment() {
                 }
             })
 
+        setupBackButton(root, arrayListOf(nameTextField, phoneTextField))
         return root
-        }
+    }
 
     private fun refreshSaveButton() {
         var nameTextFieldIsValid = false

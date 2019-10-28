@@ -19,9 +19,8 @@ object DistanceTimeUtil {
     private val gson = Gson()
 
     private fun getStoredDistanceTimes(context: Context): MutableMap<String, MutableMap<String, DistanceTime>> {
-        val sharedPref = context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
-        val distanceTimesData = sharedPref.getString(context.getString(R.string.SHARED_PREFS_KEY_DISTANCE_TIMES), "")
-        return if (distanceTimesData != "") {
+        val distanceTimesData = TDUtil.getSharedPrefsString(context, R.string.SHARED_PREFS_KEY_DISTANCE_TIMES)
+        return if (distanceTimesData.isNotEmpty()) {
             val distanceTimesMapType = object : TypeToken<MutableMap<String, MutableMap<String, DistanceTime>>>() {}.type
             val map: MutableMap<String, MutableMap<String, DistanceTime>> = gson.fromJson(distanceTimesData, distanceTimesMapType)
             map
@@ -43,8 +42,7 @@ object DistanceTimeUtil {
         }
 
         // Save new distance times
-        val sharedPref = context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
-        with (sharedPref.edit()) {
+        with (TDUtil.sharedPrefs(context).edit()) {
             val distanceTimeData = gson.toJson(storedDistanceTimes)
             putString(context.getString(R.string.SHARED_PREFS_KEY_DISTANCE_TIMES), distanceTimeData)
             apply()

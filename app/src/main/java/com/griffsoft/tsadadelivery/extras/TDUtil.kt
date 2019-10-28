@@ -2,8 +2,11 @@ package com.griffsoft.tsadadelivery.extras
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -36,6 +39,21 @@ object TDUtil {
             ad.dismiss()
             callback()
         }
+    }
+
+    fun sharedPrefs(context: Context): SharedPreferences {
+        return context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
+    }
+
+    fun getSharedPrefsString(context: Context, key: Int): String {
+        val sharedPrefs = sharedPrefs(context)
+        return sharedPrefs.getString(context.getString(key), "")!!
+    }
+
+    fun isNetworkReachable(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnected == true
     }
 }
 

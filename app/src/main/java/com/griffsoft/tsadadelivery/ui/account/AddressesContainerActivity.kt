@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.TDActivity
 
-class FragmentContainerActivity : TDActivity() {
+class AddressesContainerActivity : TDActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -21,7 +21,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
-        android:paddingBottom="72dp"
+        android:paddingBottom="@dimen/cart_banner_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/restaurantName"
+                android:id="@+id/highlightedRestaurantName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -48,9 +48,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                app:layout_constraintEnd_toEndOf="@+id/restaurantName"
-                app:layout_constraintStart_toStartOf="@+id/restaurantName"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantName"
+                app:layout_constraintEnd_toEndOf="@+id/highlightedRestaurantName"
+                app:layout_constraintStart_toStartOf="@+id/highlightedRestaurantName"
+                app:layout_constraintTop_toBottomOf="@+id/highlightedRestaurantName"
                 tools:text="Chicken, BBQ, asdfasdfasdf" />
 
             <ImageView

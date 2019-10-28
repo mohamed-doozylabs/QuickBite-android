@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import com.griffsoft.tsadadelivery.*
+import com.griffsoft.tsadadelivery.extras.TDUtil
+import com.griffsoft.tsadadelivery.objects.Restaurant
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_menu_item.*
 import kotlinx.android.synthetic.main.content_menu_item.*
@@ -19,6 +22,7 @@ import kotlinx.android.synthetic.main.content_menu_item.*
 class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedListener {
 
     private lateinit var menuItem: MenuItem
+    private lateinit var restaurant: Restaurant
 
     private var singleSelectedOptions = mutableMapOf<Int, MenuItemOption>() // Used for single-selection option categories
     private var multiSelectedOptions = arrayListOf<MenuItemOption>()
@@ -41,20 +45,23 @@ class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedLi
         scrollView.viewTreeObserver.addOnScrollChangedListener(this)
 
         menuItem = intent.getParcelableExtra("menuItem")
+        restaurant = intent.getParcelableExtra("restaurant")
 
         // Setup UI
         if (menuItem.itemImageUrl.isNotEmpty()) {
-            Picasso.get().load(menuItem.itemImageUrl).into(header)
+            Picasso.get()
+                .load(menuItem.itemImageUrl)
+                .placeholder(ContextCompat.getDrawable(this, R.drawable.placeholder)!!)
+                .into(header)
         }
 
         menuItemName.text = menuItem.itemName
 
         if (menuItem.description.isNotEmpty()) {
-            description.text = menuItem.description
+            itemDescription.text = menuItem.description
         }
 
         price.text = menuItem.price.asPriceString
-
 
         setupMenuItemOptions()
     }
@@ -159,22 +166,6 @@ class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedLi
         updateTotalPrice()
     }
 
-    private fun updateTotalPrice() {
-        var totalPrice = menuItem.price
-
-        val multiOptionPrices = multiSelectedOptions.map { it.addedPrice }
-        if (multiOptionPrices.isNotEmpty()) {
-            totalPrice += multiOptionPrices.reduce { acc, it -> acc + it}
-        }
-
-        val singleOptionPrices = singleSelectedOptions.values.map { it.addedPrice }
-        if (singleOptionPrices.isNotEmpty()) {
-            totalPrice += singleOptionPrices.reduce { acc, it -> acc + it}
-        }
-
-        price.text = totalPrice.asPriceString
-    }
-
     fun decreaseQuantityTapped(v: View) {
         changeQuantity(false)
     }
@@ -192,6 +183,84 @@ class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedLi
 
         quantity.text = newQuantity.toString()
         updateTotalPrice()
+    }
+
+    private fun updateTotalPrice() {
+        var totalPrice = menuItem.price
+
+        val multiOptionPrices = multiSelectedOptions.map { it.addedPrice }
+        if (multiOptionPrices.isNotEmpty()) {
+            totalPrice += multiOptionPrices.reduce { acc, it -> acc + it}
+        }
+
+        val singleOptionPrices = singleSelectedOptions.values.map { it.addedPrice }
+        if (singleOptionPrices.isNotEmpty()) {
+            totalPrice += singleOptionPrices.reduce { acc, it -> acc + it}
+        }
+
+        price.text = (totalPrice * quantity.text.toString().toInt()).asPriceString
+    }
+
+    fun addToOrder(v: View) {
+        val selectedQuantity = quantity.text.toString().toInt()
+        val theseItemsThisItem = if (selectedQuantity > 1) "these items" else "this item"
+
+        val currentCartRestaurant = Cart.getRestaurant(this)
+        if (currentCartRestaurant != null && Cart.getItems(this).isNotEmpty()) {
+            if (restaurant.id != currentCartRestaurant.id) {
+                // User is trying to add an item from a different restaurant
+                AlertDialog.Builder(this)
+                    .setTitle("Clear Cart?")
+                    .setMessage("You already have items from ${currentCartRestaurant.name} in your cart. Adding $theseItemsThisItem will create a new cart with $theseItemsThisItem from ${restaurant.name}.")
+                    .setNegativeButton("cancel", null)
+                    .setPositiveButton("Confirm") {_, _ ->
+                        Cart.empty(this)
+                        addToOrder(v)
+                    }.show()
+                return
+            }
+
+            if (Cart.getTotalQuantity(this) >= 10) {
+                // Cart is full
+                AlertDialog.Builder(this)
+                    .setTitle("Cart Full")
+                    .setMessage("Your cart already has the maximum number of items. Please remove some items or reduce the quantity of this item, then try again.")
+                    .setPositiveButton("Okay", null)
+                    .show()
+                return
+            }
+        }
+
+        if (UserUtil.getCurrentUser(this)!!.currentOrder != null) {
+            // Current order already in progress
+            AlertDialog.Builder(this)
+                .setTitle("Order Already in Progress")
+                .setMessage("You already have an order on its way! Check the Orders tab to see its progress.")
+                .setPositiveButton("Okay", null)
+                .show()
+            return
+        }
+
+        var selectedOrderOptions = ""
+
+        val optionsArray = ArrayList(singleSelectedOptions.values.map { it.optionName })
+        optionsArray.addAll(multiSelectedOptions.map { it.optionName })
+        optionsArray.forEach {
+            selectedOrderOptions += "$it, "
+        }
+
+        selectedOrderOptions = if (selectedOrderOptions.isEmpty()) "None" else selectedOrderOptions.removeSuffix(", ")
+
+        menuItem.selectedOptions = selectedOrderOptions
+        menuItem.selectedQuantity = selectedQuantity
+        menuItem.specialInstructions = specialInstructionsEditText.text.toString()
+        menuItem.finalPrice = price.text.toString().removePrefix("₱").toDouble()
+        Cart.setRestaurant(this, restaurant)
+        Cart.addItem(this, menuItem)
+
+        TDUtil.showSuccessDialog(this, "Added to Order") {
+            finish()
+        }
     }
 
     override fun onScrollChanged() {

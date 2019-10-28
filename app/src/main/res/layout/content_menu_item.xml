@@ -34,22 +34,22 @@
             tools:text="5pc. BBQ Chicken Wings" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/itemDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/menuItemName"
             app:layout_constraintStart_toStartOf="@+id/menuItemName"
             app:layout_constraintTop_toBottomOf="@+id/menuItemName"
-            tools:text="it seems that applying a constraintset clears previously applied constraintsets and knowing that one could first extract the old constraintset using clone and then add the new constraint and apply it. In other words, you can add one thing to an existing constraintlayout but you can't add one constraint to the existing constraintset."
-            tools:visibility="visible" />
+            tools:text="it seems that applying a constraintset clears previously applied constraintsets and knowing that one could first extract the old constraintset using clone and then add the new constraint and apply it. In other words, you can add one thing to an existing constraintlayout but you can't add one constraint to the existing constraintset." />
 
         <LinearLayout
             android:id="@+id/menuOptionsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/itemDescription"
             android:orientation="vertical" />
 
         <ImageView
@@ -73,6 +73,7 @@
             app:layout_constraintTop_toBottomOf="@id/menuOptionsLayout">
 
             <com.griffsoft.tsadadelivery.extras.TDEditText
+                android:id="@+id/specialInstructionsEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_special_instructions"

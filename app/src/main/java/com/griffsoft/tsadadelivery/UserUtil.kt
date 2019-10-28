@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
+import com.griffsoft.tsadadelivery.extras.TDUtil
 import com.griffsoft.tsadadelivery.objects.Address
 import com.griffsoft.tsadadelivery.objects.Order
 import timber.log.Timber
@@ -23,8 +24,7 @@ object UserUtil {
     private val dbUsers = FirebaseFirestore.getInstance().collection("users")
 
     fun updateCurrentUser(context: Context, user: User) {
-        val sharedPref = context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
-        with (sharedPref.edit()) {
+        with (TDUtil.sharedPrefs(context).edit()) {
             val userData = gson.toJson(user)
             putString(context.getString(R.string.SHARED_PREFS_KEY_CURRENT_USER), userData)
             apply()
@@ -32,8 +32,7 @@ object UserUtil {
     }
 
     fun getCurrentUser(context: Context): User? {
-        val sharedPref = context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
-        val currentUserData = sharedPref.getString(context.getString(R.string.SHARED_PREFS_KEY_CURRENT_USER), "")
+        val currentUserData = TDUtil.getSharedPrefsString(context, R.string.SHARED_PREFS_KEY_CURRENT_USER)
         return if (currentUserData != "") {
             gson.fromJson(currentUserData, User::class.java)
         } else {
@@ -42,8 +41,7 @@ object UserUtil {
     }
 
     fun clearCurrentUser(context: Context) {
-        val sharedPref = context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
-        with (sharedPref.edit()) {
+        with (TDUtil.sharedPrefs(context).edit()) {
             remove(context.getString(R.string.SHARED_PREFS_KEY_CURRENT_USER))
             apply()
         }
