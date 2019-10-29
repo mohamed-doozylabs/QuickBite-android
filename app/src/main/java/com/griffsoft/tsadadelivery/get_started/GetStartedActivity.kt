@@ -11,10 +11,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import com.griffsoft.tsadadelivery.R
-import com.griffsoft.tsadadelivery.TDActivity
-import com.griffsoft.tsadadelivery.User
-import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.*
 import com.griffsoft.tsadadelivery.extras.TDUtil
 import kotlinx.android.synthetic.main.activity_get_started.*
 import timber.log.Timber
@@ -102,7 +99,9 @@ class LoginActivity : TDActivity() {
                             if (udUser.addresses.isEmpty()) {
                                 segueToAddNewAddressSearch()
                             } else {
-                                // TODO: Open main screen
+                                val homeScreenIntent = Intent(this, TDTabBarActivity::class.java)
+                                homeScreenIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(homeScreenIntent)
                             }
                         }
                     }

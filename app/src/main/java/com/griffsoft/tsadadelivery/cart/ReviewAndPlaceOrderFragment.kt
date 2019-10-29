@@ -17,9 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.griffsoft.tsadadelivery.*
 import com.griffsoft.tsadadelivery.extras.TDUtil
 import com.griffsoft.tsadadelivery.objects.Order
-import com.griffsoft.tsadadelivery.objects.OrderItem
 import com.griffsoft.tsadadelivery.ui.account.AddressesContainerActivity
-import kotlinx.android.synthetic.main.fragment_review_and_place_order.*
 import java.util.*
 
 const val RC_UPDATE_CONTACT_INFO = 888
@@ -223,21 +221,14 @@ class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
     private fun placeOrder() {
         // Show activity indicator
         placeOrderButton.text = ""
-        val orderProgresIndicator = rootView.findViewById<ProgressBar>(R.id.orderProgressIndicator)
-        orderProgresIndicator.visibility = View.VISIBLE
+        val orderProgressIndicator = rootView.findViewById<ProgressBar>(R.id.orderProgressIndicator)
+        orderProgressIndicator.visibility = View.VISIBLE
 
         val contactInfo = rootView.findViewById<TextView>(R.id.contactInfo)
         val deliveryEstimate = rootView.findViewById<TextView>(R.id.deliveryEstimate)
 
         val restaurant = Cart.getRestaurant(context!!)!!
         val orderPlacedDate = Date()
-        val orderItemsList = Cart.getItems(context!!).map {
-            OrderItem(finalPrice = it.finalPrice,
-                itemName = it.itemName,
-                selectedOptions = it.selectedOptions,
-                selectedQuantity = it.selectedQuantity,
-                specialInstructions = it.specialInstructions)
-        }
         val order = Order(
             customerName = contactInfo.text.toString().substringBefore("\n"),
             customerContactNumber = contactInfo.text.toString().substringAfter("\n"),
@@ -248,25 +239,33 @@ class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
             restaurantImageUrl = restaurant.imageUrl,
             datePlaced = Timestamp(orderPlacedDate),
             lastUpdated = Timestamp(orderPlacedDate),
-            items = orderItemsList,
+            items = Cart.getItems(context!!),
             total = Cart.getTotalPrice(context!!),
             deliveryTimeEstimate = deliveryEstimate.text.toString().substringBefore(" ").toInt(),
             paymentMethod = Cart.paymentMethod.toString(),
-            currentStage = 0)
+            currentStage = 0
+        )
 
-        UserUtil.addCurrentOrder(context!!, order)
+        UserUtil.addOrUpdateCurrentOrder(context!!, order)
 
         val ordersDb = FirebaseFirestore.getInstance().collection("orders")
 
-        ordersDb.document(order.id).set(order)
+        ordersDb.document(order.id).set(order.dictionary)
             .addOnFailureListener {
-
-
+                rootView.isClickable = true
+                AlertDialog.Builder(context!!)
+                    .setTitle("Unable to Place Order")
+                    .setMessage("Please try again. If problem persists, please contact us through the Account page.")
+                    .setPositiveButton("Close", null)
+                    .show()
+                orderProgressIndicator.visibility = View.GONE
+                placeOrderButton.text = "Place Order"
             }
             .addOnSuccessListener {
                 orderProgressIndicator.visibility = View.GONE
                 Cart.empty(context!!)
-                TDUtil.showSuccessDialog(context!!, "Order Placed", showFor = 1500) {
+                TDUtil.showSuccessDialog(context!!, "Order Placed", showFor = 1750) {
+                    activity!!.setResult(RC_REDIRECT_TO_ORDERS)
                     activity!!.finish()
                 }
             }

@@ -89,7 +89,7 @@ object UserUtil {
         syncUserProperty(context, SyncProperty.customerPhone)
     }
 
-    fun addCurrentOrder(context: Context, order: Order) {
+    fun addOrUpdateCurrentOrder(context: Context, order: Order) {
         val user = getCurrentUser(context)!!
         user.currentOrder = order
         updateCurrentUser(context, user)
@@ -198,21 +198,6 @@ data class User(
     var smsNotificationsEnabled: Boolean = true,
     var isGuest: Boolean = false
 ) {
-    var defaultAddress: Address = Address()
-        get() {
-            if (addresses.isEmpty())
-                throw RuntimeException("Tried to get default address with no addresses set")
-
-
-            val defaultAddressIndex = addresses.indexOfFirst { it.isDefault }
-
-            return if (defaultAddressIndex != -1)
-                addresses[defaultAddressIndex]
-            else
-                addresses.first()
-
-
-        }
 
     var selectedAddress: Address = Address()
         get() {
@@ -224,6 +209,7 @@ data class User(
             return if (selectedAddressIndex != -1)
                 addresses[selectedAddressIndex]
             else
-                defaultAddress
+                // TODO: Also set selected address
+                addresses.first()
         }
 }

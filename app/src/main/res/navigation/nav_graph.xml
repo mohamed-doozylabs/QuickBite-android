@@ -14,15 +14,14 @@
 
     <keep_state_fragment
         android:id="@+id/navigation_orders"
-        android:name="com.griffsoft.tsadadelivery.ui.orders.DashboardFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.orders.OrdersContainerFragment"
         android:label="@string/title_orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_past_orders" />
 
     <keep_state_fragment
         android:id="@+id/navigation_account"
         android:name="com.griffsoft.tsadadelivery.ui.account.AccountContainerFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" >
-    </keep_state_fragment>
+        tools:layout="@layout/fragment_account" />
 
 </navigation>

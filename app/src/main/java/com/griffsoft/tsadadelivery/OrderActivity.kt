@@ -18,7 +18,6 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.griffsoft.tsadadelivery.objects.Order
-import com.griffsoft.tsadadelivery.objects.OrderItem
 import kotlinx.android.synthetic.main.activity_order.*
 import kotlinx.android.synthetic.main.order_item_list_item.view.*
 import timber.log.Timber
@@ -154,7 +153,10 @@ class OrderActivity : AppCompatActivity(), OrderStatusDialogFragment.OrderStatus
     }
 }
 
-class OrderItemAdapter(private val orderItems: List<OrderItem>, private val context: Context) : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>() {
+class OrderItemAdapter(private val orderItems: List<MenuItem>,
+                       private val context: Context) :
+    RecyclerView.Adapter<OrderItemAdapter.ViewHolder>() {
+
     private val r = context.resources
 
     override fun getItemCount(): Int {

@@ -15,7 +15,12 @@ import com.griffsoft.tsadadelivery.cart.CartContainerActivity
 import com.griffsoft.tsadadelivery.extras.KeepStateNavigator
 import kotlinx.android.synthetic.main.activity_tdtab_bar.*
 
+const val RC_CART = 666
+const val RC_REDIRECT_TO_ORDERS = 667
+
 class TDTabBarActivity : TDActivity() {
+
+    private lateinit var navView: BottomNavigationView
 
     private var cartBannerIsShown = false
 
@@ -26,7 +31,7 @@ class TDTabBarActivity : TDActivity() {
 
         originalConstraintSet.clone(container)
 
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        navView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
@@ -51,7 +56,7 @@ class TDTabBarActivity : TDActivity() {
         navView.setupWithNavController(navController)
 
         cartBanner.setOnClickListener {
-            startActivity(Intent(this, CartContainerActivity::class.java))
+            startActivityForResult(Intent(this, CartContainerActivity::class.java), RC_CART)
         }
     }
 
@@ -100,5 +105,15 @@ class TDTabBarActivity : TDActivity() {
         itemsLabel.text = "$quantity item${if (quantity > 1) "s" else ""}"
 
         cartPrice.text = Cart.getTotalPrice(this).asPriceString
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_CART) {
+            if (resultCode == RC_REDIRECT_TO_ORDERS) {
+                navView.selectedItemId = R.id.navigation_orders
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ object TDUtil {
         .requestEmail()
         .build()
 
-    fun showSuccessDialog(context: Context, message: String, showFor: Long = 1000, callback: () -> Unit) {
+    fun showSuccessDialog(context: Context, message: String, showFor: Long = 1500, callback: () -> Unit) {
         val successDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_success, null)
         successDialogView.message.text = message
 

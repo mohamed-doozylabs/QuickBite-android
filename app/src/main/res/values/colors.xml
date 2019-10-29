@@ -6,7 +6,7 @@
     <color name="colorAccentLight">#DAFF6E6E</color>
     <color name="statusBarColor">@color/colorPrimaryDark</color>
 
-    <color name="buttonDisabled">#e0e0e0</color>
+    <color name="buttonDisabled">#E0E0E0</color>
     <color name="iconColor">#CCCCCC</color>
     <color name="search_bar_background">#EFEEF6</color>
     <color name="tertiary_text">#9A9A9A</color>

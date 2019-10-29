@@ -1,7 +1,9 @@
 package com.griffsoft.tsadadelivery.objects
 
 import com.google.firebase.Timestamp
+import com.griffsoft.tsadadelivery.MenuItem
 import java.util.*
+import kotlin.collections.ArrayList
 
 data class Order(
     val id: String = UUID.randomUUID().toString(),
@@ -14,7 +16,7 @@ data class Order(
     val restaurantImageUrl: String = "",
     val datePlaced: Timestamp = Timestamp.now(),
     val lastUpdated: Timestamp = Timestamp.now(),
-    val items: List<OrderItem> = listOf(),
+    val items: List<MenuItem> = listOf(),
     val total: Double = 0.0,
     val deliveryTimeEstimate: Int = 0,
     val paymentMethod: String = "",
@@ -23,13 +25,30 @@ data class Order(
     fun totalQuantity(): Int {
        return items.map { it.selectedQuantity }.sum()
     }
+
+    val dictionary: HashMap<String, Any>
+        get() {
+            return hashMapOf(
+                "id" to id,
+                "customerName" to customerName,
+                "customerContactNumber" to customerContactNumber,
+                "datePlaced" to datePlaced,
+                "lastUpdated" to lastUpdated,
+                "deliveryAddress" to deliveryAddress,
+                "restaurantName" to restaurantName,
+                "restaurantAddress" to restaurantAddress,
+                "restaurantContactNumber" to restaurantContactNumber,
+                "restaurantImageUrl" to restaurantImageUrl,
+                "items" to itemsDictionary,
+                "deliveryTimeEstimate" to deliveryTimeEstimate,
+                "paymentMethod" to paymentMethod,
+                "total" to total,
+                "currentStage" to currentStage
+            )
+        }
+
+    private val itemsDictionary: ArrayList<HashMap<String, Any>>
+        get() {
+            return ArrayList(items.map { it.orderDictionary })
+        }
 }
-
-data class OrderItem(
-    val finalPrice: Double = 0.0,
-    val itemName: String = "",
-    val selectedOptions: String = "",
-    val selectedQuantity: Int = 0,
-    val specialInstructions: String = ""
-)
-

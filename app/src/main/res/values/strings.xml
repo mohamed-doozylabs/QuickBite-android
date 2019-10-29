@@ -140,8 +140,26 @@
     <string name="contact_info">contact info</string>
     <string name="order_details">order details</string>
     <string name="delivery_estimate">delivery estimate</string>
-    <string name="payment_method_label">payment method</string>
+    <string name="payment_method_label_no_caps">payment method</string>
     <string name="place_order">Place Order</string>
+
+    <!--Orders-->
+    <string name="current_order">Current Order</string>
+    <string name="see_details">See Details</string>
+    <string name="contact_us">Contact Us</string>
+
+    <string name="order_submitted">Order Submitted</string>
+    <string name="order_submitted_subtitle">We\'ll notify you when your order is being prepared by the store.</string>
+    <string name="being_prepared_by_store">Being Prepared By Store</string>
+    <string name="order_on_its_way">Order On Its Way!</string>
+    <string name="driver_on_their_way">Your driver is en route to you.</string>
+    <string name="food_delivered">Food Delivered</string>
+    <string name="food_delivered_subtitle">Enjoy!</string>
+
+    <string name="past_orders">Past Orders</string>
+    <string name="no_past_orders">No past orders</string>
+    <string name="order_total_label">Order Total</string>
+    <string name="payment_method_label">Payment Method</string>
 
     <string name="changes_saved">Changes Saved</string>
     <string name="title_activity_menu_item">MenuItemActivity</string>

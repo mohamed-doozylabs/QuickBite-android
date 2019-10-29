@@ -30,6 +30,17 @@ data class MenuItem(
             false
         }
     }
+
+    val orderDictionary: HashMap<String, Any>
+        get() {
+            return hashMapOf(
+                "itemName" to itemName,
+                "finalPrice" to finalPrice,
+                "selectedQuantity" to selectedQuantity,
+                "selectedOptions" to selectedOptions,
+                "specialInstructions" to specialInstructions
+            )
+        }
 }
 
 @Parcelize

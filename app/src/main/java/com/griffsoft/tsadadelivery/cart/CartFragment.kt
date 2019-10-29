@@ -24,7 +24,7 @@ enum class PaymentMethod {
     Cash, GCash, Card
 }
 
-class CartFragment : TDFragment(), View.OnClickListener {
+class CartFragment : TDFragment(), View.OnClickListener, CartItemRemovedListener {
 
     private lateinit var removeAllButton: Button
     private lateinit var continueButton: Button
@@ -39,7 +39,7 @@ class CartFragment : TDFragment(), View.OnClickListener {
 
         cartItems = Cart.getItems(context!!)
 
-        cartAdapter = CartAdapter(context!!, cartItems)
+        cartAdapter = CartAdapter(context!!, cartItems, this)
 
         paymentMethodBottomSheetDialog = BottomSheetDialog(context!!)
     }
@@ -83,11 +83,11 @@ class CartFragment : TDFragment(), View.OnClickListener {
         return root
     }
 
-    private fun removeItem(index: Int) {
-        cartItems.removeAt(index)
+    override fun cartItemWasRemoved(position: Int) {
+        cartItems.removeAt(position)
         cartAdapter.notifyDataSetChanged()
 
-        Cart.removeItemAt(context!!, index)
+        Cart.removeItemAt(context!!, position)
 
         if (cartItems.isEmpty()) {
             dismissAfterEmpty()
@@ -136,85 +136,85 @@ class CartFragment : TDFragment(), View.OnClickListener {
             performSegue(R.id.action_cartFragment_to_reviewAndPlaceOrderFragment)
         }
     }
+}
 
+// Cannot be inner class because this is also used by CurrentOrderFragment.
+class CartAdapter(val context: Context,
+                  private val cartItems: List<MenuItem>,
+                  val onCartItemRemovedListener: CartItemRemovedListener? = null,
+                  private val hideRemoveButton: Boolean = false) :
+    RecyclerView.Adapter<CartAdapter.CartItemViewHolder>() {
 
-    inner class CartAdapter(val context: Context,
-                            private val cartItems: ArrayList<MenuItem>) :
-        RecyclerView.Adapter<CartAdapter.CartItemViewHolder>() {
+    override fun getItemCount(): Int {
+        return cartItems.size
+    }
 
-        override fun getItemCount(): Int {
-            return cartItems.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemViewHolder {
+        return CartItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cart_list_item, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: CartItemViewHolder, position: Int) {
+        val item = cartItems[position]
+
+        if (item.itemImageUrl.isNotEmpty()) {
+            Picasso.get()
+                .load(item.itemImageUrl)
+                .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder)!!)
+                .into(holder.itemImage)
+        } else {
+            holder.itemImage.visibility = View.GONE
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemViewHolder {
-            return CartItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cart_list_item, parent, false))
+        holder.quantity.text = "${item.selectedQuantity}x"
+        holder.itemName.text = item.itemName
+        holder.price.text = item.finalPrice.asPriceString
+
+        if (item.selectedOptions != "None") {
+            holder.itemOptions.text = item.selectedOptions
+        } else {
+            holder.itemOptions.visibility = View.GONE
         }
 
-        override fun onBindViewHolder(holder: CartItemViewHolder, position: Int) {
-            val item = cartItems[position]
-
-            if (item.itemImageUrl.isNotEmpty()) {
-                Picasso.get()
-                    .load(item.itemImageUrl)
-                    .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder)!!)
-                    .into(holder.itemImage)
-            } else {
-                holder.itemImage.visibility = View.GONE
-            }
-
-            holder.quantity.text = "${item.selectedQuantity}x"
-            holder.itemName.text = item.itemName
-            holder.price.text = item.finalPrice.asPriceString
-
-            if (item.selectedOptions != "None") {
-                holder.itemOptions.text = item.selectedOptions
-            } else {
-                holder.itemOptions.visibility = View.GONE
-            }
-
-            if (item.specialInstructions != "") {
-                holder.specialInstructions.text = "Instructions: ${item.specialInstructions}"
-            } else {
-                holder.specialInstructions.visibility = View.GONE
-            }
+        if (item.specialInstructions != "") {
+            holder.specialInstructions.text = "Instructions: ${item.specialInstructions}"
+        } else {
+            holder.specialInstructions.visibility = View.GONE
         }
 
-        inner class CartItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val itemImage: ImageView = view.findViewById(R.id.itemImage)
-            val quantity: TextView = view.findViewById(R.id.quantity)
-            val itemName: TextView = view.findViewById(R.id.itemName)
-            val price: TextView = view.findViewById(R.id.itemPrice)
-            val itemOptions: TextView = view.findViewById(R.id.itemOptions)
-            val specialInstructions: TextView = view.findViewById(R.id.specialInstructions)
+        if (hideRemoveButton) {
+            holder.menuButton.visibility = View.GONE
+        }
+    }
 
-            private val menuButton: ImageView = view.findViewById(R.id.menuButton)
+    inner class CartItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val itemImage: ImageView = view.findViewById(R.id.itemImage)
+        val quantity: TextView = view.findViewById(R.id.quantity)
+        val itemName: TextView = view.findViewById(R.id.itemName)
+        val price: TextView = view.findViewById(R.id.itemPrice)
+        val itemOptions: TextView = view.findViewById(R.id.itemOptions)
+        val specialInstructions: TextView = view.findViewById(R.id.specialInstructions)
 
-            init {
-                menuButton.setOnClickListener {
-                    val popup = PopupMenu(menuButton.context, menuButton)
+        val menuButton: ImageView = view.findViewById(R.id.menuButton)
 
-                    popup.setOnMenuItemClickListener {
-                        when (it.itemId) {
-                            R.id.remove -> removeItem(adapterPosition)
-                        }
+        init {
+            menuButton.setOnClickListener {
+                val popup = PopupMenu(menuButton.context, menuButton)
 
-                        true
+                popup.setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.remove -> onCartItemRemovedListener?.cartItemWasRemoved(adapterPosition)
                     }
 
-                    popup.inflate(R.menu.cart_menu)
-                    popup.show()
+                    true
                 }
+
+                popup.inflate(R.menu.cart_menu)
+                popup.show()
             }
         }
     }
 }
 
-//class BottomSheetFragment: BottomSheetDialogFragment() {
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        return inflater.inflate(R.layout.payment_method_bottom_sheet, container, false)
-//    }
-//}
+interface CartItemRemovedListener {
+    fun cartItemWasRemoved(position: Int)
+}

@@ -175,6 +175,7 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
     }
 
     private fun populateHighlightedCategories() {
+        highlightedRestaurants.clear()
         highlightedRestaurants.addAll(allRestaurants.filter { it.topPick })
         highlightedRestaurantsAdapter.notifyDataSetChanged()
     }
@@ -221,7 +222,7 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
             parent: ViewGroup,
             viewType: Int
         ): HighlightedRestaurantItemViewHolder {
-            return HighlightedRestaurantItemViewHolder(LayoutInflater.from(context).inflate(R.layout.highlighted_restaurant_list_item, parent, false))
+            return HighlightedRestaurantItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.highlighted_restaurant_list_item, parent, false))
         }
 
         override fun onBindViewHolder(holder: HighlightedRestaurantItemViewHolder, position: Int) {

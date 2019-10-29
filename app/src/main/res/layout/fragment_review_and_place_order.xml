@@ -233,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/payment_method_label"
+                android:text="@string/payment_method_label_no_caps"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"

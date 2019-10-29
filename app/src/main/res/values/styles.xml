@@ -76,4 +76,25 @@
         <item name="android:textColorPrimary">@android:color/primary_text_light</item>
     </style>
 
+
+    <!--Order Progress-->
+    <style name="CompletedOrderStage" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+    </style>
+
+    <style name="CurrentOrderStage" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="PendingOrderStage" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">#D5D5D8</item>
+
+    </style>
+
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_orders"
+    app:startDestination="@id/currentOrderFragment">
+
+    <fragment
+        android:id="@+id/currentOrderFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.orders.CurrentOrderFragment"
+        android:label="CurrentOrderFragment"
+        tools:layout="@layout/fragment_current_order">
+        <action
+            android:id="@+id/action_currentOrderFragment_to_pastOrdersFragment"
+            app:destination="@id/pastOrdersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pastOrdersFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.orders.PastOrdersFragment"
+        android:label="PastOrdersFragment"
+        tools:layout="@layout/fragment_past_orders">
+        <action
+            android:id="@+id/action_pastOrdersFragment_to_currentOrderFragment"
+            app:destination="@id/currentOrderFragment" />
+    </fragment>
+
+</navigation>

@@ -17,6 +17,4 @@ class DeliveryContainerFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_delivery_container, container, false)
     }
-
-
 }

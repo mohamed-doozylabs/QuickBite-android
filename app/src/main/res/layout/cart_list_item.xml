@@ -55,6 +55,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/menuButton"
         app:layout_constraintTop_toTopOf="@+id/itemName"
+        app:layout_goneMarginEnd="16dp"
         tools:text="₱8,888" />
 
     <ImageView
