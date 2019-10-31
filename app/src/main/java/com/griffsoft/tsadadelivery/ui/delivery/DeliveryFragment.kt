@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import com.griffsoft.tsadadelivery.R
-import com.griffsoft.tsadadelivery.TDFragment
-import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.*
 import com.griffsoft.tsadadelivery.extras.DistanceTime
 import com.griffsoft.tsadadelivery.extras.DistanceTimeUtil
 import com.griffsoft.tsadadelivery.extras.OnItemClickListener
@@ -52,6 +51,8 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
 
     private var sortByTime: Boolean = true
 
+    private var rootViewWidth: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         selectedAddress = UserUtil.getCurrentUser(context!!)!!.selectedAddress
@@ -61,6 +62,10 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         highlightedRestaurantsAdapter = HighlightedRestaurantsAdapter(context!!, highlightedRestaurants, this)
 
         val db = FirebaseFirestore.getInstance().collection("restaurants")
+
+        val displayMetrics = DisplayMetrics()
+        activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
+        rootViewWidth = displayMetrics.widthPixels
 
         db.get().addOnSuccessListener {
             setupRestaurants(it)
@@ -86,6 +91,10 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         loadingView = root.findViewById(R.id.loadingViewLayout)
         if (allRestaurants.isEmpty()) { // If this is the first time loading this fragment...
             loadingView.visibility = View.VISIBLE
+        }
+
+        root.findViewById<View>(R.id.searchBar).setOnClickListener {
+            performSegue(R.id.action_deliveryHome_to_searchFragment, bundleOf("restaurants" to allRestaurants.clone()))
         }
 
         addressLabel = root.findViewById(R.id.addressLabel)
@@ -228,6 +237,7 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         override fun onBindViewHolder(holder: HighlightedRestaurantItemViewHolder, position: Int) {
             val restaurant = restaurants[position]
 
+            holder.restaurantImage.layoutParams.width = (rootViewWidth.dp - 64).px
             Picasso.get()
                 .load(restaurant.imageUrl)
                 .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder)!!)

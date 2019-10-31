@@ -3,6 +3,7 @@ package com.griffsoft.tsadadelivery
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnticipateOvershootInterpolator
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.findNavController
@@ -14,6 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.griffsoft.tsadadelivery.cart.CartContainerActivity
 import com.griffsoft.tsadadelivery.extras.KeepStateNavigator
 import kotlinx.android.synthetic.main.activity_tdtab_bar.*
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+
 
 const val RC_CART = 666
 const val RC_REDIRECT_TO_ORDERS = 667
@@ -58,10 +61,8 @@ class TDTabBarActivity : TDActivity() {
         cartBanner.setOnClickListener {
             startActivityForResult(Intent(this, CartContainerActivity::class.java), RC_CART)
         }
-    }
 
-    fun showLoadingCoverView(show: Boolean) {
-        loadingViewLayout.visibility = if (show) View.VISIBLE else View.GONE
+        setupKeyboardListener()
     }
 
     override fun onResume() {
@@ -70,15 +71,49 @@ class TDTabBarActivity : TDActivity() {
 
     }
 
+    fun showLoadingCoverView(show: Boolean) {
+        loadingViewLayout.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    private fun setupKeyboardListener() {
+        val hiddenNavBarConstraintSet = ConstraintSet().apply {
+            clone(container)
+            clear(R.id.nav_view, ConstraintSet.BOTTOM)
+            connect(R.id.nav_view, ConstraintSet.TOP, R.id.container, ConstraintSet.BOTTOM)
+        }
+
+        val transition = ChangeBounds().apply {
+            interpolator = AccelerateDecelerateInterpolator()
+            duration = 0
+        }
+
+        KeyboardVisibilityEvent.setEventListener(this) { isOpen ->
+            //            navView.visibility = if (isOpen) View.GONE else View.VISIBLE
+//            val newScale = if (isOpen) 0f else 1f
+//            navView
+//                .animate()
+//                .scaleY(newScale)
+//                .setDuration(500)
+//                .start()
+            TransitionManager.beginDelayedTransition(container, transition)
+            if (isOpen) {
+                hiddenNavBarConstraintSet.applyTo(container)
+            } else {
+                originalConstraintSet.applyTo(container)
+            }
+        }
+    }
+
     private fun showCartBanner() {
         if (Cart.getItems(this).isNotEmpty()) {
             updateCartBannerLabels()
 
             if (!cartBannerIsShown) {
-                val altConstraintSet = ConstraintSet()
-                altConstraintSet.clone(container)
-                altConstraintSet.clear(R.id.cartBanner, ConstraintSet.TOP)
-                altConstraintSet.connect(R.id.cartBanner, ConstraintSet.BOTTOM, R.id.nav_view, ConstraintSet.TOP, 8.px)
+                val altConstraintSet = ConstraintSet().apply {
+                    clone(container)
+                    clear(R.id.cartBanner, ConstraintSet.TOP)
+                    connect(R.id.cartBanner, ConstraintSet.BOTTOM, R.id.nav_view, ConstraintSet.TOP, 8.px)
+                }
 
                 val transition = ChangeBounds().apply {
                     interpolator = AnticipateOvershootInterpolator(1.0f)
@@ -105,6 +140,14 @@ class TDTabBarActivity : TDActivity() {
         itemsLabel.text = "$quantity item${if (quantity > 1) "s" else ""}"
 
         cartPrice.text = Cart.getTotalPrice(this).asPriceString
+    }
+
+    fun hideCartBanner() {
+        cartBanner.visibility = View.GONE
+    }
+
+    fun setCartBannerVisibility(visibility: Int) {
+        cartBanner.visibility = visibility
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.griffsoft.tsadadelivery.R
+import com.griffsoft.tsadadelivery.TDTabBarActivity
 
 class OrdersContainerFragment : Fragment() {
 
@@ -14,6 +15,9 @@ class OrdersContainerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val tdTabBarActivity = activity as TDTabBarActivity
+        tdTabBarActivity.setCartBannerVisibility(View.GONE)
+
         return inflater.inflate(R.layout.fragment_orders_container, container, false)
 
 //        val navHostFragment: NavHostFragment = childFragmentManager.findFragmentById(R.id.nav_orders_host_fragment) as NavHostFragment

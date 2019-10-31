@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_deliveryHome_to_restaurantFragment"
             app:destination="@id/restaurantFragment" />
+        <action
+            android:id="@+id/action_deliveryHome_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantFragment"
@@ -28,4 +31,13 @@
         android:name="com.griffsoft.tsadadelivery.ui.delivery.MenuCategoryFragment"
         android:label="MenuCategoryFragment"
         tools:layout="@layout/fragment_menu_category"/>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.griffsoft.tsadadelivery.ui.delivery.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_restaurantFragment"
+            app:destination="@id/restaurantFragment" />
+    </fragment>
 </navigation>

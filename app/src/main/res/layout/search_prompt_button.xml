@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/TDButtonBorderless"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:textColor="@color/quantum_googblue600"
+    android:gravity="start|center_vertical" />

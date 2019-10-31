@@ -115,7 +115,7 @@ class CartFragment : TDFragment(), View.OnClickListener, CartItemRemovedListener
     private fun dismissAfterEmpty() {
         removeAllButton.isEnabled = false
         continueButton.isEnabled = false
-        Timer("cartDismissTimer", false).schedule(1000) {
+        Timer("cartDismissTimer", false).schedule(750) {
             activity!!.finish()
         }
     }
