@@ -32,7 +32,7 @@ object TDUtil {
 
         ad.setCancelable(false)
         ad.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        ad.window?.setDimAmount(0.2f)
+        ad.window?.setDimAmount(0.3f)
         ad.show()
 
         Timer("successDialogTimer", false).schedule(showFor) {

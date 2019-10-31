@@ -16,6 +16,7 @@
         android:backgroundTint="#425893"
         android:fontFamily="sans-serif-medium"
         android:gravity="left|center_vertical"
+        android:onClick="facebookSignIn"
         android:paddingStart="53dp"
         android:text="@string/continue_with_facebook"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"

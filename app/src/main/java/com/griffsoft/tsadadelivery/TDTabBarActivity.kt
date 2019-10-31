@@ -1,5 +1,6 @@
 package com.griffsoft.tsadadelivery
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -21,6 +22,7 @@ import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 const val RC_CART = 666
 const val RC_REDIRECT_TO_ORDERS = 667
 
+@SuppressLint("SetTextI18n")
 class TDTabBarActivity : TDActivity() {
 
     private lateinit var navView: BottomNavigationView
@@ -129,7 +131,6 @@ class TDTabBarActivity : TDActivity() {
         } else {
             // Hide cart
             cartBanner.translationZ = 0f
-//            TransitionManager.beginDelayedTransition(container)
             originalConstraintSet.applyTo(container)
             cartBannerIsShown = false
         }
@@ -140,10 +141,6 @@ class TDTabBarActivity : TDActivity() {
         itemsLabel.text = "$quantity item${if (quantity > 1) "s" else ""}"
 
         cartPrice.text = Cart.getTotalPrice(this).asPriceString
-    }
-
-    fun hideCartBanner() {
-        cartBanner.visibility = View.GONE
     }
 
     fun setCartBannerVisibility(visibility: Int) {

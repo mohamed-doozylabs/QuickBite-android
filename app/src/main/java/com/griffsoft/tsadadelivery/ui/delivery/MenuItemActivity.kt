@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.content_menu_item.*
 class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedListener {
 
     private lateinit var menuItem: MenuItem
+    private var usingImageLayout: Boolean = true
     private lateinit var restaurant: Restaurant
 
     private var singleSelectedOptions = mutableMapOf<Int, MenuItemOption>() // Used for single-selection option categories
@@ -29,9 +30,28 @@ class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedLi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_item)
-        toolbar.setNavigationIcon(R.drawable.close_small)
-        setSupportActionBar(toolbar)
+
+        menuItem = intent.getParcelableExtra("menuItem")
+        restaurant = intent.getParcelableExtra("restaurant")
+
+        usingImageLayout = menuItem.itemImageUrl.isNotEmpty()
+
+        if (usingImageLayout) {
+            setTheme(R.style.AppTheme_NoActionBar)
+            setContentView(R.layout.activity_menu_item)
+            toolbar.setNavigationIcon(R.drawable.close_small)
+            setSupportActionBar(toolbar)
+            window.statusBarColor = Color.TRANSPARENT
+
+            Picasso.get()
+                .load(menuItem.itemImageUrl)
+                .placeholder(ContextCompat.getDrawable(this, R.drawable.placeholder)!!)
+                .into(header)
+        } else {
+            setContentView(R.layout.activity_menu_item_no_image)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.close_small)
+            supportActionBar?.elevation = 0f
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -40,20 +60,7 @@ class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedLi
         title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        window.statusBarColor = Color.TRANSPARENT
-
         scrollView.viewTreeObserver.addOnScrollChangedListener(this)
-
-        menuItem = intent.getParcelableExtra("menuItem")
-        restaurant = intent.getParcelableExtra("restaurant")
-
-        // Setup UI
-        if (menuItem.itemImageUrl.isNotEmpty()) {
-            Picasso.get()
-                .load(menuItem.itemImageUrl)
-                .placeholder(ContextCompat.getDrawable(this, R.drawable.placeholder)!!)
-                .into(header)
-        }
 
         menuItemName.text = menuItem.itemName
 
@@ -264,15 +271,29 @@ class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedLi
     }
 
     override fun onScrollChanged() {
-        if (scrollView.scrollY > 115) {
-            if (toolbar_layout.title != "5pc. BBQ Chicken Wings") {
-                toolbar_layout.title = "5pc. BBQ Chicken Wings"
-                window.statusBarColor = Color.WHITE
+        if (usingImageLayout) {
+            if (scrollView.scrollY > 115) {
+                if (toolbar_layout.title != menuItem.itemName) {
+                    toolbar_layout.title = menuItem.itemName
+                    window.statusBarColor = Color.WHITE
+                }
+            } else {
+                if (toolbar_layout.title != "") {
+                    toolbar_layout.title = ""
+                    window.statusBarColor = Color.TRANSPARENT
+                }
             }
         } else {
-            if (toolbar_layout.title != "") {
-                toolbar_layout.title = ""
-                window.statusBarColor = Color.TRANSPARENT
+            if (scrollView.scrollY > 85) {
+                if (supportActionBar?.title != menuItem.itemName) {
+                    supportActionBar?.title = menuItem.itemName
+                    supportActionBar?.elevation = 20f
+                }
+            } else {
+                if (supportActionBar?.title != "") {
+                    supportActionBar?.title = ""
+                    supportActionBar?.elevation = 0f
+                }
             }
         }
     }

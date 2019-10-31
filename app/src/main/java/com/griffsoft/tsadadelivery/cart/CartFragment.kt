@@ -1,6 +1,7 @@
 package com.griffsoft.tsadadelivery.cart
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,10 +25,13 @@ enum class PaymentMethod {
     Cash, GCash, Card
 }
 
+@SuppressLint("SetTextI18n")
 class CartFragment : TDFragment(), View.OnClickListener, CartItemRemovedListener {
 
     private lateinit var removeAllButton: Button
     private lateinit var continueButton: Button
+    private lateinit var cartTotalValue: TextView
+    private lateinit var totalValue: TextView
 
     private lateinit var cartAdapter: CartAdapter
     private lateinit var cartItems: ArrayList<MenuItem>
@@ -67,13 +71,12 @@ class CartFragment : TDFragment(), View.OnClickListener, CartItemRemovedListener
         continueButton.setOnClickListener(this)
 
         val itemsCount = Cart.getItems(context!!).size
-        root.findViewById<TextView>(R.id.restaurantAndTotalQuantity).text = "${Cart.getRestaurant(context!!)!!.name} · ${itemsCount} item${if (itemsCount > 1) "s" else ""}"
+        root.findViewById<TextView>(R.id.restaurantAndTotalQuantity).text = "${Cart.getRestaurant(context!!)!!.name} · $itemsCount item${if (itemsCount > 1) "s" else ""}"
 
-        val cartTotal = Cart.getTotalPrice(context!!)
-        root.findViewById<TextView>(R.id.cartTotalValue).text = cartTotal.asPriceString
+        cartTotalValue = root.findViewById(R.id.cartTotalValue)
         root.findViewById<TextView>(R.id.deliveryFeeValue).text = "₱50"
-
-        root.findViewById<TextView>(R.id.totalValue).text = (cartTotal + 50).asPriceString
+        totalValue = root.findViewById(R.id.totalValue)
+        updatePriceLabels()
 
         root.findViewById<RecyclerView>(R.id.cartItemsRecyclerView).apply {
             layoutManager = LinearLayoutManager(context!!)
@@ -88,6 +91,7 @@ class CartFragment : TDFragment(), View.OnClickListener, CartItemRemovedListener
         cartAdapter.notifyDataSetChanged()
 
         Cart.removeItemAt(context!!, position)
+        updatePriceLabels()
 
         if (cartItems.isEmpty()) {
             dismissAfterEmpty()
@@ -120,6 +124,12 @@ class CartFragment : TDFragment(), View.OnClickListener, CartItemRemovedListener
         }
     }
 
+    private fun updatePriceLabels() {
+        val cartTotal = Cart.getTotalPrice(context!!)
+        cartTotalValue.text = cartTotal.asPriceString
+        totalValue.text = (cartTotal + 50).asPriceString
+    }
+
     private fun continueButtonTapped() {
         paymentMethodBottomSheetDialog.show()
     }
@@ -139,6 +149,7 @@ class CartFragment : TDFragment(), View.OnClickListener, CartItemRemovedListener
 }
 
 // Cannot be inner class because this is also used by CurrentOrderFragment.
+@SuppressLint("SetTextI18n")
 class CartAdapter(val context: Context,
                   private val cartItems: List<MenuItem>,
                   val onCartItemRemovedListener: CartItemRemovedListener? = null,
