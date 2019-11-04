@@ -15,11 +15,11 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.griffsoft.tsadadelivery.MenuItem
 import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.TDFragment
 import com.griffsoft.tsadadelivery.asPriceString
 import com.griffsoft.tsadadelivery.extras.OnItemClickListener
+import com.griffsoft.tsadadelivery.objects.MenuItem
 import com.griffsoft.tsadadelivery.objects.Restaurant
 import com.squareup.picasso.Picasso
 

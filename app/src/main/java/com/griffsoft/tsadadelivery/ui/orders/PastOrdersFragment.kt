@@ -17,7 +17,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.griffsoft.tsadadelivery.*
+import com.griffsoft.tsadadelivery.R
+import com.griffsoft.tsadadelivery.TDFragment
+import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.asPriceString
+import com.griffsoft.tsadadelivery.extras.OrderUtil
 import com.griffsoft.tsadadelivery.objects.Order
 import com.squareup.picasso.Picasso
 

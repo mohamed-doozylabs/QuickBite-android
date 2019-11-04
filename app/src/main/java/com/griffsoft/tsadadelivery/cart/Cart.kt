@@ -1,10 +1,11 @@
-package com.griffsoft.tsadadelivery
+package com.griffsoft.tsadadelivery.cart
 
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.griffsoft.tsadadelivery.cart.PaymentMethod
+import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.extras.TDUtil
+import com.griffsoft.tsadadelivery.objects.MenuItem
 import com.griffsoft.tsadadelivery.objects.Restaurant
 
 object Cart {
@@ -13,7 +14,9 @@ object Cart {
     var paymentMethod: PaymentMethod? = null
 
     fun getItems(context: Context): ArrayList<MenuItem> {
-        val cartData = TDUtil.getSharedPrefsString(context, R.string.SHARED_PREFS_KEY_CART)
+        val cartData = TDUtil.getSharedPrefsString(context,
+            R.string.SHARED_PREFS_KEY_CART
+        )
         return if (cartData.isNotEmpty()) {
             val cartType = object : TypeToken<ArrayList<MenuItem>>() {}.type
             gson.fromJson(cartData, cartType)
@@ -23,7 +26,9 @@ object Cart {
     }
 
     fun getRestaurant(context: Context): Restaurant? {
-        val restaurantData = TDUtil.getSharedPrefsString(context, R.string.SHARED_PREFS_KEY_CART_RESTAURANT)
+        val restaurantData = TDUtil.getSharedPrefsString(context,
+            R.string.SHARED_PREFS_KEY_CART_RESTAURANT
+        )
         return if (restaurantData.isNotEmpty()) {
             gson.fromJson(restaurantData, Restaurant::class.java)
         } else {

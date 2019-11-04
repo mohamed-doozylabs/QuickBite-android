@@ -1,7 +1,6 @@
 package com.griffsoft.tsadadelivery.objects
 
 import com.google.firebase.Timestamp
-import com.griffsoft.tsadadelivery.MenuItem
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -20,7 +19,9 @@ data class Order(
     val total: Double = 0.0,
     val deliveryTimeEstimate: Int = 0,
     val paymentMethod: String = "",
-    val currentStage: Int = 0
+    val currentStage: Int = 0,
+    val notificationToken: String = "",
+    val userHasPushNotificationsEnabled: Boolean = true
 ) {
     fun totalQuantity(): Int {
        return items.map { it.selectedQuantity }.sum()
@@ -43,7 +44,9 @@ data class Order(
                 "deliveryTimeEstimate" to deliveryTimeEstimate,
                 "paymentMethod" to paymentMethod,
                 "total" to total,
-                "currentStage" to currentStage
+                "currentStage" to currentStage,
+                "notificationToken" to notificationToken,
+                "userHasPushNotificationsEnabled" to userHasPushNotificationsEnabled
             )
         }
 

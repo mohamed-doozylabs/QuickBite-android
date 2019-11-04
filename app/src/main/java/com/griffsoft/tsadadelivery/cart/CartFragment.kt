@@ -16,7 +16,11 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.griffsoft.tsadadelivery.*
+import com.griffsoft.tsadadelivery.R
+import com.griffsoft.tsadadelivery.TDFragment
+import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.asPriceString
+import com.griffsoft.tsadadelivery.objects.MenuItem
 import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.concurrent.schedule

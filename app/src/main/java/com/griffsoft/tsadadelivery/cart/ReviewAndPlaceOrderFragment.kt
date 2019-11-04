@@ -229,6 +229,7 @@ class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
 
         val restaurant = Cart.getRestaurant(context!!)!!
         val orderPlacedDate = Date()
+
         val order = Order(
             customerName = contactInfo.text.toString().substringBefore("\n"),
             customerContactNumber = contactInfo.text.toString().substringAfter("\n"),
@@ -243,7 +244,9 @@ class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
             total = Cart.getTotalPrice(context!!),
             deliveryTimeEstimate = deliveryEstimate.text.toString().substringBefore(" ").toInt(),
             paymentMethod = Cart.paymentMethod.toString(),
-            currentStage = 0
+            currentStage = 0,
+            notificationToken = TDUtil.getNotificationToken(context!!),
+            userHasPushNotificationsEnabled = currentUser.pushNotificationsEnabled
         )
 
         UserUtil.addOrUpdateCurrentOrder(context!!, order)

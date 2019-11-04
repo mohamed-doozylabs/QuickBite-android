@@ -1,4 +1,4 @@
-package com.griffsoft.tsadadelivery
+package com.griffsoft.tsadadelivery.objects
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

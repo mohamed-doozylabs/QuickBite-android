@@ -2,7 +2,6 @@ package com.griffsoft.tsadadelivery.objects
 
 import android.os.Parcelable
 import com.google.firebase.firestore.GeoPoint
-import com.griffsoft.tsadadelivery.MenuItem
 import com.griffsoft.tsadadelivery.extras.DistanceTime
 import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize

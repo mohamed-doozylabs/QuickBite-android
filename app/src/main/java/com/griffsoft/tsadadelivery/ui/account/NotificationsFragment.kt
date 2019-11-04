@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
+import com.google.firebase.firestore.FirebaseFirestore
 import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.TDFragment
 import com.griffsoft.tsadadelivery.UserUtil
@@ -35,6 +36,13 @@ class NotificationsFragment : TDFragment() {
     override fun onDestroy() {
         UserUtil.setPushNotificationsEnabled(context!!, pushSwitch.isChecked)
         UserUtil.setSmsNotificationsEnabled(context!!, smsSwitch.isChecked)
+
+        UserUtil.getCurrentUser(context!!)!!.currentOrder?.let {
+            FirebaseFirestore.getInstance()
+                .collection("orders")
+                .document(it.id)
+                .update("userHasPushNotificationsEnabled", pushSwitch.isChecked)
+        }
 
         super.onDestroy()
     }

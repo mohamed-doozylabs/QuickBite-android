@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputLayout
-import com.griffsoft.tsadadelivery.Cart
 import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.TDFragment
 import com.griffsoft.tsadadelivery.UserUtil

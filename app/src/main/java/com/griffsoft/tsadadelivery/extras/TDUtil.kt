@@ -47,13 +47,24 @@ object TDUtil {
 
     fun getSharedPrefsString(context: Context, key: Int): String {
         val sharedPrefs = sharedPrefs(context)
-        return sharedPrefs.getString(context.getString(key), "")!!
+        return sharedPrefs.getString(context.getString(key), "") ?: ""
     }
 
     fun isNetworkReachable(context: Context): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
         return activeNetwork?.isConnected == true
+    }
+
+    fun updateNotificationToken(context: Context, token: String) {
+        with (sharedPrefs(context).edit()) {
+            putString(context.getString(R.string.SHARED_PREFS_KEY_NOTIFICATION_TOKEN), token)
+            apply()
+        }
+    }
+
+    fun getNotificationToken(context: Context): String {
+        return getSharedPrefsString(context, R.string.SHARED_PREFS_KEY_NOTIFICATION_TOKEN)
     }
 }
 

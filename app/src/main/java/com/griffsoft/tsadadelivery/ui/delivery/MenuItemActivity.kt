@@ -12,9 +12,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
-import com.griffsoft.tsadadelivery.*
+import com.griffsoft.tsadadelivery.R
+import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.asPriceString
+import com.griffsoft.tsadadelivery.cart.Cart
 import com.griffsoft.tsadadelivery.extras.TDUtil
+import com.griffsoft.tsadadelivery.objects.MenuItem
+import com.griffsoft.tsadadelivery.objects.MenuItemOption
 import com.griffsoft.tsadadelivery.objects.Restaurant
+import com.griffsoft.tsadadelivery.px
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_menu_item.*
 import kotlinx.android.synthetic.main.content_menu_item.*

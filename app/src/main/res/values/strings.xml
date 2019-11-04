@@ -3,6 +3,8 @@
     <string name="google_sign_in_web_client_id">317568236888-rokn28jtm418qktt99rcaktqsvre5rvn.apps.googleusercontent.com</string>
     <string name="facebook_app_id">916989768664123</string>
     <string name="fb_login_protocol_scheme">fb916989768664123</string>
+    <string name="td_channel_id">td_notification_channel</string>
+    <string name="td_channel_name">Delivery updates</string>
 
 
     <!--Login Screen-->
@@ -24,48 +26,15 @@
     <string name="pin_move_hint_line_1">please move the pin to your\nexact delivery location</string>
 
     <!--Order-->
-    <string name="order">Order: %1$s</string>
-    <string name="placed">Placed: %1$s</string>
-    <string name="placed_and_date">Placed: %1$s (%2$s)</string>
-    <string name="last_updated">Last Updated: %1$s</string>
-    <string name="last_updated_and_date">Last Updated: %1$s (%2$s)</string>
-    <string name="order_status">Status: %1$s</string>
     <string name="items">Items</string>
     <string name="order_status_submitted">Order Submitted</string>
     <string name="order_status_being_prepared">Being Prepared by Store</string>
     <string name="order_status_en_route">En Route to Customer</string>
     <string name="order_status_delivered">Order Delivered</string>
 
-    <!--Order Item-->
-    <string name="total_price">Total: ₱%1$.2f</string>
-    <string name="quantity">%1$dx</string>
-    <string name="special_instructions">Special Instructions: %1$s</string>
-    <string name="selected_options">Selected Options: %1$s</string>
-    <string name="payment_method">Payment Method: %1$s</string>
-    <string name="order_total">Order Total: ₱%1$.2f</string>
-
-    <!--Restaurant-->
-    <string name="restaurant_address">Restaurant Address: %1$s</string>
-    <string name="restaurant_contact_number">Restaurant Contact #: %1$s</string>
-
-    <!--Customer-->
-    <string name="customer_name">Customer Name: %1$s</string>
-    <string name="customer_contact_number">Customer Contact #: %1$s</string>
-    <string name="delivery_address">Delivery Address</string>
-    <string name="delivery_address_instructions">Instructions: %1$s</string>
-    <string name="delivery_time_estimate_shown_to_customer">Delivery Time Estimate Shown To Customer: %1$s (%2$s)</string>
-
-    <!--Buttons-->
-    <string name="view_on_map">View On Map</string>
-    <string name="call_restaurant">Call Restaurant</string>
-    <string name="call_customer">Call Customer</string>
-    <string name="change_order_status">Change Order Status</string>
-    <string name="send_order_details_to_driver">Send Info to Driver</string>
-    <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
-
     <!--SharedPrefs Keys-->
     <string name="SHARED_PREFS_KEY">com.griffsoft.tsadadelivery.SHARED_PREFS</string>
+    <string name="SHARED_PREFS_KEY_NOTIFICATION_TOKEN">com.griffsoft.tsadadelivery.NOTIFICATION_TOKEN</string>
     <string name="SHARED_PREFS_KEY_CURRENT_USER">com.griffsoft.tsadadelivery.CURRENT_USER</string>
     <string name="SHARED_PREFS_KEY_DISTANCE_TIMES">com.griffsoft.tsadadelivery.DISTANCE_TIMES</string>
     <string name="SHARED_PREFS_KEY_CART">com.griffsoft.tsadadelivery.CART</string>

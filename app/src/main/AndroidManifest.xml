@@ -67,6 +67,22 @@
             android:name=".extras.FetchAddressIntentService"
             android:exported="false" />
 
+        <service
+            android:name=".extras.TDFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/td_channel_id" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
         <activity
             android:name=".get_started.AddNewAddressMapActivity"
             android:parentActivityName=".get_started.AddNewAddressSearchActivity" />
@@ -87,11 +103,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".get_started.LoginActivity" />
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".OrderActivity"
-            android:label="Order"
-            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
