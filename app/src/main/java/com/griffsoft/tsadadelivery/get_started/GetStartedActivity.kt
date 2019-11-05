@@ -54,14 +54,14 @@ class LoginActivity : TDActivity() {
                 }
 
                 override fun onCancel() {
-                    Timber.i("❤️ OnFacebookCancel")
+                    Timber.d("❤️ OnFacebookCancel")
                     Handler().post {
                         loadingViewLayout.visibility = View.GONE
                     }
                 }
 
                 override fun onError(error: FacebookException?) {
-                    Timber.i("❤️ OnFacebookError")
+                    Timber.d("❤️ OnFacebookError")
                     Handler().post {
                         loadingViewLayout.visibility = View.GONE
                     }
@@ -109,7 +109,6 @@ class LoginActivity : TDActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Timber.i("❤️ signInWithCredential:success")
                     val user = auth.currentUser!!
                     val userDocRef = FirebaseFirestore.getInstance().collection("users").document(user.uid)
 
@@ -145,7 +144,7 @@ class LoginActivity : TDActivity() {
                     }
                 } else {
                     // If sign in fails, display a message to the user.
-                    Timber.i("❤️ signInWithCredential:failure")
+                    Timber.e("❤️ signInWithCredential:failure")
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                 }

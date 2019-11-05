@@ -166,10 +166,6 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
             homeScreenIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(homeScreenIntent)
         } else {
-//            val addressesIntent = Intent(this, TDTabBarActivity::class.java)
-//            addressesIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//            startActivity(addressesIntent)
-
             setResult(RC_FINISH)
             finish()
         }

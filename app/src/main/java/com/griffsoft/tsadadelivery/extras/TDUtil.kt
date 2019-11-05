@@ -42,7 +42,7 @@ object TDUtil {
     }
 
     fun sharedPrefs(context: Context): SharedPreferences {
-        return context.applicationContext.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
+        return context.getSharedPreferences(context.getString(R.string.SHARED_PREFS_KEY), Context.MODE_PRIVATE)
     }
 
     fun getSharedPrefsString(context: Context, key: Int): String {

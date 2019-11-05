@@ -1,12 +1,17 @@
 package com.griffsoft.tsadadelivery
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnticipateOvershootInterpolator
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import androidx.navigation.plusAssign
 import androidx.navigation.ui.setupWithNavController
@@ -16,15 +21,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.griffsoft.tsadadelivery.cart.Cart
 import com.griffsoft.tsadadelivery.cart.CartContainerActivity
 import com.griffsoft.tsadadelivery.extras.KeepStateNavigator
+import com.irozon.sneaker.Sneaker
+import com.irozon.sneaker.interfaces.OnSneakerClickListener
 import kotlinx.android.synthetic.main.activity_tdtab_bar.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 
 
 const val RC_CART = 666
 const val RC_REDIRECT_TO_ORDERS = 667
+const val REDIRECT_TO_ORDERS_ACTION = "REDIRECT_TO_ORDERS_ACTION"
+const val SHOW_ORDER_UPDATE_SNEAKER = "SHOW_ORDER_UPDATE_SNEAKER"
 
 @SuppressLint("SetTextI18n")
 class TDTabBarActivity : TDActivity() {
+
+    private val redirectBroadcastReceiver = RedirectBroadcastReceiver()
+    private lateinit var localBroadcastManager: LocalBroadcastManager
+    private var redirectToOrders = false
 
     private lateinit var navView: BottomNavigationView
 
@@ -34,6 +47,16 @@ class TDTabBarActivity : TDActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tdtab_bar)
         supportActionBar?.hide()
+
+        localBroadcastManager = LocalBroadcastManager.getInstance(this)
+        val intentFilter = IntentFilter().apply {
+            addAction(REDIRECT_TO_ORDERS_ACTION)
+            addAction(SHOW_ORDER_UPDATE_SNEAKER)
+        }
+        localBroadcastManager.registerReceiver(redirectBroadcastReceiver, intentFilter)
+
+
+        redirectToOrders = intent.getBooleanExtra("redirectToOrders", false)
 
         originalConstraintSet.clone(container)
 
@@ -70,8 +93,16 @@ class TDTabBarActivity : TDActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (redirectToOrders) {
+            navView.selectedItemId = R.id.navigation_orders
+            redirectToOrders = false
+        }
         showCartBanner()
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        localBroadcastManager.unregisterReceiver(redirectBroadcastReceiver)
     }
 
     fun showLoadingCoverView(show: Boolean) {
@@ -154,6 +185,50 @@ class TDTabBarActivity : TDActivity() {
         if (requestCode == RC_CART) {
             if (resultCode == RC_REDIRECT_TO_ORDERS) {
                 navView.selectedItemId = R.id.navigation_orders
+            }
+        }
+    }
+
+    private fun showOrderUpdateNotification(forStage: Int) {
+        if (navView.selectedItemId == R.id.navigation_orders) { return }
+
+        val currentOrder = UserUtil.getCurrentUser(this)!!.currentOrder
+            ?: return
+
+        val title = if (forStage == 1) {
+            "${currentOrder.restaurantName} is preparing your order"
+        } else {
+            "Your order from ${currentOrder.restaurantName} is on its way!"
+        }
+
+        val message = if (forStage == 1) {
+            "We'll notify you when your driver is en route"
+        } else {
+            "Your driver's ETA ~${currentOrder.deliveryTimeEstimate}"
+        }
+
+        Sneaker.with(this)
+            .setTitle(title, Color.WHITE)
+            .setMessage(message, Color.WHITE)
+            .setDuration(5000)
+            .setHeight(130)
+            .setOnSneakerClickListener(object: OnSneakerClickListener{
+                override fun onSneakerClick(view: View) {
+                    navView.selectedItemId = R.id.navigation_orders
+                }
+            })
+            .sneak(R.color.colorAccent)
+    }
+
+    inner class RedirectBroadcastReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == REDIRECT_TO_ORDERS_ACTION) {
+                // Setting the selected tab item here causes a crash, so use a variable to defer
+                // the switch until onResume can handle it
+                redirectToOrders = true
+            } else if (intent?.action == SHOW_ORDER_UPDATE_SNEAKER) {
+                val stage = intent.getIntExtra("newStage", 0)
+                showOrderUpdateNotification(stage)
             }
         }
     }

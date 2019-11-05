@@ -131,19 +131,19 @@ class AccountFragment : TDFragment(), View.OnClickListener, OnItemClickListener 
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult?) {
-                    Timber.i("❤️ authenticateWithFirebase")
+                    Timber.d("❤️ authenticateWithFirebase")
                     authenticateWithFirebase(FacebookAuthProvider.getCredential(result!!.accessToken.token))
                 }
 
                 override fun onCancel() {
-                    Timber.i("❤️ OnFacebookCancel")
+                    Timber.d("❤️ OnFacebookCancel")
                     Handler().post {
                         tdTabBarActivity.showLoadingCoverView(false)
                     }
                 }
 
                 override fun onError(error: FacebookException?) {
-                    Timber.i("❤️ OnFacebookError")
+                    Timber.d("❤️ OnFacebookError")
                     Handler().post {
                         tdTabBarActivity.showLoadingCoverView(false)
                     }

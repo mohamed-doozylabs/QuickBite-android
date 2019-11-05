@@ -31,7 +31,7 @@ object DistanceTimeUtil {
 
     // Merges, saves and returns a DistanceTime dictionary for a given address
     private fun saveNewDistanceTimes(context: Context, newDistanceTimes: MutableMap<String, DistanceTime>, forAddressId: String): MutableMap<String, DistanceTime> {
-        val storedDistanceTimes = getStoredDistanceTimes(context.applicationContext)
+        val storedDistanceTimes = getStoredDistanceTimes(context)
 
         if (storedDistanceTimes[forAddressId] != null) {
             // Entry already exists for address
@@ -60,7 +60,7 @@ object DistanceTimeUtil {
 
         if (distanceTimesForCurrentAddress == null) {
             // No dictionary entry for this address id, must be a new address.
-            Timber.i("❤️ New address detected, requesting all distanceTimes")
+            Timber.d("❤️ New address detected, requesting all distanceTimes")
             return requestDistanceTimes(context, restaurants, forAddress, callback)
         }
 
@@ -83,7 +83,7 @@ object DistanceTimeUtil {
 
         val url = APIRequestBuilder.getDistanceMatrixRequestUrl(geopPoints, forAddress)
 
-        Timber.i("❤️ Requesting distances. URL string: $url")
+//        Timber.d("❤️ Requesting distances. URL string: $url")
         url.httpGet()
             .responseJson { request, response, result ->
                 when (result) {

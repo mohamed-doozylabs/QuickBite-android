@@ -66,14 +66,12 @@ class AddNewAddressSearchActivity : TDActivity() {
         // Set up a PlaceSelectionListener to handle the response.
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
-                // TODO: Get info about the selected place.
-                Timber.i("Place: " + place.name + ", " + place.id)
+                Timber.d("Place: " + place.name + ", " + place.id)
                 segueToAddNewAddressMapActivity(place)
             }
 
             override fun onError(status: Status) {
-                // TODO: Handle the error.
-                Timber.i("An error occurred: $status")
+                Timber.e("An error occurred: $status")
             }
         })
     }

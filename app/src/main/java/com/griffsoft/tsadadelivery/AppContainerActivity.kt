@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.griffsoft.tsadadelivery.get_started.LoginActivity
 import timber.log.Timber
@@ -33,18 +34,29 @@ class AppContainerActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(mChannel)
         }
 
-        if (BuildConfig.DEBUG) {
+        if (Timber.treeCount() == 0 && BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
 
-        val currentUser = UserUtil.getCurrentUser(this)
-        val activityIntent = if (currentUser != null && currentUser.addresses.isNotEmpty()) {
-            Intent(this, TDTabBarActivity::class.java)
-        } else {
-            Intent(this, LoginActivity::class.java)
+        if (isTaskRoot) {
+            Timber.d("❤️ task is root")
+            val currentUser = UserUtil.getCurrentUser(this)
+            val activityIntent = if (currentUser != null && currentUser.addresses.isNotEmpty()) {
+                Intent(this, TDTabBarActivity::class.java)
+            } else {
+                Intent(this, LoginActivity::class.java)
+            }
+
+            if (intent.extras != null) {
+                activityIntent.putExtra("redirectToOrders", true)
+            }
+
+            startActivity(activityIntent)
+        } else if (intent.extras != null) {
+            Timber.d("❤️ app was opened from notification")
+            LocalBroadcastManager.getInstance(this).sendBroadcast(Intent(REDIRECT_TO_ORDERS_ACTION))
         }
 
-        startActivity(activityIntent)
         finish()
     }
 }
