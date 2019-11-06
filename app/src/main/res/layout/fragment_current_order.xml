@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".ui.orders.CurrentOrderFragment">
+    android:animateLayoutChanges="true"
+    tools:context=".ui.orders.CurrentOrderFragment"
+    tools:ignore="RtlSymmetry, RtlHardcoded, ContentDescription, HardcodedText" >
 
     <TextView
         android:id="@+id/currentOrder"
@@ -77,68 +79,6 @@
         app:layout_constraintEnd_toEndOf="@+id/seeDetailsButton"
         app:layout_constraintTop_toTopOf="@+id/seeDetailsButton" />
 
-    <!--    <com.transferwise.sequencelayout.SequenceLayout-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:layout_marginEnd="16dp"-->
-    <!--        app:layout_constraintBottom_toTopOf="@id/pastOrdersButton"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/restaurantImage">-->
-
-    <!--        <com.transferwise.sequencelayout.SequenceStep-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            app:active="true"-->
-    <!--            app:anchorMaxWidth="0dp"-->
-    <!--            app:subtitle="@string/order_submitted_subtitle"-->
-    <!--            app:title="@string/order_submitted"-->
-    <!--            app:titleTextAppearance="@style/TextAppearance.AppCompat.Title" />-->
-
-    <!--        <com.transferwise.sequencelayout.SequenceStep-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            app:anchorMaxWidth="0dp"-->
-    <!--            app:title="@string/being_prepared_by_store" />-->
-
-    <!--        <com.transferwise.sequencelayout.SequenceStep-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            app:anchorMaxWidth="0dp"-->
-    <!--            app:title="@string/order_on_its_way" />-->
-
-    <!--        <com.transferwise.sequencelayout.SequenceStep-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="142dp"-->
-    <!--            app:anchorMaxWidth="0dp"-->
-    <!--            app:title="@string/food_delivered" />-->
-
-    <!--    </com.transferwise.sequencelayout.SequenceLayout>-->
-
-    <!--    <View-->
-    <!--        android:id="@+id/progressBarBackground"-->
-    <!--        android:layout_width="10dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:layout_marginBottom="16dp"-->
-    <!--        android:background="@color/buttonDisabled"-->
-    <!--        app:layout_constraintBottom_toTopOf="@id/pastOrdersButton"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/restaurantImage"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/restaurantImage"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/restaurantImage" />-->
-
-    <!--    <View-->
-    <!--        android:id="@+id/progressBarForeground"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:background="@color/colorAccent"-->
-    <!--        android:scaleY="0.3"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/progressBarBackground"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/progressBarBackground"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/progressBarBackground"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/progressBarBackground" />-->
-
     <FrameLayout
         android:id="@+id/progressBarWrapper"
         android:layout_width="11dp"
@@ -170,23 +110,6 @@
             tools:scaleY="0.3" />
 
     </FrameLayout>
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/progressCheckboxLayout"-->
-    <!--        android:layout_width="32dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:layout_marginBottom="16dp"-->
-    <!--        android:clipChildren="false"-->
-    <!--        android:clipToPadding="false"-->
-    <!--        app:layout_constraintBottom_toTopOf="@id/pastOrdersButton"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/restaurantImage"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/restaurantImage"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/restaurantImage">-->
-
-    <!--        -->
-
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <View
         android:id="@+id/stage1CheckboxBackground"
@@ -431,5 +354,15 @@
         android:text="@string/contact_us"
         app:layout_constraintBottom_toTopOf="@+id/pastOrdersDivider"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/problemWithYourOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Problem with your order?"
+        app:layout_constraintBottom_toBottomOf="@+id/contactUsButton"
+        app:layout_constraintEnd_toStartOf="@+id/contactUsButton"
+        app:layout_constraintTop_toTopOf="@+id/contactUsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

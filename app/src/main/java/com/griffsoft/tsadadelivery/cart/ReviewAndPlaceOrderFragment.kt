@@ -81,40 +81,13 @@ class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
     }
 
     private fun populateAddress() {
-        val address = currentUser.selectedAddress
-
-        val addressName: TextView = rootView.findViewById(R.id.addressName)
-        val unitAndStreet: TextView = rootView.findViewById(R.id.unitAndStreet)
-        val buildingLandmark: TextView = rootView.findViewById(R.id.buildingLandmark)
-        val instructions: TextView = rootView.findViewById(R.id.instructions)
-
-        addressName.text = address.displayName
-
-        if (address.floorDoorUnitNo.isNotEmpty()) {
-            if (address.userNickname.isNotEmpty()) {
-                // First line is set to user nickname, so append street
-                unitAndStreet.text = address.floorDoorUnitNo + ", " + address.street
-            } else {
-                unitAndStreet.text = address.floorDoorUnitNo
-            }
-        } else if (address.userNickname.isEmpty()) {
-            // No unit or floor set, but there is a userNickname
-            unitAndStreet.text = address.street
-        } else {
-            unitAndStreet.visibility = View.GONE
-        }
-
-        if (address.buildingLandmark.isNotEmpty()) {
-            buildingLandmark.text = address.buildingLandmark
-        } else {
-            buildingLandmark.visibility = View.GONE
-        }
-
-        if (address.instructions.isNotBlank()) {
-            instructions.text  = "Instructions: " + address.instructions
-        } else {
-            instructions.visibility = View.GONE
-        }
+        TDUtil.populateAddressFields(
+            currentUser.selectedAddress,
+            rootView.findViewById(R.id.addressName),
+            rootView.findViewById(R.id.unitAndStreet),
+            rootView.findViewById(R.id.buildingLandmark),
+            rootView.findViewById(R.id.instructions)
+        )
     }
 
     private fun populateContactInfo(argName: String? = null, argPhone: String? = null) {

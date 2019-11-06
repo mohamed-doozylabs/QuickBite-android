@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.griffsoft.tsadadelivery.R
 import com.griffsoft.tsadadelivery.TDFragment
 import com.griffsoft.tsadadelivery.UserUtil
+import com.griffsoft.tsadadelivery.extras.TDUtil
 import com.griffsoft.tsadadelivery.get_started.AddNewAddressSearchActivity
 import com.griffsoft.tsadadelivery.objects.Address
 import kotlinx.android.synthetic.main.address_list_item.view.*
@@ -144,33 +145,13 @@ class AddressesFragment : TDFragment(), OnAddressDeletedListener {
                 }
             }
 
-            holder.addressName.text = address.displayName
-
-            if (address.floorDoorUnitNo.isNotEmpty()) {
-                if (address.userNickname.isNotEmpty()) {
-                    // First line is set to user nickname, so append street
-                    holder.unitAndStreet.text = address.floorDoorUnitNo + ", " + address.street
-                } else {
-                    holder.unitAndStreet.text = address.floorDoorUnitNo
-                }
-            } else if (address.userNickname.isEmpty()) {
-                // No unit or floor set, but there is a userNickname
-                holder.unitAndStreet.text = address.street
-            } else {
-                holder.unitAndStreet.visibility = View.GONE
-            }
-
-            if (address.buildingLandmark.isNotEmpty()) {
-                holder.buildingLandmark.text = address.buildingLandmark
-            } else {
-                holder.buildingLandmark.visibility = View.GONE
-            }
-
-            if (address.instructions.isNotBlank()) {
-                holder.instructions.text  = "Instructions: " + address.instructions
-            } else {
-                holder.instructions.visibility = View.GONE
-            }
+            TDUtil.populateAddressFields(
+                address,
+                holder.addressName,
+                holder.unitAndStreet,
+                holder.buildingLandmark,
+                holder.instructions
+            )
 
             return rowView!!
         }

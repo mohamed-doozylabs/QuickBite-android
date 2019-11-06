@@ -18,13 +18,17 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.griffsoft.tsadadelivery.cart.Cart
 import com.griffsoft.tsadadelivery.cart.CartContainerActivity
 import com.griffsoft.tsadadelivery.extras.KeepStateNavigator
+import com.griffsoft.tsadadelivery.objects.Order
 import com.irozon.sneaker.Sneaker
 import com.irozon.sneaker.interfaces.OnSneakerClickListener
 import kotlinx.android.synthetic.main.activity_tdtab_bar.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import timber.log.Timber
 
 
 const val RC_CART = 666
@@ -42,6 +46,8 @@ class TDTabBarActivity : TDActivity() {
     private lateinit var navView: BottomNavigationView
 
     private var cartBannerIsShown = false
+
+    private var currentOrderListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,6 +104,13 @@ class TDTabBarActivity : TDActivity() {
             redirectToOrders = false
         }
         showCartBanner()
+
+        setupCurrentOrderListener()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        currentOrderListener?.remove()
     }
 
     override fun onDestroy() {
@@ -218,6 +231,35 @@ class TDTabBarActivity : TDActivity() {
                 }
             })
             .sneak(R.color.colorAccent)
+    }
+
+    private fun setupCurrentOrderListener() {
+        val currentOrder = UserUtil.getCurrentUser(this)!!.currentOrder ?: return
+
+        if (currentOrderListener == null) {
+            val orderRef =
+                FirebaseFirestore.getInstance().collection("orders").document(currentOrder.id)
+
+            currentOrderListener = orderRef.addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Timber.w(e, "Listen failed.")
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    val currentOrderSnapshot = snapshot.toObject(Order::class.java)!!
+
+                    if (currentOrderSnapshot.currentStage != 3) { return@addSnapshotListener }
+
+                    // Save latest orderInfo to currentUser
+                    UserUtil.addOrUpdateCurrentOrder(this, currentOrder)
+                    OrderFeedbackDialog.newInstance(currentOrderSnapshot.id, currentOrderSnapshot.restaurantName)
+                        .show(supportFragmentManager, "orderFeedbackDialog")
+                } else {
+                    Timber.d("Current data: null")
+                }
+            }
+        }
     }
 
     inner class RedirectBroadcastReceiver : BroadcastReceiver() {

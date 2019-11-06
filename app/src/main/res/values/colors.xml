@@ -10,5 +10,6 @@
     <color name="iconColor">#CCCCCC</color>
     <color name="search_bar_background">#EFEEF6</color>
     <color name="tertiary_text">#9A9A9A</color>
+    <color name="rating_star_background">#8D8D8D</color>
     <color name="menu_item_green_required">#1DD45C</color>
 </resources>

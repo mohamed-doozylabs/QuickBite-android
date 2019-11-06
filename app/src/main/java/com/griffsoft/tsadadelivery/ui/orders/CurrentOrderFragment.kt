@@ -27,6 +27,7 @@ import com.griffsoft.tsadadelivery.TDFragment
 import com.griffsoft.tsadadelivery.UserUtil
 import com.griffsoft.tsadadelivery.asPriceString
 import com.griffsoft.tsadadelivery.cart.CartAdapter
+import com.griffsoft.tsadadelivery.extras.TDUtil
 import com.griffsoft.tsadadelivery.objects.Order
 import com.squareup.picasso.Picasso
 import timber.log.Timber
@@ -133,7 +134,10 @@ class CurrentOrderFragment : TDFragment() {
                 if (snapshot != null && snapshot.exists()) {
                     currentOrder = snapshot.toObject(Order::class.java)!!
                     // Save latest orderInfo to currentUser
-                    UserUtil.addOrUpdateCurrentOrder(context!!, currentOrder)
+                    // If currentStage is 3 then TDTabBarActivity will update the current order
+                    if (currentOrder.currentStage != 3) {
+                        UserUtil.addOrUpdateCurrentOrder(context!!, currentOrder)
+                    }
                     updateUiIfNeeded()
                 } else {
                     Timber.d("Current data: null")
@@ -207,12 +211,22 @@ class CurrentOrderFragment : TDFragment() {
     private fun showOrderDetails() {
         val orderInfoBottomSheet = BottomSheetDialog(context!!)
         val bottomSheetView = LayoutInflater.from(context!!).inflate(R.layout.current_order_info_bottom_sheet, null)
+
+        TDUtil.populateAddressFields(
+            currentOrder.deliveryAddress,
+            bottomSheetView.findViewById(R.id.addressName),
+            bottomSheetView.findViewById(R.id.unitAndStreet),
+            bottomSheetView.findViewById(R.id.buildingLandmark),
+            bottomSheetView.findViewById(R.id.instructions)
+        )
+
         bottomSheetView.findViewById<RecyclerView>(R.id.orderItemsRecyclerView).apply {
             layoutManager = LinearLayoutManager(context!!)
             adapter = CartAdapter(context!!, currentOrder.items, null, true)
         }
         bottomSheetView.findViewById<TextView>(R.id.orderTotal).text = currentOrder.total.asPriceString
         bottomSheetView.findViewById<TextView>(R.id.paymentMethod).text = currentOrder.paymentMethod
+
         orderInfoBottomSheet.setContentView(bottomSheetView)
         orderInfoBottomSheet.show()
     }

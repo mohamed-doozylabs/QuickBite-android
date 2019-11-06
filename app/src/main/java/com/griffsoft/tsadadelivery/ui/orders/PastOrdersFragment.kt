@@ -1,6 +1,7 @@
 package com.griffsoft.tsadadelivery.ui.orders
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
@@ -25,6 +26,7 @@ import com.griffsoft.tsadadelivery.extras.OrderUtil
 import com.griffsoft.tsadadelivery.objects.Order
 import com.squareup.picasso.Picasso
 
+@SuppressLint("SetTextI18n")
 class PastOrdersFragment : TDFragment() {
 
     override fun onCreateView(
@@ -41,8 +43,6 @@ class PastOrdersFragment : TDFragment() {
 
         val root = inflater.inflate(R.layout.fragment_past_orders, container, false)
 
-
-
         if (navigatedToFromCurrentOrder) {
             root.findViewById<ImageView>(R.id.backButton).visibility = View.VISIBLE
             root.findViewById<TextView>(R.id.pastOrders).textSize = 28f
@@ -52,6 +52,7 @@ class PastOrdersFragment : TDFragment() {
         val pastOrders = UserUtil.getCurrentUser(context!!)!!.pastOrders
 
         if (pastOrders.isNotEmpty()) {
+            pastOrders.sortByDescending { it.datePlaced }
             root.findViewById<RecyclerView>(R.id.pastOrdersRecyclerView).apply {
                 visibility = View.VISIBLE
                 addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
