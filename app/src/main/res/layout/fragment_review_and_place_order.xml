@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".cart.ReviewAndPlaceOrderFragment">
+    tools:context=".cart.ReviewAndPlaceOrderFragment"
+    tools:ignore="HardcodedText, ContentDescription"
+    android:animateLayoutChanges="true">
 
     <ImageView
         android:id="@+id/backButton"
@@ -306,20 +308,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/orderProgressIndicator"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="100dp"
-            android:progressTint="@android:color/white"
-            android:theme="@style/WhiteProgressBarTheme"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/placeOrderButton"
-            app:layout_constraintEnd_toEndOf="@id/placeOrderButton"
-            app:layout_constraintStart_toStartOf="@id/placeOrderButton"
-            app:layout_constraintTop_toTopOf="@id/placeOrderButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

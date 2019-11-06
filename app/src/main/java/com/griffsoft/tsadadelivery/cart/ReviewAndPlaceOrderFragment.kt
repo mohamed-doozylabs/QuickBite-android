@@ -4,12 +4,13 @@ package com.griffsoft.tsadadelivery.cart
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.Timestamp
@@ -23,7 +24,7 @@ import java.util.*
 const val RC_UPDATE_CONTACT_INFO = 888
 const val RC_UPDATE_ADDRESS = 777
 
-@SuppressLint("SetTextI18n")
+@SuppressLint("SetTextI18n", "InflateParams")
 class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
 
     private lateinit var rootView: View
@@ -117,19 +118,9 @@ class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
     }
 
     private fun populateContactInfo(argName: String? = null, argPhone: String? = null) {
-        var contactInfoString: String
-
-        if (argName != null) {
-            contactInfoString = argName
-        } else {
-            contactInfoString = currentUser.name
-        }
-
-        if (argPhone != null) {
-            contactInfoString += "\n$argPhone"
-        } else {
-            contactInfoString += "\n${currentUser.phone}"
-        }
+        var contactInfoString: String = argName ?: currentUser.name
+        contactInfoString += "\n"
+        contactInfoString += argPhone ?: currentUser.phone
 
         rootView.findViewById<TextView>(R.id.contactInfo).text = contactInfoString
     }
@@ -219,10 +210,16 @@ class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
     }
 
     private fun placeOrder() {
-        // Show activity indicator
-        placeOrderButton.text = ""
-        val orderProgressIndicator = rootView.findViewById<ProgressBar>(R.id.orderProgressIndicator)
-        orderProgressIndicator.visibility = View.VISIBLE
+        val placingOrderDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_placing_order, null)
+        val placingOrderDialog = AlertDialog.Builder(context)
+            .setView(placingOrderDialogView)
+            .create()
+            .apply {
+                setCancelable(false)
+                window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                window?.setDimAmount(0.35f)
+                show()
+            }
 
         val contactInfo = rootView.findViewById<TextView>(R.id.contactInfo)
         val deliveryEstimate = rootView.findViewById<TextView>(R.id.deliveryEstimate)
@@ -256,21 +253,21 @@ class ReviewAndPlaceOrderFragment : TDFragment(), View.OnClickListener {
         ordersDb.document(order.id).set(order.dictionary)
             .addOnFailureListener {
                 rootView.isClickable = true
+                placingOrderDialog.dismiss()
                 AlertDialog.Builder(context!!)
                     .setTitle("Unable to Place Order")
                     .setMessage("Please try again. If problem persists, please contact us through the Account page.")
                     .setPositiveButton("Close", null)
                     .show()
-                orderProgressIndicator.visibility = View.GONE
-                placeOrderButton.text = "Place Order"
             }
             .addOnSuccessListener {
-                orderProgressIndicator.visibility = View.GONE
+                placingOrderDialog.dismiss()
                 Cart.empty(context!!)
-                TDUtil.showSuccessDialog(context!!, "Order Placed", showFor = 1750) {
+                TDUtil.showSuccessDialog(context!!, "Order Placed", showFor = 1850) {
                     activity!!.setResult(RC_REDIRECT_TO_ORDERS)
                     activity!!.finish()
                 }
+
             }
     }
 
