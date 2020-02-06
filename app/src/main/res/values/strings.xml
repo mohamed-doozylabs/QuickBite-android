@@ -1,61 +1,137 @@
 <resources>
     <string name="app_name">Tsada Delivery</string>
     <string name="google_sign_in_web_client_id">317568236888-rokn28jtm418qktt99rcaktqsvre5rvn.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">916989768664123</string>
+    <string name="fb_login_protocol_scheme">fb916989768664123</string>
+    <string name="td_channel_id">td_notification_channel</string>
+    <string name="td_channel_name">Delivery updates</string>
+
 
     <!--Login Screen-->
     <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="sign_in_with_facebook">Sign In with Facebook</string>
     <string name="continue_with_google">Continue with Google</string>
+    <string name="sign_in_with_google">Sign In with Google</string>
     <string name="continue_without_account">Continue without an account</string>
     <string name="setting_up_account">Setting up your account…</string>
 
+    <!--Add New Address Map-->
+    <string name="cagayan_de_oro">Cagayan de Oro</string>
+    <string name="rename">Rename</string>
+    <string name="floor_door_unit">Floor / Door / Unit # (optional)</string>
+    <string name="building_landmark">Building / Landmark (optional)</string>
+    <string name="instructions">Instructions (optional)</string>
+    <string name="save_address">Save Address</string>
+    <string name="rename_address_hint">\"Home\", \"Office\", etc.</string>
+    <string name="pin_move_hint_line_1">please move the pin to your\nexact delivery location</string>
+
     <!--Order-->
-    <string name="order">Order: %1$s</string>
-    <string name="placed">Placed: %1$s</string>
-    <string name="placed_and_date">Placed: %1$s (%2$s)</string>
-    <string name="last_updated">Last Updated: %1$s</string>
-    <string name="last_updated_and_date">Last Updated: %1$s (%2$s)</string>
-    <string name="order_status">Status: %1$s</string>
     <string name="items">Items</string>
     <string name="order_status_submitted">Order Submitted</string>
     <string name="order_status_being_prepared">Being Prepared by Store</string>
     <string name="order_status_en_route">En Route to Customer</string>
     <string name="order_status_delivered">Order Delivered</string>
 
-    <!--Order Item-->
-    <string name="total_price">Total: ₱%1$.2f</string>
-    <string name="quantity">%1$dx</string>
-    <string name="special_instructions">Special Instructions: %1$s</string>
-    <string name="selected_options">Selected Options: %1$s</string>
-    <string name="payment_method">Payment Method: %1$s</string>
-    <string name="order_total">Order Total: ₱%1$.2f</string>
-
-    <!--Restaurant-->
-    <string name="restaurant_address">Restaurant Address: %1$s</string>
-    <string name="restaurant_contact_number">Restaurant Contact #: %1$s</string>
-
-    <!--Customer-->
-    <string name="customer_name">Customer Name: %1$s</string>
-    <string name="customer_contact_number">Customer Contact #: %1$s</string>
-    <string name="delivery_address">Delivery Address</string>
-    <string name="delivery_address_instructions">Instructions: %1$s</string>
-    <string name="delivery_time_estimate_shown_to_customer">Delivery Time Estimate Shown To Customer: %1$s (%2$s)</string>
-
-    <!--Buttons-->
-    <string name="view_on_map">View On Map</string>
-    <string name="call_restaurant">Call Restaurant</string>
-    <string name="call_customer">Call Customer</string>
-    <string name="change_order_status">Change Order Status</string>
-    <string name="send_order_details_to_driver">Send Info to Driver</string>
-    <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
-
     <!--SharedPrefs Keys-->
     <string name="SHARED_PREFS_KEY">com.griffsoft.tsadadelivery.SHARED_PREFS</string>
+    <string name="SHARED_PREFS_KEY_NOTIFICATION_TOKEN">com.griffsoft.tsadadelivery.NOTIFICATION_TOKEN</string>
     <string name="SHARED_PREFS_KEY_CURRENT_USER">com.griffsoft.tsadadelivery.CURRENT_USER</string>
-    <string name="title_activity_tdtab_bar">TDTabBarActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="SHARED_PREFS_KEY_DISTANCE_TIMES">com.griffsoft.tsadadelivery.DISTANCE_TIMES</string>
+    <string name="SHARED_PREFS_KEY_CART">com.griffsoft.tsadadelivery.CART</string>
+    <string name="SHARED_PREFS_KEY_CART_RESTAURANT">com.griffsoft.tsadadelivery.CART_RESTAURANT</string>
+
+    <!--Account Fragment-->
+    <string name="log_out">Log Out</string>
+
+    <string name="sign_in_salespitch">Sign in with your Google or Facebook account to take advantage of promos like free delivery!</string>
+
+    <!--Account Details-->
+    <string name="account_details">Account Details</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="save_changes">Save Changes</string>
+
+    <!--Addresses-->
+    <string name="addresses">Addresses</string>
+    <string name="currently_selected">currently selected</string>
+
+    <!--Notifications-->
+    <string name="notifications">Notifications</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="sms_notifications">SMS Notifications</string>
 
 
+    <!--Delivery-->
+    <string name="delivering_to">delivering to</string>
+    <string name="top_picks_in_cagayan">Top Picks in Cagayan</string>
+    <string name="all_restaurants">All Restaurants</string>
+    <string name="search">Search</string>
+    <string name="finding_restaurants_near_you">Finding restaurants near you…</string>
+
+    <!--Restaurant-->
+    <string name="delivery">Delivery</string>
+    <string name="minutes">minutes</string>
+    <string name="featured_items">Featured Items</string>
+    <string name="full_menu">Full Menu</string>
+
+    <!--Menu Item-->
+    <string name="add_special_instructions">Add special instructions…</string>
+    <string name="required">required</string>
+    <string name="quantity_start_value">1</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="add_to_order">Add to Order</string>
+
+    <string name="title_delivery">Delivery</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_account">Account</string>
+
+    <string name="view_cart">View Cart</string>
+
+    <!--Cart-->
+    <string name="cart">Cart</string>
+    <string name="remove_all">Remove All</string>
+    <string name="add_more_items">+ Add more items</string>
+    <string name="cart_total">Cart Total</string>
+    <string name="delivery_fee">Delivery Fee</string>
+    <string name="total">Total</string>
+    <string name="continue_button_label">Continue</string>
+    <string name="remove">Remove</string>
+    <string name="select_payment_method">select payment method</string>
+    <string name="cash">Cash</string>
+    <string name="gcash">GCash</string>
+    <string name="credit_debit_card">Debit/Credit Card</string>
+
+    <!--Finalize Order-->
+    <string name="your_name">Your name</string>
+    <string name="your_phone_number">Your phone number</string>
+
+    <!--Review Order-->
+    <string name="review_and_place_order">Review and Place Order</string>
+    <string name="delivery_address_lowercase">delivery address</string>
+    <string name="contact_info">contact info</string>
+    <string name="order_details">order details</string>
+    <string name="delivery_estimate">delivery estimate</string>
+    <string name="payment_method_label_no_caps">payment method</string>
+    <string name="place_order">Place Order</string>
+
+    <!--Orders-->
+    <string name="current_order">Current Order</string>
+    <string name="see_details">See Details</string>
+    <string name="contact_us">Contact Us</string>
+
+    <string name="order_submitted">Order Submitted</string>
+    <string name="order_submitted_subtitle">We\'ll notify you when your order is being prepared by the store.</string>
+    <string name="being_prepared_by_store">Being Prepared By Store</string>
+    <string name="order_on_its_way">Order On Its Way!</string>
+    <string name="driver_on_their_way">Your driver is en route to you.</string>
+    <string name="food_delivered">Food Delivered</string>
+    <string name="food_delivered_subtitle">Enjoy!</string>
+
+    <string name="past_orders">Past Orders</string>
+    <string name="no_past_orders">No past orders</string>
+    <string name="order_total_label">Order Total</string>
+    <string name="payment_method_label">Payment Method</string>
+
+    <string name="changes_saved">Changes Saved</string>
 </resources>

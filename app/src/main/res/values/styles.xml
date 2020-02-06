@@ -6,15 +6,100 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="actionBarStyle">@style/whiteActionBar</item>
+        <item name="actionBarStyle">@style/WhiteActionBar</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
     </style>
 
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
-    <style name="whiteActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+    <style name="WhiteActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="background">@android:color/white</item>
+    </style>
+
+    <style name="TDButton" parent="@android:style/Widget.Material.Light.Button">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@drawable/td_button_background</item>
+<!--        <item name="android:stateListAnimator">@animator/td_button_state_list</item>-->
+<!--        <item name="android:elevation">4dp</item>-->
+        <item name="android:layout_height">60dp</item>
+    </style>
+
+    <style name="TDButtonBorderless" parent="@android:style/Widget.Material.Light.Button.Borderless.Colored">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/td_button_text_color</item>
+    </style>
+
+    <style name="WhiteProgressBarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+
+    <style name="TDRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/rating_star_background</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
+    <style name="TDHeading" parent="@style/TextAppearance.AppCompat.Display1">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="TDSubHeading" parent="TDHeading">
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="TDDeliveryRestaurantSection" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TDBackButton">
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_width">28dp</item>
+<!--        <item name="android:tint">@android:color/black</item>-->
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/primary_text_light</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColorPrimary">@android:color/primary_text_light</item>
+    </style>
+
+
+    <!--Order Progress-->
+    <style name="CompletedOrderStage" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+    </style>
+
+    <style name="CurrentOrderStage" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="PendingOrderStage" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">#D5D5D8</item>
+
     </style>
 
 </resources>

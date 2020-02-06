@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".cart.ReviewAndPlaceOrderFragment"
+    tools:ignore="HardcodedText, ContentDescription"
+    android:animateLayoutChanges="true">
+
+    <ImageView
+        android:id="@+id/backButton"
+        style="@style/TDBackButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
+    <TextView
+        android:id="@+id/reviewOrder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/review_and_place_order"
+        android:textAppearance="@style/TDSubHeading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reviewOrder">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/deliveryAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/delivery_address_lowercase"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/deliveryAddressEditIcon"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_pencil"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/deliveryAddress"
+                app:layout_constraintStart_toEndOf="@+id/deliveryAddress"
+                app:layout_constraintTop_toTopOf="@+id/deliveryAddress" />
+
+            <TextView
+                android:id="@+id/addressName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/unitAndStreet"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/deliveryAddress"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddress"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Home" />
+
+            <TextView
+                android:id="@+id/unitAndStreet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/buildingLandmark"
+                app:layout_constraintEnd_toEndOf="@+id/addressName"
+                app:layout_constraintStart_toStartOf="@+id/addressName"
+                app:layout_constraintTop_toBottomOf="@+id/addressName"
+                tools:text="Door #8, 75 Golden Shower Drive" />
+
+            <TextView
+                android:id="@+id/buildingLandmark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/cagayanDeOro"
+                app:layout_constraintEnd_toEndOf="@+id/addressName"
+                app:layout_constraintStart_toStartOf="@+id/addressName"
+                app:layout_constraintTop_toBottomOf="@+id/unitAndStreet"
+                tools:text="Across from tomas saco petron" />
+
+            <TextView
+                android:id="@+id/cagayanDeOro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cagayan_de_oro"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/instructions"
+                app:layout_constraintStart_toStartOf="@+id/addressName"
+                app:layout_constraintTop_toBottomOf="@+id/buildingLandmark"
+                app:layout_goneMarginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/instructions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/addressName"
+                app:layout_constraintStart_toStartOf="@+id/addressName"
+                app:layout_constraintTop_toBottomOf="@+id/cagayanDeOro"
+                tools:text="Instructions: Really Long instructions that i wrote while drunk" />
+
+            <Button
+                android:id="@+id/deliveryAddressButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@id/instructions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/deliveryAddress" />
+
+            <TextView
+                android:id="@+id/contactInfoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/contact_info"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/deliveryAddress"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAddressButton" />
+
+            <ImageView
+                android:id="@+id/contactInfoEditIcon"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_pencil"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/contactInfoLabel"
+                app:layout_constraintStart_toEndOf="@+id/contactInfoLabel"
+                app:layout_constraintTop_toTopOf="@+id/contactInfoLabel" />
+
+            <TextView
+                android:id="@+id/contactInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/contactInfoLabel"
+                app:layout_constraintTop_toBottomOf="@id/contactInfoLabel"
+                tools:text="Griffin \n+63 777 777 7777" />
+
+            <Button
+                android:id="@+id/contactInfoButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@id/contactInfo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/contactInfoLabel" />
+
+            <TextView
+                android:id="@+id/orderDetailsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/order_details"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/deliveryAddress"
+                app:layout_constraintTop_toBottomOf="@id/contactInfoButton" />
+
+            <TextView
+                android:id="@+id/orderDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/orderDetailsLabel"
+                app:layout_constraintTop_toBottomOf="@id/orderDetailsLabel"
+                tools:text="3 items from Chicka loca! \nTotal 8888" />
+
+            <TextView
+                android:id="@+id/deliveryEstimateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/delivery_estimate"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/deliveryAddress"
+                app:layout_constraintTop_toBottomOf="@id/orderDetails" />
+
+            <TextView
+                android:id="@+id/deliveryEstimate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/deliveryEstimateLabel"
+                app:layout_constraintTop_toBottomOf="@id/deliveryEstimateLabel"
+                tools:text="37 mins" />
+
+            <TextView
+                android:id="@+id/paymentMethodLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/payment_method_label_no_caps"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/deliveryAddress"
+                app:layout_constraintTop_toBottomOf="@id/deliveryEstimate" />
+
+            <ImageView
+                android:id="@+id/paymentMethodEditIcon"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_pencil"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/paymentMethodLabel"
+                app:layout_constraintStart_toEndOf="@+id/paymentMethodLabel"
+                app:layout_constraintTop_toTopOf="@+id/paymentMethodLabel" />
+
+            <TextView
+                android:id="@+id/paymentMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/paymentMethodLabel"
+                app:layout_constraintTop_toBottomOf="@id/paymentMethodLabel"
+                tools:text="GCash" />
+
+            <Button
+                android:id="@+id/paymentMethodButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@id/paymentMethod"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/paymentMethodLabel" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <View
+        android:id="@+id/fadeView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/bottom_fade_drawable"
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/placeOrderButton"
+            style="@style/TDButton"
+            android:layout_width="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/place_order"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

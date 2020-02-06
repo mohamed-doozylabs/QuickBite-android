@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/currentlySelectedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/currently_selected"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/addressName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addressName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/unitAndStreet"
+        app:layout_constraintEnd_toStartOf="@+id/deleteOrCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Home" />
+
+    <TextView
+        android:id="@+id/unitAndStreet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/buildingLandmark"
+        app:layout_constraintEnd_toEndOf="@+id/addressName"
+        app:layout_constraintStart_toStartOf="@+id/addressName"
+        app:layout_constraintTop_toBottomOf="@+id/addressName"
+        tools:text="Door #8, 75 Golden Shower Drive" />
+
+    <TextView
+        android:id="@+id/buildingLandmark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/cagayanDeOro"
+        app:layout_constraintEnd_toEndOf="@+id/addressName"
+        app:layout_constraintStart_toStartOf="@+id/addressName"
+        app:layout_constraintTop_toBottomOf="@+id/unitAndStreet"
+        tools:text="Across from tomas saco petron" />
+
+    <TextView
+        android:id="@+id/cagayanDeOro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cagayan_de_oro"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/instructions"
+        app:layout_constraintStart_toStartOf="@+id/addressName"
+        app:layout_constraintTop_toBottomOf="@+id/buildingLandmark"
+        app:layout_goneMarginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/addressName"
+        app:layout_constraintStart_toStartOf="@+id/addressName"
+        app:layout_constraintTop_toBottomOf="@+id/cagayanDeOro"
+        tools:text="Instructions: Really Long instructions that i wrote while drunk" />
+
+    <ImageView
+        android:id="@+id/deleteOrCheck"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_cancel_gray" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/quantum_black_divider"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

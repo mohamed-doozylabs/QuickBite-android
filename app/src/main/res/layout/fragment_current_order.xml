@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:animateLayoutChanges="true"
+    tools:context=".ui.orders.CurrentOrderFragment"
+    tools:ignore="RtlSymmetry, RtlHardcoded, ContentDescription, HardcodedText" >
+
+    <TextView
+        android:id="@+id/currentOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/current_order"
+        android:textAppearance="@style/TDHeading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/restaurantImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/egg_free_french_toast"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentOrder"
+        app:riv_corner_radius="4dp"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/restaurantName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/restaurantImage"
+        app:layout_constraintTop_toTopOf="@+id/restaurantImage"
+        tools:text="Restaurant Long Name" />
+
+    <TextView
+        android:id="@+id/orderDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/restaurantName"
+        app:layout_constraintTop_toBottomOf="@+id/restaurantName"
+        tools:text="3 items · Total ₱1,888" />
+
+    <Button
+        android:id="@+id/seeDetailsButton"
+        style="@style/TDButtonBorderless"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:paddingRight="20dp"
+        android:text="@string/see_details"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurantImage"
+        app:layout_constraintStart_toEndOf="@+id/restaurantImage"
+        app:layout_constraintTop_toBottomOf="@+id/orderDetails" />
+
+    <ImageView
+        android:id="@+id/seeDetailsChevron"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/ic_chevron_right"
+        android:tint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="@+id/seeDetailsButton"
+        app:layout_constraintTop_toTopOf="@+id/seeDetailsButton" />
+
+    <FrameLayout
+        android:id="@+id/progressBarWrapper"
+        android:layout_width="11dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="@id/stage4CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@id/restaurantImage"
+        app:layout_constraintStart_toStartOf="@id/restaurantImage"
+        app:layout_constraintTop_toTopOf="@id/stage1CheckboxBackground">
+
+        <View
+            android:id="@+id/progressBarBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="#EFEEF6" />
+
+        <View
+            android:id="@+id/progressBarForeground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorAccent"
+            android:scaleY="0"
+            android:transformPivotY="0dp"
+            tools:scaleY="0.3" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/stage1CheckboxBackground"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#EFEEF6"
+        app:layout_constraintBottom_toTopOf="@+id/stage2CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@id/progressBarWrapper"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/progressBarWrapper"
+        app:layout_constraintTop_toBottomOf="@id/restaurantImage"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/stage1CheckboxAnimationView"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/stage1CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@id/stage1CheckboxBackground"
+        app:layout_constraintStart_toStartOf="@id/stage1CheckboxBackground"
+        app:layout_constraintTop_toTopOf="@id/stage1CheckboxBackground"
+        app:lottie_autoPlay="false"
+        app:lottie_progress="100"
+        app:lottie_rawRes="@raw/order_progress_check_mark"
+        app:lottie_speed="1.3" />
+
+    <View
+        android:id="@+id/stage2CheckboxBackground"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#EFEEF6"
+        app:layout_constraintBottom_toTopOf="@+id/stage3CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@id/progressBarWrapper"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/progressBarWrapper"
+        app:layout_constraintTop_toBottomOf="@+id/stage1CheckboxBackground" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/stage2CheckboxAnimationView"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/stage2CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@id/stage2CheckboxBackground"
+        app:layout_constraintStart_toStartOf="@id/stage2CheckboxBackground"
+        app:layout_constraintTop_toTopOf="@id/stage2CheckboxBackground"
+        app:lottie_autoPlay="false"
+        app:lottie_rawRes="@raw/order_progress_check_mark"
+        app:lottie_speed="1.3"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/stage3CheckboxBackground"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#EFEEF6"
+        app:layout_constraintBottom_toTopOf="@+id/stage4CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@id/progressBarWrapper"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/progressBarWrapper"
+        app:layout_constraintTop_toBottomOf="@+id/stage2CheckboxBackground" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/stage3CheckboxAnimationView"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/stage3CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@id/stage3CheckboxBackground"
+        app:layout_constraintStart_toStartOf="@id/stage3CheckboxBackground"
+        app:layout_constraintTop_toTopOf="@id/stage3CheckboxBackground"
+        app:lottie_autoPlay="false"
+        app:lottie_rawRes="@raw/order_progress_check_mark"
+        app:lottie_speed="1.3" />
+
+    <View
+        android:id="@+id/stage4CheckboxBackground"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="42dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#EFEEF6"
+        app:layout_constraintBottom_toTopOf="@id/contactUsButton"
+        app:layout_constraintEnd_toEndOf="@id/progressBarWrapper"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/progressBarWrapper"
+        app:layout_constraintTop_toBottomOf="@+id/stage3CheckboxBackground" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/stage4CheckboxAnimationView"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/stage4CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@id/stage4CheckboxBackground"
+        app:layout_constraintStart_toStartOf="@id/stage4CheckboxBackground"
+        app:layout_constraintTop_toTopOf="@id/stage4CheckboxBackground"
+        app:lottie_autoPlay="false"
+        app:lottie_rawRes="@raw/order_progress_check_mark"
+        app:lottie_speed="1.3" />
+
+    <View
+        android:id="@+id/pastOrdersDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/quantum_black_divider"
+        app:layout_constraintBottom_toTopOf="@id/pastOrdersButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/pastOrdersButton"
+        style="@style/TDButtonBorderless"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        android:text="@string/past_orders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/pastOrdersChevron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_chevron_right"
+        android:tint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="@+id/pastOrdersButton"
+        app:layout_constraintTop_toTopOf="@+id/pastOrdersButton" />
+
+    <TextView
+        android:id="@+id/orderSubmitted"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/order_submitted"
+        android:textAppearance="@style/CurrentOrderStage"
+        app:layout_constraintBottom_toBottomOf="@id/stage1CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/stage1CheckboxBackground"
+        app:layout_constraintTop_toTopOf="@id/stage1CheckboxBackground" />
+
+    <TextView
+        android:id="@+id/orderSubmittedSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/order_submitted_subtitle"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/orderSubmitted"
+        app:layout_constraintStart_toStartOf="@id/orderSubmitted"
+        app:layout_constraintTop_toBottomOf="@id/orderSubmitted" />
+
+    <TextView
+        android:id="@+id/beingPreparedByStore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/being_prepared_by_store"
+        android:textAppearance="@style/PendingOrderStage"
+        app:layout_constraintBottom_toBottomOf="@id/stage2CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@+id/orderSubmitted"
+        app:layout_constraintStart_toStartOf="@id/orderSubmitted"
+        app:layout_constraintTop_toTopOf="@id/stage2CheckboxBackground" />
+
+    <TextView
+        android:id="@+id/beingPreparedByStoreSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/beingPreparedByStore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/beingPreparedByStore"
+        app:layout_constraintTop_toBottomOf="@+id/beingPreparedByStore"
+        tools:text="Chicka Loca! is preparing your order." />
+
+    <TextView
+        android:id="@+id/orderOnItsWay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/order_on_its_way"
+        android:textAppearance="@style/PendingOrderStage"
+        app:layout_constraintBottom_toBottomOf="@id/stage3CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@+id/beingPreparedByStore"
+        app:layout_constraintStart_toStartOf="@id/orderSubmitted"
+        app:layout_constraintTop_toTopOf="@id/stage3CheckboxBackground" />
+
+    <TextView
+        android:id="@+id/orderOnItsWaySubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/driver_on_their_way"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/orderOnItsWay"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/orderOnItsWay"
+        app:layout_constraintTop_toBottomOf="@+id/orderOnItsWay" />
+
+    <TextView
+        android:id="@+id/foodDelivered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/food_delivered"
+        android:textAppearance="@style/PendingOrderStage"
+        app:layout_constraintBottom_toBottomOf="@id/stage4CheckboxBackground"
+        app:layout_constraintEnd_toEndOf="@+id/orderOnItsWay"
+        app:layout_constraintStart_toStartOf="@id/orderSubmitted"
+        app:layout_constraintTop_toTopOf="@id/stage4CheckboxBackground" />
+
+    <TextView
+        android:id="@+id/foodDeliveredSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/food_delivered_subtitle"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/foodDelivered"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/foodDelivered"
+        app:layout_constraintTop_toBottomOf="@+id/foodDelivered" />
+
+    <Button
+        android:id="@+id/contactUsButton"
+        style="@style/TDButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/contact_us"
+        app:layout_constraintBottom_toTopOf="@+id/pastOrdersDivider"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/problemWithYourOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Problem with your order?"
+        app:layout_constraintBottom_toBottomOf="@+id/contactUsButton"
+        app:layout_constraintEnd_toStartOf="@+id/contactUsButton"
+        app:layout_constraintTop_toTopOf="@+id/contactUsButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

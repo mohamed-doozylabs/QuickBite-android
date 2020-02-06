@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/paymentMethodBottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/paymentMethod"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:text="@string/select_payment_method"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/cashButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="58dp"
+            android:text="@string/cash"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/cashIcon"
+            android:layout_width="28dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/cashButton"
+            app:layout_constraintStart_toStartOf="@+id/cashButton"
+            app:layout_constraintTop_toTopOf="@+id/cashButton"
+            app:srcCompat="@drawable/ic_cash_usd_outline" />
+
+        <Button
+            android:id="@+id/gcashButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="58dp"
+            android:text="@string/gcash"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cashButton" />
+
+        <ImageView
+            android:id="@+id/gcashIcon"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="2dp"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/gcashButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cashButton"
+            app:srcCompat="@drawable/ic_gcash" />
+
+        <Button
+            android:id="@+id/creditCardButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="58dp"
+            android:text="@string/credit_debit_card"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gcashButton" />
+
+        <ImageView
+            android:id="@+id/creditCardIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/creditCardButton"
+            app:layout_constraintEnd_toEndOf="@+id/cashIcon"
+            app:layout_constraintStart_toStartOf="@+id/cashIcon"
+            app:layout_constraintTop_toTopOf="@+id/creditCardButton"
+            app:srcCompat="@drawable/ic_credit_card" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

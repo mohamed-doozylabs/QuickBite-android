@@ -3,6 +3,13 @@
     <color name="colorPrimary">#DD5E56</color>
     <color name="colorPrimaryDark">#DD5E56</color>
     <color name="colorAccent">#FF6E6E</color>
+    <color name="colorAccentLight">#DAFF6E6E</color>
+    <color name="statusBarColor">@color/colorPrimaryDark</color>
 
-<!--    <color name="google_sign_in_background">#5383EC</color>-->
+    <color name="buttonDisabled">#E0E0E0</color>
+    <color name="iconColor">#CCCCCC</color>
+    <color name="search_bar_background">#EFEEF6</color>
+    <color name="tertiary_text">#9A9A9A</color>
+    <color name="rating_star_background">#8D8D8D</color>
+    <color name="menu_item_green_required">#1DD45C</color>
 </resources>
