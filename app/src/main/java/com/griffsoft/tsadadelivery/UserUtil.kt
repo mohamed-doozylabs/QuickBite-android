@@ -11,8 +11,8 @@ import timber.log.Timber
 
 @Suppress("EnumEntryName")
 enum class SyncProperty {
-    customerName,
-    customerPhone,
+    userName,
+    userPhone,
     addresses,
     pastOrders,
     pushNotificationsEnabled,
@@ -58,8 +58,7 @@ object UserUtil {
         mergedUser.name = firebaseUser.name
 
         firebaseUser.addresses.forEach {
-            it.isDefault = false
-            it.isSelected = false
+            it.selected = false
         }
         mergedUser.addresses.addAll(firebaseUser.addresses)
 
@@ -77,7 +76,7 @@ object UserUtil {
 
         user.name = name
         updateCurrentUser(context, user)
-        syncUserProperty(context, SyncProperty.customerName)
+        syncUserProperty(context, SyncProperty.userName)
     }
 
     fun setPhone(context: Context, phone: String) {
@@ -86,7 +85,7 @@ object UserUtil {
 
         user.phone = phone
         updateCurrentUser(context, user)
-        syncUserProperty(context, SyncProperty.customerPhone)
+        syncUserProperty(context, SyncProperty.userPhone)
     }
 
     fun addOrUpdateCurrentOrder(context: Context, order: Order) {
@@ -108,12 +107,8 @@ object UserUtil {
     fun addAddress(context: Context, newAddress: Address) {
         val user = getCurrentUser(context)!!
 
-        if (newAddress.isDefault) {
-            user.addresses.forEach { it.isDefault = false }
-        }
-
-        if (newAddress.isSelected) {
-            user.addresses.forEach { it.isSelected = false }
+        if (newAddress.selected) {
+            user.addresses.forEach { it.selected = false }
         }
 
         user.addresses.add(newAddress)
@@ -121,18 +116,10 @@ object UserUtil {
         syncUserProperty(context, SyncProperty.addresses)
     }
 
-    fun setDefaultAddress(context: Context, addressId: String) {
-        val user = getCurrentUser(context)!!
-
-        user.addresses.forEach { it.isDefault = (it.id == addressId) }
-        updateCurrentUser(context, user)
-        syncUserProperty(context, SyncProperty.addresses)
-    }
-
     fun setSelectedAddress(context: Context, addressId: String) {
         val user = getCurrentUser(context)!!
 
-        user.addresses.forEach { it.isSelected = (it.id == addressId) }
+        user.addresses.forEach { it.selected = (it.id == addressId) }
         updateCurrentUser(context, user)
     }
 
@@ -172,8 +159,8 @@ object UserUtil {
         val user = getCurrentUser(context)!!
 
         val newValue: Any = when (property) {
-            SyncProperty.customerName -> user.name
-            SyncProperty.customerPhone -> user.phone
+            SyncProperty.userName -> user.name
+            SyncProperty.userPhone -> user.phone
             SyncProperty.addresses -> user.addresses
             SyncProperty.pastOrders -> user.pastOrders
             SyncProperty.pushNotificationsEnabled -> user.pushNotificationsEnabled
@@ -204,7 +191,7 @@ data class User(
             if (addresses.isEmpty())
                 throw RuntimeException("Tried to get default address with no addresses set")
 
-            val selectedAddressIndex = addresses.indexOfFirst { it.isSelected }
+            val selectedAddressIndex = addresses.indexOfFirst { it.selected }
 
             return if (selectedAddressIndex != -1)
                 addresses[selectedAddressIndex]

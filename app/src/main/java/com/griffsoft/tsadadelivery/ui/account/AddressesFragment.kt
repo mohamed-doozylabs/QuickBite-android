@@ -55,7 +55,7 @@ class AddressesFragment : TDFragment(), OnAddressDeletedListener {
 
         addresses = UserUtil.getCurrentUser(context!!)!!.addresses
 
-        selectedAddressPosition = addresses.indexOfFirst { it.isSelected }
+        selectedAddressPosition = addresses.indexOfFirst { it.selected }
 
         addressesAdapter = AddressesListAdapter(context!!, addresses, this, settingsMode)
         addressesListView.adapter = addressesAdapter
@@ -73,14 +73,14 @@ class AddressesFragment : TDFragment(), OnAddressDeletedListener {
             // clear() and then add all so that the addresses object doesn't change
             addresses.clear()
             addresses.addAll(newAddresses)
-            selectedAddressPosition = addresses.indexOfFirst { it.isSelected }
+            selectedAddressPosition = addresses.indexOfFirst { it.selected }
             addressesAdapter.notifyDataSetChanged()
         }
     }
 
     private fun selectAddress(position: Int) {
         val address = addresses[position]
-        if (!address.isSelected) {
+        if (!address.selected) {
             UserUtil.setSelectedAddress(context!!, address.id)
         }
         selectedAddressPosition = position
@@ -89,7 +89,7 @@ class AddressesFragment : TDFragment(), OnAddressDeletedListener {
 
     override fun deleteAddressTapped(position: Int) {
         val addressToBeDeleted = addresses[position]
-        if (addressToBeDeleted.isSelected) {
+        if (addressToBeDeleted.selected) {
             selectAddress(0)
         } else {
             selectedAddressPosition -= 1

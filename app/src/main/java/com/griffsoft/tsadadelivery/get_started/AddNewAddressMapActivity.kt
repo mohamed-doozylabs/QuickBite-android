@@ -155,8 +155,7 @@ class AddNewAddressMapActivity : TDActivity(), OnMapReadyCallback, GoogleMap.OnC
             buildingLandmark = buildingLandmarkEditText.text.toString(),
             instructions = instructionsEditText.text.toString(),
             geoPoint = geoPoint,
-            isSelected = true,
-            isDefault = userHasNoAddresses)
+            selected = true)
 
         UserUtil.addAddress(this, newAddress)
 

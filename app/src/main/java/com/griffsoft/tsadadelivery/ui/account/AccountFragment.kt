@@ -221,8 +221,6 @@ class AccountFragment : TDFragment(), View.OnClickListener, OnItemClickListener 
                     val userDocRef = FirebaseFirestore.getInstance().collection("users").document(user.uid)
 
                     userDocRef.get().addOnCompleteListener {
-                        val currentUdUser = UserUtil.getCurrentUser(context!!)!!
-
                         if (it.isSuccessful) {
                             val document = it.result!!
 
@@ -238,12 +236,16 @@ class AccountFragment : TDFragment(), View.OnClickListener, OnItemClickListener 
                                         Toast.LENGTH_SHORT).show()
                                 }
                             } else {
+
                                 // MAIN CASE: User does not have an existing Firebase user.
                                 // Create one from the existing information in their guest account
 
                                 // If user has not set a name for their guest account, use the name from their social media.
                                 // If that fails, remain blank.
-                                currentUdUser.name = if (currentUdUser.name.isNotEmpty()) currentUdUser.name else user.displayName ?: ""
+                                val currentUdUser = UserUtil.getCurrentUser(context!!)!!
+                                if (currentUdUser.name.isEmpty()) {
+                                    currentUdUser.name = user.displayName ?: ""
+                                }
                                 currentUdUser.isGuest = false
                                 UserUtil.updateCurrentUser(context!!, currentUdUser)
 

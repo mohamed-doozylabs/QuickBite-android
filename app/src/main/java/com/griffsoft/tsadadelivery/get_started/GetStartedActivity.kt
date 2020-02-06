@@ -124,7 +124,7 @@ class LoginActivity : TDActivity() {
                             } else {
                                 // User does not exist, so we should create one
                                 val userName = user.displayName ?: ""
-                                userDocRef.set(hashMapOf("name" to userName))
+                                userDocRef.set(hashMapOf("userName" to userName))
                                 udUser = User(userName)
                             }
 

@@ -32,7 +32,7 @@ import com.griffsoft.tsadadelivery.objects.Order
 import com.squareup.picasso.Picasso
 import timber.log.Timber
 
-@SuppressLint("SetTextI18n")
+@SuppressLint("SetTextI18n", "InflateParams")
 class CurrentOrderFragment : TDFragment() {
 
     private lateinit var progressBarForeground: View
@@ -105,7 +105,6 @@ class CurrentOrderFragment : TDFragment() {
         )
 
         setUiForInitialStage()
-        setupOrderListener()
 
         root.findViewById<Button>(R.id.pastOrdersButton).setOnClickListener {
             performSegue(R.id.action_currentOrderFragment_to_pastOrdersFragment, bundleOf("navigatedToFromCurrentOrder" to true))
@@ -116,6 +115,11 @@ class CurrentOrderFragment : TDFragment() {
         }
 
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupOrderListener()
     }
 
     // Warning: putting this code in onCreateView causes a crash the second time the tab
@@ -132,8 +136,8 @@ class CurrentOrderFragment : TDFragment() {
                 }
 
                 if (snapshot != null && snapshot.exists()) {
+                    // Save latest order info to currentUser
                     currentOrder = snapshot.toObject(Order::class.java)!!
-                    // Save latest orderInfo to currentUser
                     // If currentStage is 3 then TDTabBarActivity will update the current order
                     if (currentOrder.currentStage != 3) {
                         UserUtil.addOrUpdateCurrentOrder(context!!, currentOrder)

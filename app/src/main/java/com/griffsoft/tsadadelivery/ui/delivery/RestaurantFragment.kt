@@ -108,10 +108,14 @@ class RestaurantFragment : TDFragment(), OnItemClickListener {
         override fun onBindViewHolder(holder: FeaturedItemsViewHolder, position: Int) {
             val featuredItem = featuredItems[position]
 
-            Picasso.get()
-                .load(featuredItem.itemImageUrl)
-                .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder)!!)
-                .into(holder.featuredItemImage)
+            // All featured items SHOULD have an image, but better to show a grey square than
+            // to crash
+            if (featuredItem.itemImageUrl.isNotEmpty()) {
+                Picasso.get()
+                    .load(featuredItem.itemImageUrl)
+                    .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder)!!)
+                    .into(holder.featuredItemImage)
+            }
             holder.featuredItemName.text = featuredItem.itemName
             holder.itemPrice.text = featuredItem.price.asPriceString
 
