@@ -86,7 +86,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurantAddress"
-                tools:text="₱50" />
+                tools:text="$8" />
 
             <TextView
                 android:id="@+id/timeEstimate"

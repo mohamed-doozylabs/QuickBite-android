@@ -267,7 +267,7 @@ class MenuItemActivity : AppCompatActivity(), ViewTreeObserver.OnScrollChangedLi
         menuItem.selectedOptions = selectedOrderOptions
         menuItem.selectedQuantity = selectedQuantity
         menuItem.specialInstructions = specialInstructionsEditText.text.toString()
-        menuItem.finalPrice = price.text.toString().removePrefix("₱").toDouble()
+        menuItem.finalPrice = price.text.toString().removePrefix("$").toDouble()
         Cart.setRestaurant(this, restaurant)
         Cart.addItem(this, menuItem)
 

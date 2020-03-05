@@ -98,7 +98,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/addToOrderButton"
             app:layout_constraintEnd_toEndOf="@+id/addToOrderButton"
             app:layout_constraintTop_toTopOf="@+id/addToOrderButton"
-            tools:text="₱110" />
+            tools:text="$110" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

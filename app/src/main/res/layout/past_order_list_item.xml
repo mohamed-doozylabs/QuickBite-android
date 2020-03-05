@@ -85,6 +85,6 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/total"
         app:layout_constraintStart_toEndOf="@+id/total"
-        tools:text="₱8,888" />
+        tools:text="$8,888" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

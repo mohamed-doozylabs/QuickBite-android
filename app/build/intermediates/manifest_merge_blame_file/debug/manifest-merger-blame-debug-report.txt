@@ -1,0 +1,501 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.griffsoft.tsadadelivery"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+11-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:9:5-79
+11-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:9:22-76
+12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+12-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:10:5-76
+12-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:10:22-73
+13    <uses-permission android:name="android.permission.INTERNET" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+13-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:11:5-67
+13-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:11:22-64
+14    <!-- <uses-sdk android:minSdkVersion="14" /> -->
+15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+15-->[com.google.firebase:firebase-firestore:21.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\5ed1bfad95ef40785ecbe176c3b36135\jetified-firebase-firestore-21.2.1\AndroidManifest.xml:13:5-79
+15-->[com.google.firebase:firebase-firestore:21.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\5ed1bfad95ef40785ecbe176c3b36135\jetified-firebase-firestore-21.2.1\AndroidManifest.xml:13:22-76
+16
+17    <uses-feature
+17-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\21a2c47b3c16be046eb899a8030aa74e\play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+18        android:glEsVersion="0x00020000"
+18-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\21a2c47b3c16be046eb899a8030aa74e\play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+19        android:required="true" />
+19-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\21a2c47b3c16be046eb899a8030aa74e\play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+20
+21    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+21-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\9c47485d365a1a4a03fb62ce705e9794\play-services-measurement-api-17.2.1\AndroidManifest.xml:24:5-68
+21-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\9c47485d365a1a4a03fb62ce705e9794\play-services-measurement-api-17.2.1\AndroidManifest.xml:24:22-65
+22    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+22-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:26:5-82
+22-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:26:22-79
+23    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+23-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:26:5-110
+23-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:26:22-107
+24
+25    <application
+25-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:6:5-99:19
+26        android:allowBackup="true"
+26-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:7:9-35
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\94cc0111b5786fd55a1b04154407ebc8\core-1.1.0\AndroidManifest.xml:24:18-86
+28        android:debuggable="true"
+29        android:icon="@mipmap/ic_launcher"
+29-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:8:9-43
+30        android:label="@string/app_name"
+30-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:9:9-41
+31        android:roundIcon="@mipmap/ic_launcher_round"
+31-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:10:9-54
+32        android:supportsRtl="true"
+32-->[com.irozon.sneaker:sneaker:2.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\21ac7bd4fba4e59928f23917b73da358\jetified-sneaker-2.0.0\AndroidManifest.xml:14:9-35
+33        android:testOnly="true"
+34        android:theme="@style/AppTheme" >
+34-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:11:9-40
+35
+36        <!--
+37             The API key for Google Maps-based APIs is defined as a string resource.
+38             (See the file "res/values/google_maps_api.xml").
+39             Note that the API key is linked to the encryption key used to sign the APK.
+40             You need a different API key for each encryption key, including the release key that is used to
+41             sign the APK for publishing.
+42             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+43        -->
+44        <meta-data
+44-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:21:9-23:55
+45            android:name="com.google.android.geo.API_KEY"
+45-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:22:13-58
+46            android:value="@string/google_maps_key" />
+46-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:23:13-52
+47        <meta-data
+47-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:25:9-26:54
+48            android:name="com.facebook.sdk.ApplicationId"
+48-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:25:20-65
+49            android:value="@string/facebook_app_id" />
+49-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:26:13-52
+50        <meta-data
+50-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:28:9-29:36
+51            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+51-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:28:20-75
+52            android:value="false" />
+52-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:29:13-34
+53        <meta-data
+53-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:31:9-32:36
+54            android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
+54-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:31:20-81
+55            android:value="false" />
+55-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:32:13-34
+56
+57        <activity
+57-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:34:9-37:48
+58            android:name="com.facebook.FacebookActivity"
+58-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:34:19-63
+59            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+59-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:35:13-114
+60            android:label="@string/app_name"
+60-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:37:13-45
+61            android:theme="@style/com_facebook_activity_theme" />
+61-->[com.facebook.android:facebook-common:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1aef6e99fe1f264c31456f43495dbc6c\jetified-facebook-common-5.9.0\AndroidManifest.xml:32:13-63
+62        <activity
+62-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:38:9-47:20
+63            android:name="com.facebook.CustomTabActivity"
+63-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:39:13-58
+64            android:exported="true" >
+64-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:40:13-36
+65            <intent-filter>
+65-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:41:13-46:29
+66                <action android:name="android.intent.action.VIEW" />
+66-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:42:17-69
+66-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:42:25-66
+67
+68                <category android:name="android.intent.category.DEFAULT" />
+68-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:43:17-76
+68-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:43:27-73
+69                <category android:name="android.intent.category.BROWSABLE" />
+69-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:44:17-78
+69-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:44:27-75
+70
+71                <data android:scheme="@string/fb_login_protocol_scheme" />
+71-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:45:17-75
+71-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:45:23-72
+72            </intent-filter>
+73        </activity>
+74        <activity
+74-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:50:9-52:58
+75            android:name="com.griffsoft.tsadadelivery.cart.ContactInfoContainerActivity"
+75-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:51:13-62
+76            android:windowSoftInputMode="adjustResize" />
+76-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:52:13-55
+77        <activity
+77-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:53:9-54:57
+78            android:name="com.griffsoft.tsadadelivery.cart.CartContainerActivity"
+78-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:53:19-61
+79            android:windowSoftInputMode="adjustResize" />
+79-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:54:13-55
+80        <activity android:name="com.griffsoft.tsadadelivery.ui.delivery.MenuItemActivity" />
+80-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:55:9-56:60
+80-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:56:13-57
+81        <activity android:name="com.griffsoft.tsadadelivery.ui.account.AddressesContainerActivity" />
+81-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:57:9-75
+81-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:57:19-72
+82
+83        <service
+83-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:59:9-61:40
+84            android:name="com.griffsoft.tsadadelivery.extras.FetchAddressIntentService"
+84-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:60:13-61
+85            android:exported="false" />
+85-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:61:13-37
+86        <service
+86-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:63:9-69:19
+87            android:name="com.griffsoft.tsadadelivery.extras.TDFirebaseMessagingService"
+87-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:64:13-62
+88            android:exported="false" >
+88-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:65:13-37
+89            <intent-filter>
+89-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:66:13-68:29
+90                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+90-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:67:17-78
+90-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:67:25-75
+91            </intent-filter>
+92        </service>
+93
+94        <meta-data
+94-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:71:9-73:53
+95            android:name="com.google.firebase.messaging.default_notification_channel_id"
+95-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:72:13-89
+96            android:value="@string/td_channel_id" />
+96-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:73:13-50
+97        <meta-data
+97-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:75:9-77:53
+98            android:name="com.google.firebase.messaging.default_notification_color"
+98-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:76:13-84
+99            android:resource="@color/colorAccent" />
+99-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:77:13-50
+100
+101        <activity
+101-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:79:9-81:85
+102            android:name="com.griffsoft.tsadadelivery.get_started.AddNewAddressMapActivity"
+102-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:80:13-65
+103            android:parentActivityName="com.griffsoft.tsadadelivery.get_started.AddNewAddressSearchActivity" />
+103-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:81:13-82
+104        <activity
+104-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:82:9-83:57
+105            android:name="com.griffsoft.tsadadelivery.TDTabBarActivity"
+105-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:82:19-51
+106            android:windowSoftInputMode="adjustResize" />
+106-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:83:13-55
+107        <activity
+107-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:84:9-86:71
+108            android:name="com.griffsoft.tsadadelivery.get_started.AddNewAddressSearchActivity"
+108-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:85:13-68
+109            android:parentActivityName="com.griffsoft.tsadadelivery.get_started.LoginActivity" />
+109-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:86:13-68
+110        <activity android:name="com.griffsoft.tsadadelivery.TDActivity" />
+110-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:87:9-88:42
+110-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:88:13-39
+111        <activity
+111-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:89:9-97:20
+112            android:name="com.griffsoft.tsadadelivery.AppContainerActivity"
+112-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:90:13-49
+113            android:theme="@style/SplashTheme" >
+113-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:91:13-47
+114            <intent-filter>
+114-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:92:13-96:29
+115                <action android:name="android.intent.action.MAIN" />
+115-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:93:17-69
+115-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:93:25-66
+116
+117                <category android:name="android.intent.category.LAUNCHER" />
+117-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:95:17-77
+117-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:95:27-74
+118            </intent-filter>
+119        </activity>
+120        <activity android:name="com.griffsoft.tsadadelivery.get_started.LoginActivity" />
+120-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:98:9-63
+120-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:98:19-60
+121        <activity
+121-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:14:9-20:20
+122            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
+122-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:15:13-91
+123            android:exported="false"
+123-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:16:13-37
+124            android:label="@string/places_autocomplete_label"
+124-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:17:13-62
+125            android:theme="@style/PlacesAutocompleteOverlay"
+125-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:18:13-61
+126            android:windowSoftInputMode="adjustResize" >
+126-->[com.google.android.libraries.places:places:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0d03baa091cb4afa2d29aa0223723072\places-2.1.0\AndroidManifest.xml:19:13-55
+127        </activity>
+128        <activity android:name="com.facebook.CustomTabMainActivity" />
+128-->[com.facebook.android:facebook-common:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1aef6e99fe1f264c31456f43495dbc6c\jetified-facebook-common-5.9.0\AndroidManifest.xml:33:9-71
+128-->[com.facebook.android:facebook-common:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1aef6e99fe1f264c31456f43495dbc6c\jetified-facebook-common-5.9.0\AndroidManifest.xml:33:19-68
+129        <activity
+129-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:24:9-31:50
+130            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+130-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:25:13-85
+131            android:excludeFromRecents="true"
+131-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:26:13-46
+132            android:exported="true"
+132-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:27:13-36
+133            android:launchMode="singleTask"
+133-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:28:13-44
+134            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+134-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:29:13-102
+135            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+135-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:30:13-72
+136
+137        <service
+137-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:33:9-39:19
+138            android:name="com.google.firebase.components.ComponentDiscoveryService"
+138-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:34:13-84
+139            android:directBootAware="true"
+139-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3924a00db9ba64b05e0ea57512fcae75\firebase-common-19.2.0\AndroidManifest.xml:15:13-43
+140            android:exported="false" >
+140-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:35:13-37
+141            <meta-data
+141-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:36:13-38:85
+142                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+142-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:37:17-109
+143                android:value="com.google.firebase.components.ComponentRegistrar" />
+143-->[com.google.firebase:firebase-auth:19.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\1c34cbd51b1e1bbeb4ed3680c79d67af\firebase-auth-19.1.0\AndroidManifest.xml:38:17-82
+144            <meta-data
+144-->[com.google.firebase:firebase-firestore:21.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\5ed1bfad95ef40785ecbe176c3b36135\jetified-firebase-firestore-21.2.1\AndroidManifest.xml:20:13-22:85
+145                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+145-->[com.google.firebase:firebase-firestore:21.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\5ed1bfad95ef40785ecbe176c3b36135\jetified-firebase-firestore-21.2.1\AndroidManifest.xml:21:17-111
+146                android:value="com.google.firebase.components.ComponentRegistrar" />
+146-->[com.google.firebase:firebase-firestore:21.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\5ed1bfad95ef40785ecbe176c3b36135\jetified-firebase-firestore-21.2.1\AndroidManifest.xml:22:17-82
+147            <meta-data
+147-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\9c47485d365a1a4a03fb62ce705e9794\play-services-measurement-api-17.2.1\AndroidManifest.xml:30:13-32:85
+148                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+148-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\9c47485d365a1a4a03fb62ce705e9794\play-services-measurement-api-17.2.1\AndroidManifest.xml:31:17-139
+149                android:value="com.google.firebase.components.ComponentRegistrar" />
+149-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\9c47485d365a1a4a03fb62ce705e9794\play-services-measurement-api-17.2.1\AndroidManifest.xml:32:17-82
+150            <meta-data
+150-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:32:13-34:85
+151                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+151-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:33:17-96
+152                android:value="com.google.firebase.components.ComponentRegistrar" />
+152-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:34:17-82
+153        </service>
+154
+155        <activity
+155-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:23:9-27:75
+156            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+156-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:24:13-93
+157            android:excludeFromRecents="true"
+157-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:25:13-46
+158            android:exported="false"
+158-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:26:13-37
+159            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+159-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:27:13-72
+160        <!--
+161            Service handling Google Sign-In user revocation. For apps that do not integrate with
+162            Google Sign-In, this service will never be started.
+163        -->
+164        <service
+164-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:33:9-36:110
+165            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+165-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:34:13-89
+166            android:exported="true"
+166-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:35:13-36
+167            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" /> <!-- Needs to be explicitly declared on P+ -->
+167-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\53dad4b81e2283cb18f0201c7c1d7e20\play-services-auth-17.0.0\AndroidManifest.xml:36:13-107
+168        <uses-library
+168-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\21a2c47b3c16be046eb899a8030aa74e\play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+169            android:name="org.apache.http.legacy"
+169-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\21a2c47b3c16be046eb899a8030aa74e\play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+170            android:required="false" />
+170-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\21a2c47b3c16be046eb899a8030aa74e\play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+171
+172        <provider
+172-->[com.squareup.picasso:picasso:2.71828] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\fbc541789df1c24997b9b4f7fc1e4b53\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+173            android:name="com.squareup.picasso.PicassoProvider"
+173-->[com.squareup.picasso:picasso:2.71828] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\fbc541789df1c24997b9b4f7fc1e4b53\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+174            android:authorities="com.griffsoft.tsadadelivery.com.squareup.picasso"
+174-->[com.squareup.picasso:picasso:2.71828] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\fbc541789df1c24997b9b4f7fc1e4b53\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+175            android:exported="false" />
+175-->[com.squareup.picasso:picasso:2.71828] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\fbc541789df1c24997b9b4f7fc1e4b53\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+176        <!--
+177             FirebaseMessagingService performs security checks at runtime,
+178             but set to not exported to explicitly avoid allowing another app to call it.
+179        -->
+180        <service
+180-->[com.google.firebase:firebase-messaging:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\7f136c25487d21fb3456c5cf5a1bfae4\jetified-firebase-messaging-20.0.0\AndroidManifest.xml:28:9-34:19
+181            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+181-->[com.google.firebase:firebase-messaging:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\7f136c25487d21fb3456c5cf5a1bfae4\jetified-firebase-messaging-20.0.0\AndroidManifest.xml:29:13-82
+182            android:exported="false" >
+182-->[com.google.firebase:firebase-messaging:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\7f136c25487d21fb3456c5cf5a1bfae4\jetified-firebase-messaging-20.0.0\AndroidManifest.xml:30:13-37
+183            <intent-filter android:priority="-500" >
+183-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:66:13-68:29
+184                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+184-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:67:17-78
+184-->S:\Career\Doozylabs\Doozylabs\Cambodia\QuickBite-android\app\src\main\AndroidManifest.xml:67:25-75
+185            </intent-filter>
+186        </service>
+187
+188        <provider
+188-->[com.crashlytics.sdk.android:crashlytics:2.10.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\55fc473f05f67ceba8c8a6bea6f5384a\jetified-crashlytics-2.10.1\AndroidManifest.xml:19:9-23:38
+189            android:name="com.crashlytics.android.CrashlyticsInitProvider"
+189-->[com.crashlytics.sdk.android:crashlytics:2.10.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\55fc473f05f67ceba8c8a6bea6f5384a\jetified-crashlytics-2.10.1\AndroidManifest.xml:20:13-75
+190            android:authorities="com.griffsoft.tsadadelivery.crashlyticsinitprovider"
+190-->[com.crashlytics.sdk.android:crashlytics:2.10.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\55fc473f05f67ceba8c8a6bea6f5384a\jetified-crashlytics-2.10.1\AndroidManifest.xml:21:13-75
+191            android:exported="false"
+191-->[com.crashlytics.sdk.android:crashlytics:2.10.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\55fc473f05f67ceba8c8a6bea6f5384a\jetified-crashlytics-2.10.1\AndroidManifest.xml:22:13-37
+192            android:initOrder="90" />
+192-->[com.crashlytics.sdk.android:crashlytics:2.10.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\55fc473f05f67ceba8c8a6bea6f5384a\jetified-crashlytics-2.10.1\AndroidManifest.xml:23:13-35
+193
+194        <receiver
+194-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:37:9-44:20
+195            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+195-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:38:13-78
+196            android:exported="true"
+196-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:39:13-36
+197            android:permission="com.google.android.c2dm.permission.SEND" >
+197-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:40:13-73
+198            <intent-filter>
+198-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:41:13-43:29
+199                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+199-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:42:17-81
+199-->[com.google.firebase:firebase-iid:20.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f1b37af9a448c68e8a9fde4fd72def05\firebase-iid-20.0.0\AndroidManifest.xml:42:25-78
+200            </intent-filter>
+201        </receiver>
+202
+203        <activity
+203-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3de31d9252c08e1403d2c5098ee4593b\play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+204            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+204-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3de31d9252c08e1403d2c5098ee4593b\play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+205            android:exported="false"
+205-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3de31d9252c08e1403d2c5098ee4593b\play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+206            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+206-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3de31d9252c08e1403d2c5098ee4593b\play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+207
+208        <provider
+208-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3924a00db9ba64b05e0ea57512fcae75\firebase-common-19.2.0\AndroidManifest.xml:19:9-23:39
+209            android:name="com.google.firebase.provider.FirebaseInitProvider"
+209-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3924a00db9ba64b05e0ea57512fcae75\firebase-common-19.2.0\AndroidManifest.xml:20:13-77
+210            android:authorities="com.griffsoft.tsadadelivery.firebaseinitprovider"
+210-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3924a00db9ba64b05e0ea57512fcae75\firebase-common-19.2.0\AndroidManifest.xml:21:13-72
+211            android:exported="false"
+211-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3924a00db9ba64b05e0ea57512fcae75\firebase-common-19.2.0\AndroidManifest.xml:22:13-37
+212            android:initOrder="100" />
+212-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3924a00db9ba64b05e0ea57512fcae75\firebase-common-19.2.0\AndroidManifest.xml:23:13-36
+213
+214        <receiver
+214-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:29:9-33:20
+215            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+215-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:30:13-85
+216            android:enabled="true"
+216-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:31:13-35
+217            android:exported="false" >
+217-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:32:13-37
+218        </receiver>
+219        <receiver
+219-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:34:9-42:20
+220            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+220-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:35:13-100
+221            android:enabled="true"
+221-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:36:13-35
+222            android:exported="true"
+222-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:37:13-36
+223            android:permission="android.permission.INSTALL_PACKAGES" >
+223-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:38:13-69
+224            <intent-filter>
+224-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:39:13-41:29
+225                <action android:name="com.android.vending.INSTALL_REFERRER" />
+225-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:40:17-79
+225-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:40:25-76
+226            </intent-filter>
+227        </receiver>
+228
+229        <service
+229-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:44:9-47:40
+230            android:name="com.google.android.gms.measurement.AppMeasurementService"
+230-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:45:13-84
+231            android:enabled="true"
+231-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:46:13-35
+232            android:exported="false" />
+232-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:47:13-37
+233        <service
+233-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:48:9-52:72
+234            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+234-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:49:13-87
+235            android:enabled="true"
+235-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:50:13-35
+236            android:exported="false"
+236-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:51:13-37
+237            android:permission="android.permission.BIND_JOB_SERVICE" />
+237-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:52:13-69
+238
+239        <meta-data
+239-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\39a85e2dbe6cec43314c9e578a9f224a\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+240            android:name="com.google.android.gms.version"
+240-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\39a85e2dbe6cec43314c9e578a9f224a\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+241            android:value="@integer/google_play_services_version" />
+241-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\39a85e2dbe6cec43314c9e578a9f224a\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+242        <!--
+243         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+244         with the application context. This config is merged in with the host app's manifest,
+245         but there can only be one provider with the same authority activated at any given
+246         point; so if the end user has two or more different apps that use Facebook SDK, only the
+247         first one will be able to use the provider. To work around this problem, we use the
+248         following placeholder in the authority to identify each host application as if it was
+249         a completely different provider.
+250        -->
+251        <provider
+251-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:39:9-42:40
+252            android:name="com.facebook.internal.FacebookInitProvider"
+252-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:40:13-70
+253            android:authorities="com.griffsoft.tsadadelivery.FacebookInitProvider"
+253-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:41:13-72
+254            android:exported="false" />
+254-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:42:13-37
+255
+256        <receiver
+256-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:44:9-50:20
+257            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+257-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:45:13-86
+258            android:exported="false" >
+258-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:46:13-37
+259            <intent-filter>
+259-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:47:13-49:29
+260                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+260-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:48:17-95
+260-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:48:25-92
+261            </intent-filter>
+262        </receiver>
+263        <receiver
+263-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:51:9-58:20
+264            android:name="com.facebook.CampaignTrackingReceiver"
+264-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:52:13-65
+265            android:exported="true"
+265-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:53:13-36
+266            android:permission="android.permission.INSTALL_PACKAGES" >
+266-->[com.facebook.android:facebook-core:5.9.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\0b51da862fa371224acfd1d4be3930d0\jetified-facebook-core-5.9.0\AndroidManifest.xml:54:13-69
+267            <intent-filter>
+267-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:39:13-41:29
+268                <action android:name="com.android.vending.INSTALL_REFERRER" />
+268-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:40:17-79
+268-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b7da7ecf3b281be0f32c3a80adcc189f\play-services-measurement-17.2.1\AndroidManifest.xml:40:25-76
+269            </intent-filter>
+270        </receiver>
+271
+272        <provider
+272-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\dd20db572bdd4a98b30b1485170b1fed\lifecycle-process-2.1.0\AndroidManifest.xml:23:9-27:43
+273            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+273-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\dd20db572bdd4a98b30b1485170b1fed\lifecycle-process-2.1.0\AndroidManifest.xml:24:13-79
+274            android:authorities="com.griffsoft.tsadadelivery.lifecycle-process"
+274-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\dd20db572bdd4a98b30b1485170b1fed\lifecycle-process-2.1.0\AndroidManifest.xml:25:13-69
+275            android:exported="false"
+275-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\dd20db572bdd4a98b30b1485170b1fed\lifecycle-process-2.1.0\AndroidManifest.xml:26:13-37
+276            android:multiprocess="true" />
+276-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\dd20db572bdd4a98b30b1485170b1fed\lifecycle-process-2.1.0\AndroidManifest.xml:27:13-40
+277    </application>
+278
+279</manifest>

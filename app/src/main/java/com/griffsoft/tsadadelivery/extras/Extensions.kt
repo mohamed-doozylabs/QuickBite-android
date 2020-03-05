@@ -15,8 +15,8 @@ val Double.asPriceString: String
 
 
         return if (string.substringAfter(".").contains("""[123456789]""".toRegex())) {
-            "₱$string"
+            "$$string"
         } else {
-            "₱${string.substringBefore(".")}"
+            "$${string.substringBefore(".")}"
         }
     }

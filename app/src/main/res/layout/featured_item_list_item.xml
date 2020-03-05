@@ -39,6 +39,6 @@
         app:layout_constraintEnd_toEndOf="@+id/featuredItemName"
         app:layout_constraintStart_toStartOf="@+id/featuredItemName"
         app:layout_constraintTop_toBottomOf="@+id/featuredItemName"
-        tools:text="₱110" />
+        tools:text="$8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "S:\\Career\\Doozylabs\\Doozylabs\\Cambodia\\QuickBite-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_orders_container.xml",
+        "source": "S:\\Career\\Doozylabs\\Doozylabs\\Cambodia\\QuickBite-android\\app\\src\\main\\res\\layout\\fragment_orders_container.xml"
+    },
+    {
+        "merged": "S:\\Career\\Doozylabs\\Doozylabs\\Cambodia\\QuickBite-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_delivery_container.xml",
+        "source": "S:\\Career\\Doozylabs\\Doozylabs\\Cambodia\\QuickBite-android\\app\\src\\main\\res\\layout\\fragment_delivery_container.xml"
+    },
+    {
+        "merged": "S:\\Career\\Doozylabs\\Doozylabs\\Cambodia\\QuickBite-android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_account_container.xml",
+        "source": "S:\\Career\\Doozylabs\\Doozylabs\\Cambodia\\QuickBite-android\\app\\src\\main\\res\\layout\\fragment_account_container.xml"
+    }
+]

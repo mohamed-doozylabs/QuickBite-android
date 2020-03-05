@@ -84,6 +84,6 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/deliveryEstimate"
         app:layout_constraintTop_toBottomOf="@+id/deliveryEstimate"
-        tools:text="₱50 delivery" />
+        tools:text="$8 delivery" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

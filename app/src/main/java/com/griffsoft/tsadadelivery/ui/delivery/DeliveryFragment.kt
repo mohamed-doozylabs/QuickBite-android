@@ -42,7 +42,7 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
     private lateinit var addressLabel: TextView
     private lateinit var headerLayout: ConstraintLayout
     private lateinit var scrollView: NestedScrollView
-    private lateinit var loadingView: ConstraintLayout
+//    private lateinit var loadingView: ConstraintLayout
 
     private var allRestaurants: ArrayList<Restaurant> = arrayListOf()
     private var highlightedRestaurants: ArrayList<Restaurant> = arrayListOf()
@@ -88,10 +88,10 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         scrollView = root.findViewById(R.id.scrollView)
         scrollView.viewTreeObserver.addOnScrollChangedListener(this)
 
-        loadingView = root.findViewById(R.id.loadingViewLayout)
-        if (allRestaurants.isEmpty()) { // If this is the first time loading this fragment...
-            loadingView.visibility = View.VISIBLE
-        }
+//        loadingView = root.findViewById(R.id.loadingViewLayout)
+//        if (allRestaurants.isEmpty()) { // If this is the first time loading this fragment...
+//            loadingViewLayout.visibility = View.VISIBLE
+//        }
 
         root.findViewById<View>(R.id.searchBar).setOnClickListener {
             performSegue(R.id.action_deliveryHome_to_searchFragment, bundleOf("restaurants" to allRestaurants.clone()))
@@ -122,7 +122,7 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
         if (address.id != selectedAddress.id) {
             // Refresh screen
             selectedAddress = address
-            loadingViewLayout.visibility = View.VISIBLE
+//            loadingViewLayout.visibility = View.VISIBLE
             addressLabel.text = selectedAddress.displayName
             setupRestaurants()
         }
@@ -179,7 +179,7 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
             sortRestaurantsByTime(result)
             populateHighlightedCategories()
             allRestaurantsAdapter.notifyDataSetChanged()
-            loadingView.visibility = View.GONE
+//            loadingViewLayout.visibility = View.GONE
         }
     }
 
@@ -283,9 +283,11 @@ class DeliveryFragment : TDFragment(), View.OnClickListener, OnItemClickListener
                 .into(holder.restaurantImage)
             holder.restaurantName.text = restaurant.name
             holder.restaurantCategories.text = restaurant.categories
-            holder.deliveryEstimate.text = if (sortByTime) restaurant.distanceTime!!.time else restaurant.distanceTime!!.distance
+            holder.deliveryEstimate.text = "30 mins";
+                //todo
+                    // if (sortByTime) restaurant.distanceTime!!.time else restaurant.distanceTime!!.distance
             holder.rating.text = restaurant.rating.toString()
-            holder.deliveryFee.text = "₱50 delivery"
+            holder.deliveryFee.text = "$8 delivery"
         }
 
         inner class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {

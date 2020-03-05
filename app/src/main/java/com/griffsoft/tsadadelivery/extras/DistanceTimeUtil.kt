@@ -113,9 +113,14 @@ object DistanceTimeUtil {
             return null
         }
 
-        val row = dtMatrix.rows.first()
+//        val row = dtMatrix.rows.first()
 
-        val distanceTimes = ArrayList(row.elements.map { DistanceTime(it.status, it.distance.text, it.distance.value, it.duration.text, it.duration.value) })
+        var tempDistanceTimes: ArrayList<DistanceTime> = ArrayList()
+
+        for (i in 0 until restaurants.size) {
+            tempDistanceTimes.add(DistanceTime("status", "distance", 30,"time", 12))
+        }
+        val distanceTimes = tempDistanceTimes
 
         val newDistanceTimes = mutableMapOf<String, DistanceTime>()
 

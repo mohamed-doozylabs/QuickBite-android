@@ -78,7 +78,7 @@ class CartFragment : TDFragment(), View.OnClickListener, CartItemRemovedListener
         root.findViewById<TextView>(R.id.restaurantAndTotalQuantity).text = "${Cart.getRestaurant(context!!)!!.name} · $itemsCount item${if (itemsCount > 1) "s" else ""}"
 
         cartTotalValue = root.findViewById(R.id.cartTotalValue)
-        root.findViewById<TextView>(R.id.deliveryFeeValue).text = "₱50"
+        root.findViewById<TextView>(R.id.deliveryFeeValue).text = "$8"
         totalValue = root.findViewById(R.id.totalValue)
         updatePriceLabels()
 

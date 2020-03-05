@@ -60,7 +60,7 @@ class RestaurantFragment : TDFragment(), OnItemClickListener {
         root.findViewById<TextView>(R.id.highlightedRestaurantName).text = restaurant.name
         root.findViewById<TextView>(R.id.restaurantCategories).text = restaurant.categories
         root.findViewById<TextView>(R.id.restaurantAddress).text = "${restaurant.distanceTime!!.distance} · ${restaurant.address.substringBefore(", Cag")}"
-        root.findViewById<TextView>(R.id.deliveryFee).text = "₱50"
+        root.findViewById<TextView>(R.id.deliveryFee).text = "$8"
         root.findViewById<TextView>(R.id.timeEstimate).text = restaurant.distanceTime!!.time.substringBefore(" ")
 
         root.findViewById<RecyclerView>(R.id.featuredItemsRecyclerView).apply {

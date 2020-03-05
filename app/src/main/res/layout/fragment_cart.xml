@@ -98,7 +98,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/deliveryFeeValue"
             app:layout_constraintEnd_toEndOf="@+id/deliveryFeeValue"
-            tools:text="₱8,888" />
+            tools:text="$8,888" />
 
         <TextView
             android:id="@+id/deliveryFee"
@@ -121,7 +121,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/continueButton"
             app:layout_constraintEnd_toEndOf="@+id/totalValue"
-            tools:text="₱8,888" />
+            tools:text="$8,888" />
 
         <TextView
             android:id="@+id/total"
@@ -148,7 +148,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/continueButton"
             app:layout_constraintEnd_toEndOf="@+id/continueButton"
             app:layout_constraintTop_toTopOf="@+id/continueButton"
-            tools:text="₱8,888" />
+            tools:text="$8,888" />
 
         <Button
             android:id="@+id/continueButton"

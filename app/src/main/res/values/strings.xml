@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tsada Delivery</string>
+    <string name="app_name">Cambo Food</string>
     <string name="google_sign_in_web_client_id">317568236888-rokn28jtm418qktt99rcaktqsvre5rvn.apps.googleusercontent.com</string>
     <string name="facebook_app_id">916989768664123</string>
     <string name="fb_login_protocol_scheme">fb916989768664123</string>
